@@ -41,7 +41,7 @@
             this.tsmiProjects});
             this.mnsMainStrip.Location = new System.Drawing.Point(0, 0);
             this.mnsMainStrip.Name = "mnsMainStrip";
-            this.mnsMainStrip.Size = new System.Drawing.Size(800, 24);
+            this.mnsMainStrip.Size = new System.Drawing.Size(1384, 24);
             this.mnsMainStrip.TabIndex = 1;
             this.mnsMainStrip.Text = "mns";
             // 
@@ -57,18 +57,21 @@
             this.tsmiProjects.Name = "tsmiProjects";
             this.tsmiProjects.Size = new System.Drawing.Size(119, 20);
             this.tsmiProjects.Text = "Gestion des projets";
+            this.tsmiProjects.Click += new System.EventHandler(this.tsmiProjects_Click);
             // 
             // frmApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1384, 961);
             this.Controls.Add(this.mnsMainStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMainStrip;
+            this.MinimumSize = new System.Drawing.Size(1000, 1000);
             this.Name = "frmApp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Perfect Planner";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.frmApp_Load);
             this.mnsMainStrip.ResumeLayout(false);
             this.mnsMainStrip.PerformLayout();
             this.ResumeLayout(false);

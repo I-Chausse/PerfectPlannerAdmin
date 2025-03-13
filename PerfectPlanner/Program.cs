@@ -8,6 +8,7 @@ namespace PerfectPlanner
 {
     static class Program
     {
+        public static CustomApplicationContext AppContext;
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
@@ -16,7 +17,9 @@ namespace PerfectPlanner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmApp());
+            frmLogin loginForm = new frmLogin();
+            AppContext = new CustomApplicationContext(loginForm);
+            Application.Run(AppContext);
         }
     }
 }

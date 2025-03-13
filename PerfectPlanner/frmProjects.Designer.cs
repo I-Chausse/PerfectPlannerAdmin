@@ -50,6 +50,7 @@
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.Size = new System.Drawing.Size(760, 724);
             this.dgvProjects.TabIndex = 1;
+            this.dgvProjects.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellContentClick);
             // 
             // projectName
             // 
@@ -77,6 +78,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 761);
             this.Controls.Add(this.dgvProjects);
+            this.MinimumSize = new System.Drawing.Size(600, 200);
             this.Name = "frmProjects";
             this.Text = "Projets";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();

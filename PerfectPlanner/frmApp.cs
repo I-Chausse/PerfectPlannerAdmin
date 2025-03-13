@@ -17,16 +17,50 @@ namespace PerfectPlanner
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmApp_Load(object sender, EventArgs e)
         {
 
         }
-
         private void tsmiUser_Click(object sender, EventArgs e)
         {
-            frmUser frmUser = new frmUser();
-            frmUser.MdiParent = this;
-            frmUser.Show();
+            frmUser existingForm = Application.OpenForms.OfType<frmUser>().FirstOrDefault();
+
+            if (existingForm != null)
+            {
+                existingForm.BringToFront();
+                existingForm.Activate();
+            }
+            else
+            {
+                frmUser frmUser = new frmUser();
+                frmUser.MdiParent = this;
+                frmUser.Show();
+            }
+        }
+
+
+        private void tsmiProjects_Click(object sender, EventArgs e)
+        {
+            frmProjects existingForm = null;
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is frmProjects)
+                {
+                    existingForm = (frmProjects)openForm;
+                    break;
+                }
+            }
+            if (existingForm != null)
+            {
+                existingForm.BringToFront();
+                existingForm.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                frmProjects frmProjects = new frmProjects();
+                frmProjects.MdiParent = this;
+                frmProjects.Show();
+            }
         }
     }
 }

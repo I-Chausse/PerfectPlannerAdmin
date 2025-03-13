@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PerfectPlanner
 {
-    public partial class frmProjects: Form
+    public partial class frmDetailProjet: Form
     {
-        public frmProjects()
+        public frmDetailProjet()
         {
             InitializeComponent();
-        }
-
-        private void dgvProjects_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
