@@ -14,7 +14,8 @@ namespace PerfectPlanner
     
     public partial class frmUser: Form
     {
-        List<User> users = new List<User>();
+
+        List<User> users;
         public frmUser()
         {
             InitializeComponent();
@@ -22,11 +23,7 @@ namespace PerfectPlanner
 
         private void frmUser_Load(object sender, EventArgs e)
         {
-            users.Add(new User(1, "JDupond", "admin", "j-dupond@perfect-planner.com", "Jean", "Dupond", "avatar", "Gestionnaire"));
-            users.Add(new User(2, "JMartin", "admin", "j-martin@entreprise.com", "Jean", "Martin", "avatar", "Utilisateur"));
-            users.Add(new User(3, "JLeclerc", "admin", "j-leclerc@moulin.ch", "Jean", "Leclerc", "avatar", "Utilisateur"));
-            users[0].AddUser(users[1]);
-            users[0].AddUser(users[2]);
+            users = DataProvider.getUsers();
             foreach (var item in users)
             {
                 String usersAssigned = "";

@@ -20,12 +20,8 @@ namespace PerfectPlanner
 
         private void frmProjects_Load(object sender, EventArgs e)
         {
-            projects.Add(new Project(1, "Projet 1"));
-            projects.Add(new Project(2, "Projet 2"));
-            projects[0].AddAdmin(new User(1, "JDupond", "admin", "j-dupond@perfect-planner.com", "Jean", "Dupond", "avatar", "Gestionnaire"));
-            projects[0].AddAssignee(new User(2, "JMartin", "admin", "j-martin@matrin.ch", "Jean", "Martin", "avatar", "Utilisateur"));
-            projects[0].AddAdmin(new User(3, "JLeclerc", "admin", "j-leclerc@moulin.ch", "Jean", "Leclerc", "avatar", "Utilisateur"));
 
+            projects = DataProvider.getProjects();
             projects.ForEach(project =>
             {
                 String admins = "";
