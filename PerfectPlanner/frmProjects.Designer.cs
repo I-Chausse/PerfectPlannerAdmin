@@ -78,8 +78,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 761);
             this.Controls.Add(this.dgvProjects);
-            this.MinimumSize = new System.Drawing.Size(600, 200);
+            this.Location = new System.Drawing.Point(960, 0);
+            this.MinimumSize = new System.Drawing.Size(800, 200);
             this.Name = "frmProjects";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Projets";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
             this.ResumeLayout(false);

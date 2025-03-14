@@ -41,7 +41,7 @@
             this.tsmiProjects});
             this.mnsMainStrip.Location = new System.Drawing.Point(0, 0);
             this.mnsMainStrip.Name = "mnsMainStrip";
-            this.mnsMainStrip.Size = new System.Drawing.Size(1384, 24);
+            this.mnsMainStrip.Size = new System.Drawing.Size(1884, 24);
             this.mnsMainStrip.TabIndex = 1;
             this.mnsMainStrip.Text = "mns";
             // 
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 961);
+            this.ClientSize = new System.Drawing.Size(1884, 961);
             this.Controls.Add(this.mnsMainStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMainStrip;

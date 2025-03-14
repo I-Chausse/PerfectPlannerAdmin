@@ -15,6 +15,35 @@ namespace PerfectPlanner
         public frmDetailUser()
         {
             InitializeComponent();
+            btnSave.Text = "Ajouter";
+            grpUsersAssigned.Visible = false;
+
+        }
+
+        public frmDetailUser(User user)
+        {
+            InitializeComponent();
+            txtUserName.Text = user.UserName;
+            txtPersonName.Text = user.LastName;
+            txtPersonFirstName.Text = user.FirstName;
+            txtPersonMail.Text = user.Email;
+            cmbUserRole.Text = user.Role;
+            if (cmbUserRole.SelectedIndex == 0)
+            {
+                grpUsersAssigned.Visible = false;
+            }
+        }
+
+        private void cmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbUserRole.SelectedIndex == 0)
+            {
+                grpUsersAssigned.Visible = false;
+            }
+            else
+            {
+                grpUsersAssigned.Visible = true;
+            }
         }
     }
 }
