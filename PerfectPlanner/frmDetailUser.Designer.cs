@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpUserDetail = new System.Windows.Forms.GroupBox();
             this.lblUserRole = new System.Windows.Forms.Label();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
@@ -43,15 +44,21 @@
             this.lblUserName = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.grpUsersAssigned = new System.Windows.Forms.GroupBox();
-            this.dgvUserAssigned = new System.Windows.Forms.DataGridView();
+            this.dgvUsersAssigned = new System.Windows.Forms.DataGridView();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cmsRemoveAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiRemoveAdminRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsAddAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiAddAdminAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.grpUserDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).BeginInit();
             this.grpUsersAssigned.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUserAssigned)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsersAssigned)).BeginInit();
+            this.cmsRemoveAssignee.SuspendLayout();
+            this.cmsAddAssignee.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpUserDetail
@@ -190,7 +197,7 @@
             // 
             // grpUsersAssigned
             // 
-            this.grpUsersAssigned.Controls.Add(this.dgvUserAssigned);
+            this.grpUsersAssigned.Controls.Add(this.dgvUsersAssigned);
             this.grpUsersAssigned.Location = new System.Drawing.Point(287, 12);
             this.grpUsersAssigned.Name = "grpUsersAssigned";
             this.grpUsersAssigned.Size = new System.Drawing.Size(365, 303);
@@ -198,26 +205,32 @@
             this.grpUsersAssigned.TabStop = false;
             this.grpUsersAssigned.Text = "Utilisateurs assignés";
             // 
-            // dgvUserAssigned
+            // dgvUsersAssigned
             // 
-            this.dgvUserAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUserAssigned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvUsersAssigned.AllowUserToAddRows = false;
+            this.dgvUsersAssigned.AllowUserToDeleteRows = false;
+            this.dgvUsersAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsersAssigned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.userName,
             this.userFirstName});
-            this.dgvUserAssigned.Location = new System.Drawing.Point(7, 20);
-            this.dgvUserAssigned.Name = "dgvUserAssigned";
-            this.dgvUserAssigned.Size = new System.Drawing.Size(352, 232);
-            this.dgvUserAssigned.TabIndex = 0;
+            this.dgvUsersAssigned.Location = new System.Drawing.Point(7, 20);
+            this.dgvUsersAssigned.Name = "dgvUsersAssigned";
+            this.dgvUsersAssigned.ReadOnly = true;
+            this.dgvUsersAssigned.Size = new System.Drawing.Size(352, 232);
+            this.dgvUsersAssigned.TabIndex = 0;
+            this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
             // 
             // userName
             // 
             this.userName.HeaderText = "Nom";
             this.userName.Name = "userName";
+            this.userName.ReadOnly = true;
             // 
             // userFirstName
             // 
             this.userFirstName.HeaderText = "Prénom";
             this.userFirstName.Name = "userFirstName";
+            this.userFirstName.ReadOnly = true;
             // 
             // btnSave
             // 
@@ -237,6 +250,34 @@
             this.btnCancel.Text = "Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // cmsRemoveAssignee
+            // 
+            this.cmsRemoveAssignee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRemoveAdminRemove});
+            this.cmsRemoveAssignee.Name = "cmsRemoveAssignee";
+            this.cmsRemoveAssignee.Size = new System.Drawing.Size(130, 26);
+            // 
+            // tsmiRemoveAdminRemove
+            // 
+            this.tsmiRemoveAdminRemove.Name = "tsmiRemoveAdminRemove";
+            this.tsmiRemoveAdminRemove.Size = new System.Drawing.Size(129, 22);
+            this.tsmiRemoveAdminRemove.Text = "Supprimer";
+            this.tsmiRemoveAdminRemove.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            // 
+            // cmsAddAssignee
+            // 
+            this.cmsAddAssignee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAddAdminAdd});
+            this.cmsAddAssignee.Name = "cmsRemoveAdmin";
+            this.cmsAddAssignee.Size = new System.Drawing.Size(114, 26);
+            // 
+            // tsmiAddAdminAdd
+            // 
+            this.tsmiAddAdminAdd.Name = "tsmiAddAdminAdd";
+            this.tsmiAddAdminAdd.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAddAdminAdd.Text = "Ajouter";
+            this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
+            // 
             // frmDetailUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,7 +293,9 @@
             this.grpUserDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).EndInit();
             this.grpUsersAssigned.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUserAssigned)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsersAssigned)).EndInit();
+            this.cmsRemoveAssignee.ResumeLayout(false);
+            this.cmsAddAssignee.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -263,7 +306,7 @@
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.GroupBox grpUsersAssigned;
-        private System.Windows.Forms.DataGridView dgvUserAssigned;
+        private System.Windows.Forms.DataGridView dgvUsersAssigned;
         private System.Windows.Forms.DataGridViewTextBoxColumn userName;
         private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
         private System.Windows.Forms.Button btnDeletePersonAvatar;
@@ -279,5 +322,9 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblUserRole;
         private System.Windows.Forms.ComboBox cmbUserRole;
+        private System.Windows.Forms.ContextMenuStrip cmsRemoveAssignee;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRemoveAdminRemove;
+        private System.Windows.Forms.ContextMenuStrip cmsAddAssignee;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAddAdminAdd;
     }
 }

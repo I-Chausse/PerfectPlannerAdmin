@@ -12,6 +12,7 @@ namespace PerfectPlanner
 {
     public partial class frmDetailUser: Form
     {
+        User currentUser;
         public frmDetailUser()
         {
             InitializeComponent();
@@ -32,6 +33,11 @@ namespace PerfectPlanner
             {
                 grpUsersAssigned.Visible = false;
             }
+            foreach (var item in user.UsersAssigned)
+            {
+                dgvUsersAssigned.Rows.Add(item.LastName, item.FirstName);
+            }
+            currentUser = user;
         }
 
         private void cmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,6 +49,38 @@ namespace PerfectPlanner
             else
             {
                 grpUsersAssigned.Visible = true;
+            }
+        }
+
+        private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
+        {
+            int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
+            string selectedProjetName = (string)dgvUsersAssigned.Rows[selectedRowIndex].Cells["projectName"].Value;
+            frmDetailProjet frmDetailProject = new frmDetailProjet();
+            frmDetailProject.ShowDialog();
+        }
+
+        private void tsmiAddAssigneeAdd_Click(object sender, EventArgs e)
+        {
+            frmDetailProjet frmDetailProject = new frmDetailProjet();
+            frmDetailProject.ShowDialog();
+        }
+
+        private void dgvUsersAssigned_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var row = dgvUsersAssigned.HitTest(e.X, e.Y);
+                if (row.RowIndex >= 0)
+                {
+                    dgvUsersAssigned.ClearSelection();
+                    dgvUsersAssigned.Rows[row.RowIndex].Selected = true;
+                    cmsRemoveAssignee.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
+                }
+                else
+                {
+                    cmsAddAssignee.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
+                }
             }
         }
     }
