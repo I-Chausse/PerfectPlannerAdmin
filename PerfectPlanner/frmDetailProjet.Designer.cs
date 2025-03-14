@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.grpAdminsAssigned = new System.Windows.Forms.GroupBox();
             this.dgvAdminsAssigned = new System.Windows.Forms.DataGridView();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpProjectDetail = new System.Windows.Forms.GroupBox();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.txtProjectName = new System.Windows.Forms.TextBox();
@@ -40,8 +38,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.grpUsersAssigned = new System.Windows.Forms.GroupBox();
             this.dgvUsersAssigned = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsAddAdmin = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddAdminAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsRemoveAdmin = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -50,6 +46,12 @@
             this.tsmiAddAssigneeAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsRemoveAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRemoveAssigneeRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpAdminsAssigned.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminsAssigned)).BeginInit();
             this.grpProjectDetail.SuspendLayout();
@@ -77,6 +79,7 @@
             this.dgvAdminsAssigned.AllowUserToDeleteRows = false;
             this.dgvAdminsAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdminsAssigned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.adminUserId,
             this.userName,
             this.userFirstName});
             this.dgvAdminsAssigned.Location = new System.Drawing.Point(7, 20);
@@ -85,18 +88,6 @@
             this.dgvAdminsAssigned.Size = new System.Drawing.Size(248, 232);
             this.dgvAdminsAssigned.TabIndex = 0;
             this.dgvAdminsAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvAdminsAssigned_MouseDown);
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "Nom";
-            this.userName.Name = "userName";
-            this.userName.ReadOnly = true;
-            // 
-            // userFirstName
-            // 
-            this.userFirstName.HeaderText = "Prénom";
-            this.userFirstName.Name = "userFirstName";
-            this.userFirstName.ReadOnly = true;
             // 
             // grpProjectDetail
             // 
@@ -159,6 +150,7 @@
             this.dgvUsersAssigned.AllowUserToDeleteRows = false;
             this.dgvUsersAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsersAssigned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.assigneeUserId,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.dgvUsersAssigned.Location = new System.Drawing.Point(7, 20);
@@ -167,18 +159,6 @@
             this.dgvUsersAssigned.Size = new System.Drawing.Size(248, 232);
             this.dgvUsersAssigned.TabIndex = 0;
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nom";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Prénom";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // cmsAddAdmin
             // 
@@ -236,6 +216,44 @@
             this.tsmiRemoveAssigneeRemove.Text = "Supprimer";
             this.tsmiRemoveAssigneeRemove.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
             // 
+            // adminUserId
+            // 
+            this.adminUserId.HeaderText = "Id";
+            this.adminUserId.Name = "adminUserId";
+            this.adminUserId.ReadOnly = true;
+            this.adminUserId.Visible = false;
+            // 
+            // userName
+            // 
+            this.userName.HeaderText = "Nom";
+            this.userName.Name = "userName";
+            this.userName.ReadOnly = true;
+            // 
+            // userFirstName
+            // 
+            this.userFirstName.HeaderText = "Prénom";
+            this.userFirstName.Name = "userFirstName";
+            this.userFirstName.ReadOnly = true;
+            // 
+            // assigneeUserId
+            // 
+            this.assigneeUserId.HeaderText = "Id";
+            this.assigneeUserId.Name = "assigneeUserId";
+            this.assigneeUserId.ReadOnly = true;
+            this.assigneeUserId.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nom";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Prénom";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
             // frmDetailProjet
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -265,8 +283,6 @@
 
         private System.Windows.Forms.GroupBox grpAdminsAssigned;
         private System.Windows.Forms.DataGridView dgvAdminsAssigned;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
         private System.Windows.Forms.GroupBox grpProjectDetail;
         private System.Windows.Forms.Label lblProjectName;
         private System.Windows.Forms.TextBox txtProjectName;
@@ -274,8 +290,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox grpUsersAssigned;
         private System.Windows.Forms.DataGridView dgvUsersAssigned;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.ContextMenuStrip cmsAddAdmin;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddAdminAdd;
         private System.Windows.Forms.ContextMenuStrip cmsRemoveAdmin;
@@ -284,5 +298,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiAddAssigneeAdd;
         private System.Windows.Forms.ContextMenuStrip cmsRemoveAssignee;
         private System.Windows.Forms.ToolStripMenuItem tsmiRemoveAssigneeRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adminUserId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn assigneeUserId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

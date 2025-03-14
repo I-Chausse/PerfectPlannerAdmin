@@ -34,7 +34,7 @@ namespace PerfectPlanner
                 {
                     usersAssigned += user.UserName + ", ";
                 }
-                dgvUser.Rows.Add(item.UserName, item.LastName, item.FirstName, item.Email, item.Role, usersAssigned);
+                dgvUser.Rows.Add(item.Id, item.UserName, item.LastName, item.FirstName, item.Email, item.Role, usersAssigned);
 
             }
 
@@ -66,8 +66,8 @@ namespace PerfectPlanner
         private void tsmiEditUserEdit_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
-            string selectedUserName = (string) dgvUser.Rows[selectedRowIndex].Cells["userName"].Value;
-            frmDetailUser frmDetailUser = new frmDetailUser(users.Find((user) => user.UserName == selectedUserName));
+            int selectedUserId = (int) dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
+            frmDetailUser frmDetailUser = new frmDetailUser(users.Find((user) => user.Id == selectedUserId));
             frmDetailUser.ShowDialog();
         }
 

@@ -23,11 +23,11 @@ namespace PerfectPlanner
             txtProjectName.Text = project.Name;
             project.Admins.ForEach(admin =>
             {
-                dgvAdminsAssigned.Rows.Add(admin.LastName, admin.FirstName);
+                dgvAdminsAssigned.Rows.Add(admin.Id, admin.LastName, admin.FirstName);
             });
             project.Assignees.ForEach(assignee =>
             {
-                dgvUsersAssigned.Rows.Add(assignee.LastName, assignee.FirstName);
+                dgvUsersAssigned.Rows.Add(assignee.Id, assignee.LastName, assignee.FirstName);
             });
             
         }
@@ -35,7 +35,7 @@ namespace PerfectPlanner
         private void tsmiRemoveAdminRemove_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvAdminsAssigned.SelectedRows[0].Index;
-            string selectedProjetName = (string)dgvAdminsAssigned.Rows[selectedRowIndex].Cells["projectName"].Value;
+            int selectedUserId = (int)dgvAdminsAssigned.Rows[selectedRowIndex].Cells["adminUserId"].Value;
             frmDetailProjet frmDetailProject = new frmDetailProjet();
             frmDetailProject.ShowDialog();
         }
@@ -49,7 +49,7 @@ namespace PerfectPlanner
         private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
-            string selectedProjetName = (string)dgvUsersAssigned.Rows[selectedRowIndex].Cells["projectName"].Value;
+            int selectedUserId = (int)dgvUsersAssigned.Rows[selectedRowIndex].Cells["assigneeUserId"].Value;
             frmDetailProjet frmDetailProject = new frmDetailProjet();
             frmDetailProject.ShowDialog();
         }

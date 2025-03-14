@@ -35,7 +35,7 @@ namespace PerfectPlanner
             }
             foreach (var item in user.UsersAssigned)
             {
-                dgvUsersAssigned.Rows.Add(item.LastName, item.FirstName);
+                dgvUsersAssigned.Rows.Add(item.Id, item.LastName, item.FirstName);
             }
             currentUser = user;
         }
@@ -55,7 +55,7 @@ namespace PerfectPlanner
         private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
-            string selectedProjetName = (string)dgvUsersAssigned.Rows[selectedRowIndex].Cells["projectName"].Value;
+            int selectedUserId = (int)dgvUsersAssigned.Rows[selectedRowIndex].Cells["assigneeUserId"].Value;
             frmDetailProjet frmDetailProject = new frmDetailProjet();
             frmDetailProject.ShowDialog();
         }

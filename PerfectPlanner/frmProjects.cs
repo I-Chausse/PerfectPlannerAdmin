@@ -38,7 +38,7 @@ namespace PerfectPlanner
                 {
                     assignees += assignee.UserName + ", ";
                 }
-                dgvProjects.Rows.Add(project.Name, admins, assignees);
+                dgvProjects.Rows.Add(project.Id, project.Name, admins, assignees);
             });
         }
 
@@ -63,8 +63,8 @@ namespace PerfectPlanner
         private void tsmiEditProjectEdit_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
-            string selectedProjetName = (string)dgvProjects.Rows[selectedRowIndex].Cells["projectName"].Value;
-            frmDetailProjet frmDetailProject = new frmDetailProjet(projects.Find((projet) => projet.Name == selectedProjetName));
+            int selectedProjetId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
+            frmDetailProjet frmDetailProject = new frmDetailProjet(projects.Find((projet) => projet.Id == selectedProjetId));
             frmDetailProject.ShowDialog();
         }
 
