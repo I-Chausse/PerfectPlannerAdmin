@@ -45,15 +45,15 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.grpUsersAssigned = new System.Windows.Forms.GroupBox();
             this.dgvUsersAssigned = new System.Windows.Forms.DataGridView();
+            this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cmsRemoveAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRemoveAdminRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsAddAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddAdminAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpUserDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).BeginInit();
             this.grpUsersAssigned.SuspendLayout();
@@ -222,6 +222,25 @@
             this.dgvUsersAssigned.TabIndex = 0;
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
             // 
+            // assigneeUserId
+            // 
+            this.assigneeUserId.HeaderText = "Id";
+            this.assigneeUserId.Name = "assigneeUserId";
+            this.assigneeUserId.ReadOnly = true;
+            this.assigneeUserId.Visible = false;
+            // 
+            // userName
+            // 
+            this.userName.HeaderText = "Nom";
+            this.userName.Name = "userName";
+            this.userName.ReadOnly = true;
+            // 
+            // userFirstName
+            // 
+            this.userFirstName.HeaderText = "Prénom";
+            this.userFirstName.Name = "userFirstName";
+            this.userFirstName.ReadOnly = true;
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(424, 415);
@@ -245,12 +264,12 @@
             this.cmsRemoveAssignee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRemoveAdminRemove});
             this.cmsRemoveAssignee.Name = "cmsRemoveAssignee";
-            this.cmsRemoveAssignee.Size = new System.Drawing.Size(130, 26);
+            this.cmsRemoveAssignee.Size = new System.Drawing.Size(181, 48);
             // 
             // tsmiRemoveAdminRemove
             // 
             this.tsmiRemoveAdminRemove.Name = "tsmiRemoveAdminRemove";
-            this.tsmiRemoveAdminRemove.Size = new System.Drawing.Size(129, 22);
+            this.tsmiRemoveAdminRemove.Size = new System.Drawing.Size(180, 22);
             this.tsmiRemoveAdminRemove.Text = "Supprimer";
             this.tsmiRemoveAdminRemove.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
             // 
@@ -267,25 +286,6 @@
             this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
             this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
-            // 
-            // assigneeUserId
-            // 
-            this.assigneeUserId.HeaderText = "Id";
-            this.assigneeUserId.Name = "assigneeUserId";
-            this.assigneeUserId.ReadOnly = true;
-            this.assigneeUserId.Visible = false;
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "Nom";
-            this.userName.Name = "userName";
-            this.userName.ReadOnly = true;
-            // 
-            // userFirstName
-            // 
-            this.userFirstName.HeaderText = "Prénom";
-            this.userFirstName.Name = "userFirstName";
-            this.userFirstName.ReadOnly = true;
             // 
             // frmDetailUser
             // 

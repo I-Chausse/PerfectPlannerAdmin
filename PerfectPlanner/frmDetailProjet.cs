@@ -10,14 +10,18 @@ using System.Windows.Forms;
 
 namespace PerfectPlanner
 {
-    public partial class frmDetailProjet: Form
+    public partial class frmDetailProjet: Form, IUserAssignable
     {
-        public frmDetailProjet()
+        DataGridView currentDGV = null;
+        frmProjects frmProjects = null;
+        bool isEditMode = false;
+        public frmDetailProjet(frmProjects frmProjects)
         {
             InitializeComponent();
+            this.frmProjects = frmProjects;
         }
 
-        public frmDetailProjet(Project project)
+        public frmDetailProjet(frmProjects frmProjects, Project project)
         {
             InitializeComponent();
             txtProjectName.Text = project.Name;
@@ -29,35 +33,47 @@ namespace PerfectPlanner
             {
                 dgvUsersAssigned.Rows.Add(assignee.Id, assignee.LastName, assignee.FirstName);
             });
-            
+            this.frmProjects = frmProjects;
+            isEditMode = true;
+
         }
 
         private void tsmiRemoveAdminRemove_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvAdminsAssigned.SelectedRows[0].Index;
             int selectedUserId = (int)dgvAdminsAssigned.Rows[selectedRowIndex].Cells["adminUserId"].Value;
-            frmDetailProjet frmDetailProject = new frmDetailProjet();
-            frmDetailProject.ShowDialog();
+            currentDGV = dgvAdminsAssigned;
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.RemoveUser();
+            }
         }
 
         private void tsmiAddAdminAdd_Click(object sender, EventArgs e)
         {
-            frmDetailProjet frmDetailProject = new frmDetailProjet();
-            frmDetailProject.ShowDialog();
+            currentDGV = dgvAdminsAssigned;
+            frmUserSelection frmUserSelection = new frmUserSelection(this);
+            frmUserSelection.ShowDialog();
         }
 
         private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
             int selectedUserId = (int)dgvUsersAssigned.Rows[selectedRowIndex].Cells["assigneeUserId"].Value;
-            frmDetailProjet frmDetailProject = new frmDetailProjet();
-            frmDetailProject.ShowDialog();
+            currentDGV = dgvUsersAssigned;
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.RemoveUser();
+            }
         }
 
         private void tsmiAddAssigneeAdd_Click(object sender, EventArgs e)
         {
-            frmDetailProjet frmDetailProject = new frmDetailProjet();
-            frmDetailProject.ShowDialog();
+            currentDGV = dgvUsersAssigned;
+            frmUserSelection frmUserSelection = new frmUserSelection(this);
+            frmUserSelection.ShowDialog();
         }
 
         private void dgvUsersAssigned_MouseDown(object sender, MouseEventArgs e)
@@ -87,13 +103,23 @@ namespace PerfectPlanner
                 {
                     dgvAdminsAssigned.ClearSelection();
                     dgvAdminsAssigned.Rows[row.RowIndex].Selected = true;
-                    cmsRemoveAssignee.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
+                    cmsRemoveAdmin.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
                 }
                 else
                 {
-                    cmsAddAssignee.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
+                    cmsAddAdmin.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
                 }
             }
         }
-    }
+
+        public void AddUser(User user)
+        {
+            currentDGV.Rows.Add(user.Id, user.LastName, user.FirstName);
+        }
+        public void RemoveUser()
+        {
+            currentDGV.Rows.Remove(currentDGV.SelectedRows[0]);
+        }
+
+     }
 }

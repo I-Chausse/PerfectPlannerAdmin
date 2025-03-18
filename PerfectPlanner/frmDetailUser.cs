@@ -10,9 +10,8 @@ using System.Windows.Forms;
 
 namespace PerfectPlanner
 {
-    public partial class frmDetailUser: Form
+    public partial class frmDetailUser : Form, IUserAssignable
     {
-        User currentUser;
         public frmDetailUser()
         {
             InitializeComponent();
@@ -37,7 +36,6 @@ namespace PerfectPlanner
             {
                 dgvUsersAssigned.Rows.Add(item.Id, item.LastName, item.FirstName);
             }
-            currentUser = user;
         }
 
         private void cmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,14 +54,17 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
             int selectedUserId = (int)dgvUsersAssigned.Rows[selectedRowIndex].Cells["assigneeUserId"].Value;
-            frmDetailProjet frmDetailProject = new frmDetailProjet();
-            frmDetailProject.ShowDialog();
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.RemoveUser();
+            }
         }
 
         private void tsmiAddAssigneeAdd_Click(object sender, EventArgs e)
         {
-            frmDetailProjet frmDetailProject = new frmDetailProjet();
-            frmDetailProject.ShowDialog();
+            frmUserSelection frmUserSelection = new frmUserSelection(this);
+            frmUserSelection.ShowDialog();
         }
 
         private void dgvUsersAssigned_MouseDown(object sender, MouseEventArgs e)
@@ -82,6 +83,16 @@ namespace PerfectPlanner
                     cmsAddAssignee.Show(dgvUsersAssigned, dgvUsersAssigned.PointToClient(Cursor.Position));
                 }
             }
+        }
+
+        public void AddUser(User user)
+        {
+            dgvUsersAssigned.Rows.Add(user.Id, user.LastName, user.FirstName);
+        }
+
+        public void RemoveUser()
+        {
+            dgvUsersAssigned.Rows.Remove(dgvUsersAssigned.SelectedRows[0]);
         }
     }
 }
