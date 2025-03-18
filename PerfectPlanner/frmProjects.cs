@@ -89,11 +89,11 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
             dgvProjects.Rows[selectedRowIndex].Cells["projectName"].Value = project.Name;
-            dgvProjects.Rows[selectedRowIndex].Cells["projectAdmins"].Value = "";
+            dgvProjects.Rows[selectedRowIndex].Cells["projectAdmin"].Value = "";
             dgvProjects.Rows[selectedRowIndex].Cells["projectAssignees"].Value = "";
             foreach (var admin in project.Admins)
             {
-                dgvProjects.Rows[selectedRowIndex].Cells["projectAdmins"].Value += admin.UserName + ", ";
+                dgvProjects.Rows[selectedRowIndex].Cells["projectAdmin"].Value += admin.UserName + ", ";
             }
             foreach (var assignee in project.Assignees)
             {

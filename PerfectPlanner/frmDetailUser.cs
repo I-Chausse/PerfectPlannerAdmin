@@ -12,15 +12,19 @@ namespace PerfectPlanner
 {
     public partial class frmDetailUser : Form, IUserAssignable
     {
-        public frmDetailUser()
+        frmUser frmUser;
+        bool isEditMode = false;
+        int userId = 0;
+        public frmDetailUser(frmUser frmParent)
         {
             InitializeComponent();
             btnSave.Text = "Ajouter";
             grpUsersAssigned.Visible = false;
-
+            this.frmUser = frmParent;
+            btnSave.Text = "Ajouter";
         }
 
-        public frmDetailUser(User user)
+        public frmDetailUser(frmUser frmParent, User user)
         {
             InitializeComponent();
             txtUserName.Text = user.UserName;
@@ -36,6 +40,10 @@ namespace PerfectPlanner
             {
                 dgvUsersAssigned.Rows.Add(item.Id, item.LastName, item.FirstName);
             }
+            this.frmUser = frmParent;
+            this.userId = user.Id;
+            this.isEditMode = true;
+
         }
 
         private void cmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,6 +101,25 @@ namespace PerfectPlanner
         public void RemoveUser()
         {
             dgvUsersAssigned.Rows.Remove(dgvUsersAssigned.SelectedRows[0]);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            User user = new User(userId, txtUserName.Text, mtxUserPassword.Text, txtPersonMail.Text, txtPersonFirstName.Text, txtPersonName.Text, picPersonAvatar.ImageLocation, cmbUserRole.Text);
+            if (this.isEditMode)
+            {
+                this.frmUser.updateUser(user);
+            }
+            else
+            {
+                this.frmUser.AddUser(user);
+            }
+            this.Close();
         }
     }
 }

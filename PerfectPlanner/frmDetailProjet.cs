@@ -133,23 +133,28 @@ namespace PerfectPlanner
             Project project = new Project(projectId, txtProjectName.Text);
             List<User> admins = new List<User>();
             List<User> assignees = new List<User>();
-            foreach (DataGridViewRow row in dgvAdminsAssigned.Rows)
-            {
-                foreach (User user in DataProvider.getUsers())
+            if (dgvAdminsAssigned.Rows.Count > 0) {
+                foreach (DataGridViewRow row in dgvAdminsAssigned.Rows)
                 {
-                    if (user.Id == (int)row.Cells["adminUserId"].Value)
+                    foreach (User user in DataProvider.getUsers())
                     {
-                        admins.Add(user);
+                        if (user.Id == (int)row.Cells["adminUserId"].Value)
+                        {
+                            admins.Add(user);
+                        }
                     }
                 }
             }
-            foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
+            if (dgvUsersAssigned.Rows.Count > 0)
             {
-                foreach (User user in DataProvider.getUsers())
+                foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
                 {
-                    if (user.Id == (int)row.Cells["assigneeUserId"].Value)
+                    foreach (User user in DataProvider.getUsers())
                     {
-                        assignees.Add(user);
+                        if (user.Id == (int)row.Cells["assigneeUserId"].Value)
+                        {
+                            assignees.Add(user);
+                        }
                     }
                 }
             }
@@ -157,14 +162,13 @@ namespace PerfectPlanner
             project.Assignees = assignees;
             if (this.isEditMode)
             {
-                this.frmProjects.updateProject(project);
-                this.Close();
+                this.frmProjects.updateProject(project); 
             }
             else
             {
                 this.frmProjects.addProject(project);
-                this.Close();
             }
+            this.Close();
         }
     }
 }

@@ -54,6 +54,8 @@
             this.tsmiRemoveAdminRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsAddAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddAdminAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblUserPassword = new System.Windows.Forms.Label();
+            this.mtxUserPassword = new System.Windows.Forms.MaskedTextBox();
             this.grpUserDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).BeginInit();
             this.grpUsersAssigned.SuspendLayout();
@@ -64,6 +66,8 @@
             // 
             // grpUserDetail
             // 
+            this.grpUserDetail.Controls.Add(this.mtxUserPassword);
+            this.grpUserDetail.Controls.Add(this.lblUserPassword);
             this.grpUserDetail.Controls.Add(this.lblUserRole);
             this.grpUserDetail.Controls.Add(this.cmbUserRole);
             this.grpUserDetail.Controls.Add(this.btnDeletePersonAvatar);
@@ -79,7 +83,7 @@
             this.grpUserDetail.Controls.Add(this.txtUserName);
             this.grpUserDetail.Location = new System.Drawing.Point(12, 12);
             this.grpUserDetail.Name = "grpUserDetail";
-            this.grpUserDetail.Size = new System.Drawing.Size(235, 345);
+            this.grpUserDetail.Size = new System.Drawing.Size(235, 382);
             this.grpUserDetail.TabIndex = 0;
             this.grpUserDetail.TabStop = false;
             this.grpUserDetail.Text = "Détail de l\'utilisateur";
@@ -87,7 +91,7 @@
             // lblUserRole
             // 
             this.lblUserRole.AutoSize = true;
-            this.lblUserRole.Location = new System.Drawing.Point(6, 312);
+            this.lblUserRole.Location = new System.Drawing.Point(6, 352);
             this.lblUserRole.Name = "lblUserRole";
             this.lblUserRole.Size = new System.Drawing.Size(29, 13);
             this.lblUserRole.TabIndex = 12;
@@ -100,7 +104,7 @@
             "Utilisateur",
             "Gestionnaire",
             "Administrateur"});
-            this.cmbUserRole.Location = new System.Drawing.Point(96, 309);
+            this.cmbUserRole.Location = new System.Drawing.Point(96, 349);
             this.cmbUserRole.Name = "cmbUserRole";
             this.cmbUserRole.Size = new System.Drawing.Size(121, 21);
             this.cmbUserRole.TabIndex = 11;
@@ -108,7 +112,7 @@
             // 
             // btnDeletePersonAvatar
             // 
-            this.btnDeletePersonAvatar.Location = new System.Drawing.Point(123, 269);
+            this.btnDeletePersonAvatar.Location = new System.Drawing.Point(123, 309);
             this.btnDeletePersonAvatar.Name = "btnDeletePersonAvatar";
             this.btnDeletePersonAvatar.Size = new System.Drawing.Size(75, 23);
             this.btnDeletePersonAvatar.TabIndex = 10;
@@ -118,7 +122,7 @@
             // lblPersonAvatar
             // 
             this.lblPersonAvatar.AutoSize = true;
-            this.lblPersonAvatar.Location = new System.Drawing.Point(6, 133);
+            this.lblPersonAvatar.Location = new System.Drawing.Point(6, 173);
             this.lblPersonAvatar.Name = "lblPersonAvatar";
             this.lblPersonAvatar.Size = new System.Drawing.Size(38, 13);
             this.lblPersonAvatar.TabIndex = 9;
@@ -126,7 +130,7 @@
             // 
             // picPersonAvatar
             // 
-            this.picPersonAvatar.Location = new System.Drawing.Point(96, 133);
+            this.picPersonAvatar.Location = new System.Drawing.Point(96, 173);
             this.picPersonAvatar.Name = "picPersonAvatar";
             this.picPersonAvatar.Size = new System.Drawing.Size(133, 130);
             this.picPersonAvatar.TabIndex = 8;
@@ -249,6 +253,7 @@
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -258,18 +263,19 @@
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // cmsRemoveAssignee
             // 
             this.cmsRemoveAssignee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRemoveAdminRemove});
             this.cmsRemoveAssignee.Name = "cmsRemoveAssignee";
-            this.cmsRemoveAssignee.Size = new System.Drawing.Size(181, 48);
+            this.cmsRemoveAssignee.Size = new System.Drawing.Size(130, 26);
             // 
             // tsmiRemoveAdminRemove
             // 
             this.tsmiRemoveAdminRemove.Name = "tsmiRemoveAdminRemove";
-            this.tsmiRemoveAdminRemove.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRemoveAdminRemove.Size = new System.Drawing.Size(129, 22);
             this.tsmiRemoveAdminRemove.Text = "Supprimer";
             this.tsmiRemoveAdminRemove.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
             // 
@@ -286,6 +292,23 @@
             this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
             this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
+            // 
+            // lblUserPassword
+            // 
+            this.lblUserPassword.AutoSize = true;
+            this.lblUserPassword.Location = new System.Drawing.Point(6, 135);
+            this.lblUserPassword.Name = "lblUserPassword";
+            this.lblUserPassword.Size = new System.Drawing.Size(71, 13);
+            this.lblUserPassword.TabIndex = 14;
+            this.lblUserPassword.Text = "Mot de passe";
+            // 
+            // mtxUserPassword
+            // 
+            this.mtxUserPassword.Location = new System.Drawing.Point(96, 133);
+            this.mtxUserPassword.Name = "mtxUserPassword";
+            this.mtxUserPassword.PasswordChar = '*';
+            this.mtxUserPassword.Size = new System.Drawing.Size(133, 20);
+            this.mtxUserPassword.TabIndex = 15;
             // 
             // frmDetailUser
             // 
@@ -336,5 +359,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn assigneeUserId;
         private System.Windows.Forms.DataGridViewTextBoxColumn userName;
         private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
+        private System.Windows.Forms.MaskedTextBox mtxUserPassword;
+        private System.Windows.Forms.Label lblUserPassword;
     }
 }

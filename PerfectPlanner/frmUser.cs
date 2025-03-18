@@ -83,7 +83,7 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
             dgvUser.Rows[selectedRowIndex].Cells["userName"].Value = user.UserName;
-            dgvUser.Rows[selectedRowIndex].Cells["lastName"].Value = user.LastName;
+            dgvUser.Rows[selectedRowIndex].Cells["name"].Value = user.LastName;
             dgvUser.Rows[selectedRowIndex].Cells["firstName"].Value = user.FirstName;
             dgvUser.Rows[selectedRowIndex].Cells["email"].Value = user.Email;
             dgvUser.Rows[selectedRowIndex].Cells["role"].Value = user.Role;
