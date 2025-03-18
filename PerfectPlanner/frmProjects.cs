@@ -105,10 +105,15 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
             int selectedProjectId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
+            dgvProjects.Rows.RemoveAt(selectedRowIndex);
+        }
+
+        private void tsmiEditProjectDelete_Click(object sender, EventArgs e)
+        {
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ce projet ?", "Supprimer un projet", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                dgvProjects.Rows.RemoveAt(selectedRowIndex);
+                this.supprimerProject();
             }
         }
     }

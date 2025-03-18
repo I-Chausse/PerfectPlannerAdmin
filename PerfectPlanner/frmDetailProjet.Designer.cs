@@ -143,6 +143,7 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -152,6 +153,7 @@
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // grpUsersAssigned
             // 
@@ -203,12 +205,12 @@
             this.cmsAddAdmin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAddAdminAdd});
             this.cmsAddAdmin.Name = "cmsRemoveAdmin";
-            this.cmsAddAdmin.Size = new System.Drawing.Size(181, 48);
+            this.cmsAddAdmin.Size = new System.Drawing.Size(114, 26);
             // 
             // tsmiAddAdminAdd
             // 
             this.tsmiAddAdminAdd.Name = "tsmiAddAdminAdd";
-            this.tsmiAddAdminAdd.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
             this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAdminAdd_Click);
             // 

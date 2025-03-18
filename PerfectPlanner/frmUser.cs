@@ -64,14 +64,40 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
             int selectedUserId = (int) dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
-            frmDetailUser frmDetailUser = new frmDetailUser(users.Find((user) => user.Id == selectedUserId));
+            frmDetailUser frmDetailUser = new frmDetailUser(this, users.Find((user) => user.Id == selectedUserId));
             frmDetailUser.ShowDialog();
         }
 
         private void tsmiAddUserAdd_Click(object sender, EventArgs e)
         {
-            frmDetailUser frmDetailUser = new frmDetailUser();
+            frmDetailUser frmDetailUser = new frmDetailUser(this);
             frmDetailUser.ShowDialog();
+        }
+
+        public void AddUser(User user)
+        {
+            dgvUser.Rows.Add(user.Id, user.UserName, user.LastName, user.FirstName, user.Email, user.Role);
+        }
+
+        public void updateUser(User user)
+        {
+            int selectedRowIndex = dgvUser.SelectedRows[0].Index;
+            dgvUser.Rows[selectedRowIndex].Cells["userName"].Value = user.UserName;
+            dgvUser.Rows[selectedRowIndex].Cells["lastName"].Value = user.LastName;
+            dgvUser.Rows[selectedRowIndex].Cells["firstName"].Value = user.FirstName;
+            dgvUser.Rows[selectedRowIndex].Cells["email"].Value = user.Email;
+            dgvUser.Rows[selectedRowIndex].Cells["role"].Value = user.Role;
+        }
+
+        public void removeUser()
+        {
+            int selectedRowIndex = dgvUser.SelectedRows[0].Index;
+            int selectedUserId = (int)dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                dgvUser.Rows.RemoveAt(selectedRowIndex);
+            }
         }
     }
 }

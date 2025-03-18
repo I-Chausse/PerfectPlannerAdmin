@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.cmsAddProject = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiAddUserAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsEditProject = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiEditUserEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEditUSerDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectAssignees = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsAddProject = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiAddUserAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsEditProject = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiEditProjectEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEditProjectDelete = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
             this.cmsAddProject.SuspendLayout();
             this.cmsEditProject.SuspendLayout();
@@ -63,41 +63,6 @@
             this.dgvProjects.Size = new System.Drawing.Size(760, 724);
             this.dgvProjects.TabIndex = 1;
             this.dgvProjects.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvProject_MouseDown);
-            // 
-            // cmsAddProject
-            // 
-            this.cmsAddProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiAddUserAdd});
-            this.cmsAddProject.Name = "cmsAddUser";
-            this.cmsAddProject.Size = new System.Drawing.Size(114, 26);
-            // 
-            // tsmiAddUserAdd
-            // 
-            this.tsmiAddUserAdd.Name = "tsmiAddUserAdd";
-            this.tsmiAddUserAdd.Size = new System.Drawing.Size(113, 22);
-            this.tsmiAddUserAdd.Text = "Ajouter";
-            this.tsmiAddUserAdd.Click += new System.EventHandler(this.tsmiAddProjectAdd_Click);
-            // 
-            // cmsEditProject
-            // 
-            this.cmsEditProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditUserEdit,
-            this.tsmiEditUSerDelete});
-            this.cmsEditProject.Name = "cmsEditUser";
-            this.cmsEditProject.Size = new System.Drawing.Size(130, 48);
-            // 
-            // tsmiEditUserEdit
-            // 
-            this.tsmiEditUserEdit.Name = "tsmiEditUserEdit";
-            this.tsmiEditUserEdit.Size = new System.Drawing.Size(129, 22);
-            this.tsmiEditUserEdit.Text = "Modifier";
-            this.tsmiEditUserEdit.Click += new System.EventHandler(this.tsmiEditProjectEdit_Click);
-            // 
-            // tsmiEditUSerDelete
-            // 
-            this.tsmiEditUSerDelete.Name = "tsmiEditUSerDelete";
-            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(129, 22);
-            this.tsmiEditUSerDelete.Text = "Supprimer";
             // 
             // projectId
             // 
@@ -126,6 +91,42 @@
             this.projectAssignees.Name = "projectAssignees";
             this.projectAssignees.Width = 200;
             // 
+            // cmsAddProject
+            // 
+            this.cmsAddProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAddUserAdd});
+            this.cmsAddProject.Name = "cmsAddUser";
+            this.cmsAddProject.Size = new System.Drawing.Size(114, 26);
+            // 
+            // tsmiAddUserAdd
+            // 
+            this.tsmiAddUserAdd.Name = "tsmiAddUserAdd";
+            this.tsmiAddUserAdd.Size = new System.Drawing.Size(113, 22);
+            this.tsmiAddUserAdd.Text = "Ajouter";
+            this.tsmiAddUserAdd.Click += new System.EventHandler(this.tsmiAddProjectAdd_Click);
+            // 
+            // cmsEditProject
+            // 
+            this.cmsEditProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEditProjectEdit,
+            this.tsmiEditProjectDelete});
+            this.cmsEditProject.Name = "cmsEditUser";
+            this.cmsEditProject.Size = new System.Drawing.Size(181, 70);
+            // 
+            // tsmiEditProjectEdit
+            // 
+            this.tsmiEditProjectEdit.Name = "tsmiEditProjectEdit";
+            this.tsmiEditProjectEdit.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditProjectEdit.Text = "Modifier";
+            this.tsmiEditProjectEdit.Click += new System.EventHandler(this.tsmiEditProjectEdit_Click);
+            // 
+            // tsmiEditProjectDelete
+            // 
+            this.tsmiEditProjectDelete.Name = "tsmiEditProjectDelete";
+            this.tsmiEditProjectDelete.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditProjectDelete.Text = "Supprimer";
+            this.tsmiEditProjectDelete.Click += new System.EventHandler(this.tsmiEditProjectDelete_Click);
+            // 
             // frmProjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,8 +152,8 @@
         private System.Windows.Forms.ContextMenuStrip cmsAddProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddUserAdd;
         private System.Windows.Forms.ContextMenuStrip cmsEditProject;
-        private System.Windows.Forms.ToolStripMenuItem tsmiEditUserEdit;
-        private System.Windows.Forms.ToolStripMenuItem tsmiEditUSerDelete;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectEdit;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectName;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectAdmin;

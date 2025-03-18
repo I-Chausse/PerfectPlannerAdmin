@@ -15,10 +15,12 @@ namespace PerfectPlanner
         DataGridView currentDGV = null;
         frmProjects frmProjects = null;
         bool isEditMode = false;
+        int projectId = 0;
         public frmDetailProjet(frmProjects frmProjects)
         {
             InitializeComponent();
             this.frmProjects = frmProjects;
+            btnSave.Text = "Ajouter";
         }
 
         public frmDetailProjet(frmProjects frmProjects, Project project)
@@ -35,7 +37,7 @@ namespace PerfectPlanner
             });
             this.frmProjects = frmProjects;
             isEditMode = true;
-
+            projectId = project.Id;
         }
 
         private void tsmiRemoveAdminRemove_Click(object sender, EventArgs e)
@@ -121,5 +123,48 @@ namespace PerfectPlanner
             currentDGV.Rows.Remove(currentDGV.SelectedRows[0]);
         }
 
-     }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Project project = new Project(projectId, txtProjectName.Text);
+            List<User> admins = new List<User>();
+            List<User> assignees = new List<User>();
+            foreach (DataGridViewRow row in dgvAdminsAssigned.Rows)
+            {
+                foreach (User user in DataProvider.getUsers())
+                {
+                    if (user.Id == (int)row.Cells["adminUserId"].Value)
+                    {
+                        admins.Add(user);
+                    }
+                }
+            }
+            foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
+            {
+                foreach (User user in DataProvider.getUsers())
+                {
+                    if (user.Id == (int)row.Cells["assigneeUserId"].Value)
+                    {
+                        assignees.Add(user);
+                    }
+                }
+            }
+            project.Admins = admins;
+            project.Assignees = assignees;
+            if (this.isEditMode)
+            {
+                this.frmProjects.updateProject(project);
+                this.Close();
+            }
+            else
+            {
+                this.frmProjects.addProject(project);
+                this.Close();
+            }
+        }
+    }
 }
