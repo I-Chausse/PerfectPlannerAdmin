@@ -87,6 +87,12 @@ namespace PerfectPlanner
             dgvUser.Rows[selectedRowIndex].Cells["firstName"].Value = user.FirstName;
             dgvUser.Rows[selectedRowIndex].Cells["email"].Value = user.Email;
             dgvUser.Rows[selectedRowIndex].Cells["role"].Value = user.Role;
+            String usersAssigned = "";
+            foreach (var item in user.UsersAssigned)
+            {
+                usersAssigned += item.UserName + ", ";
+            }
+            dgvUser.Rows[selectedRowIndex].Cells["usersAssigned"].Value = usersAssigned;
         }
 
         public void removeUser()

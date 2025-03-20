@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grpUserDetail = new System.Windows.Forms.GroupBox();
+            this.mtxUserPassword = new System.Windows.Forms.MaskedTextBox();
+            this.lblUserPassword = new System.Windows.Forms.Label();
             this.lblUserRole = new System.Windows.Forms.Label();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
             this.btnDeletePersonAvatar = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
             this.tsmiRemoveAdminRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsAddAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddAdminAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblUserPassword = new System.Windows.Forms.Label();
-            this.mtxUserPassword = new System.Windows.Forms.MaskedTextBox();
             this.grpUserDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).BeginInit();
             this.grpUsersAssigned.SuspendLayout();
@@ -87,6 +87,23 @@
             this.grpUserDetail.TabIndex = 0;
             this.grpUserDetail.TabStop = false;
             this.grpUserDetail.Text = "Détail de l\'utilisateur";
+            // 
+            // mtxUserPassword
+            // 
+            this.mtxUserPassword.Location = new System.Drawing.Point(96, 133);
+            this.mtxUserPassword.Name = "mtxUserPassword";
+            this.mtxUserPassword.PasswordChar = '*';
+            this.mtxUserPassword.Size = new System.Drawing.Size(133, 20);
+            this.mtxUserPassword.TabIndex = 15;
+            // 
+            // lblUserPassword
+            // 
+            this.lblUserPassword.AutoSize = true;
+            this.lblUserPassword.Location = new System.Drawing.Point(6, 135);
+            this.lblUserPassword.Name = "lblUserPassword";
+            this.lblUserPassword.Size = new System.Drawing.Size(71, 13);
+            this.lblUserPassword.TabIndex = 14;
+            this.lblUserPassword.Text = "Mot de passe";
             // 
             // lblUserRole
             // 
@@ -292,23 +309,6 @@
             this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
             this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
-            // 
-            // lblUserPassword
-            // 
-            this.lblUserPassword.AutoSize = true;
-            this.lblUserPassword.Location = new System.Drawing.Point(6, 135);
-            this.lblUserPassword.Name = "lblUserPassword";
-            this.lblUserPassword.Size = new System.Drawing.Size(71, 13);
-            this.lblUserPassword.TabIndex = 14;
-            this.lblUserPassword.Text = "Mot de passe";
-            // 
-            // mtxUserPassword
-            // 
-            this.mtxUserPassword.Location = new System.Drawing.Point(96, 133);
-            this.mtxUserPassword.Name = "mtxUserPassword";
-            this.mtxUserPassword.PasswordChar = '*';
-            this.mtxUserPassword.Size = new System.Drawing.Size(133, 20);
-            this.mtxUserPassword.TabIndex = 15;
             // 
             // frmDetailUser
             // 

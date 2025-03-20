@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.grpLogin = new System.Windows.Forms.GroupBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.mtxUserPass = new System.Windows.Forms.MaskedTextBox();
-            this.lbluserName = new System.Windows.Forms.Label();
-            this.lblUserPass = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.lblUserPass = new System.Windows.Forms.Label();
+            this.lbluserName = new System.Windows.Forms.Label();
+            this.mtxUserPass = new System.Windows.Forms.MaskedTextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.grpLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,40 +51,6 @@
             this.grpLogin.TabStop = false;
             this.grpLogin.Text = "Login";
             // 
-            // txtUserName
-            // 
-            this.txtUserName.Location = new System.Drawing.Point(101, 55);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(234, 20);
-            this.txtUserName.TabIndex = 0;
-            // 
-            // mtxUserPass
-            // 
-            this.mtxUserPass.HidePromptOnLeave = true;
-            this.mtxUserPass.Location = new System.Drawing.Point(101, 97);
-            this.mtxUserPass.Name = "mtxUserPass";
-            this.mtxUserPass.PasswordChar = '*';
-            this.mtxUserPass.Size = new System.Drawing.Size(234, 20);
-            this.mtxUserPass.TabIndex = 1;
-            // 
-            // lbluserName
-            // 
-            this.lbluserName.AutoSize = true;
-            this.lbluserName.Location = new System.Drawing.Point(7, 58);
-            this.lbluserName.Name = "lbluserName";
-            this.lbluserName.Size = new System.Drawing.Size(84, 13);
-            this.lbluserName.TabIndex = 2;
-            this.lbluserName.Text = "Nom d\'utilisateur";
-            // 
-            // lblUserPass
-            // 
-            this.lblUserPass.AutoSize = true;
-            this.lblUserPass.Location = new System.Drawing.Point(7, 100);
-            this.lblUserPass.Name = "lblUserPass";
-            this.lblUserPass.Size = new System.Drawing.Size(71, 13);
-            this.lblUserPass.TabIndex = 3;
-            this.lblUserPass.Text = "Mot de passe";
-            // 
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(136, 139);
@@ -95,8 +61,43 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // lblUserPass
+            // 
+            this.lblUserPass.AutoSize = true;
+            this.lblUserPass.Location = new System.Drawing.Point(7, 100);
+            this.lblUserPass.Name = "lblUserPass";
+            this.lblUserPass.Size = new System.Drawing.Size(71, 13);
+            this.lblUserPass.TabIndex = 3;
+            this.lblUserPass.Text = "Mot de passe";
+            // 
+            // lbluserName
+            // 
+            this.lbluserName.AutoSize = true;
+            this.lbluserName.Location = new System.Drawing.Point(7, 58);
+            this.lbluserName.Name = "lbluserName";
+            this.lbluserName.Size = new System.Drawing.Size(84, 13);
+            this.lbluserName.TabIndex = 2;
+            this.lbluserName.Text = "Nom d\'utilisateur";
+            // 
+            // mtxUserPass
+            // 
+            this.mtxUserPass.HidePromptOnLeave = true;
+            this.mtxUserPass.Location = new System.Drawing.Point(101, 97);
+            this.mtxUserPass.Name = "mtxUserPass";
+            this.mtxUserPass.PasswordChar = '*';
+            this.mtxUserPass.Size = new System.Drawing.Size(234, 20);
+            this.mtxUserPass.TabIndex = 1;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(101, 55);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(234, 20);
+            this.txtUserName.TabIndex = 0;
+            // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 261);

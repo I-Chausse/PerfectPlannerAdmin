@@ -111,6 +111,12 @@ namespace PerfectPlanner
         private void btnSave_Click(object sender, EventArgs e)
         {
             User user = new User(userId, txtUserName.Text, mtxUserPassword.Text, txtPersonMail.Text, txtPersonFirstName.Text, txtPersonName.Text, picPersonAvatar.ImageLocation, cmbUserRole.Text);
+            List<User> usersAssigned = new List<User>();
+            foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
+            {
+                usersAssigned.Add(DataProvider.getUsers().Find((assignee) => assignee.Id ==(int) row.Cells["assigneeUserId"].Value));
+            }
+            user.UsersAssigned = usersAssigned;
             if (this.isEditMode)
             {
                 this.frmUser.updateUser(user);
