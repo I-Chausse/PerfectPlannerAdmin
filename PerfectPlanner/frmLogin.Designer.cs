@@ -56,7 +56,7 @@
             this.btnLogin.Location = new System.Drawing.Point(136, 139);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -76,7 +76,7 @@
             this.lbluserName.Location = new System.Drawing.Point(7, 58);
             this.lbluserName.Name = "lbluserName";
             this.lbluserName.Size = new System.Drawing.Size(84, 13);
-            this.lbluserName.TabIndex = 2;
+            this.lbluserName.TabIndex = 1;
             this.lbluserName.Text = "Nom d\'utilisateur";
             // 
             // mtxUserPass
@@ -86,14 +86,14 @@
             this.mtxUserPass.Name = "mtxUserPass";
             this.mtxUserPass.PasswordChar = '*';
             this.mtxUserPass.Size = new System.Drawing.Size(234, 20);
-            this.mtxUserPass.TabIndex = 1;
+            this.mtxUserPass.TabIndex = 4;
             // 
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(101, 55);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(234, 20);
-            this.txtUserName.TabIndex = 0;
+            this.txtUserName.TabIndex = 2;
             // 
             // frmLogin
             // 

@@ -41,15 +41,7 @@ namespace PerfectPlanner
 
         private void tsmiProjects_Click(object sender, EventArgs e)
         {
-            frmProjects existingForm = null;
-            foreach (Form openForm in this.MdiChildren)
-            {
-                if (openForm is frmProjects)
-                {
-                    existingForm = (frmProjects)openForm;
-                    break;
-                }
-            }
+            frmProjects existingForm = Application.OpenForms.OfType<frmProjects>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.BringToFront();
