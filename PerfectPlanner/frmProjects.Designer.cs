@@ -30,15 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectAssignees = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsAddProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddUserAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsEditProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditProjectEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProjectDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddProject = new System.Windows.Forms.Button();
+            this.btnUpdateProject = new System.Windows.Forms.Button();
+            this.btnDeleteProject = new System.Windows.Forms.Button();
+            this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectAssignees = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
             this.cmsAddProject.SuspendLayout();
             this.cmsEditProject.SuspendLayout();
@@ -60,36 +63,9 @@
             this.dgvProjects.Location = new System.Drawing.Point(12, 18);
             this.dgvProjects.MultiSelect = false;
             this.dgvProjects.Name = "dgvProjects";
-            this.dgvProjects.Size = new System.Drawing.Size(760, 724);
-            this.dgvProjects.TabIndex = 1;
+            this.dgvProjects.Size = new System.Drawing.Size(760, 670);
+            this.dgvProjects.TabIndex = 0;
             this.dgvProjects.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvProject_MouseDown);
-            // 
-            // projectId
-            // 
-            this.projectId.HeaderText = "Id";
-            this.projectId.Name = "projectId";
-            this.projectId.ReadOnly = true;
-            this.projectId.Visible = false;
-            // 
-            // projectName
-            // 
-            this.projectName.HeaderText = "Nom du projet";
-            this.projectName.Name = "projectName";
-            this.projectName.ReadOnly = true;
-            this.projectName.Width = 200;
-            // 
-            // projectAdmin
-            // 
-            this.projectAdmin.HeaderText = "Gestionnaire(s)";
-            this.projectAdmin.Name = "projectAdmin";
-            this.projectAdmin.ReadOnly = true;
-            this.projectAdmin.Width = 200;
-            // 
-            // projectAssignees
-            // 
-            this.projectAssignees.HeaderText = "Utilisateurs assignés";
-            this.projectAssignees.Name = "projectAssignees";
-            this.projectAssignees.Width = 200;
             // 
             // cmsAddProject
             // 
@@ -111,27 +87,90 @@
             this.tsmiEditProjectEdit,
             this.tsmiEditProjectDelete});
             this.cmsEditProject.Name = "cmsEditUser";
-            this.cmsEditProject.Size = new System.Drawing.Size(181, 70);
+            this.cmsEditProject.Size = new System.Drawing.Size(130, 48);
             // 
             // tsmiEditProjectEdit
             // 
             this.tsmiEditProjectEdit.Name = "tsmiEditProjectEdit";
-            this.tsmiEditProjectEdit.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditProjectEdit.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditProjectEdit.Text = "Modifier";
             this.tsmiEditProjectEdit.Click += new System.EventHandler(this.tsmiEditProjectEdit_Click);
             // 
             // tsmiEditProjectDelete
             // 
             this.tsmiEditProjectDelete.Name = "tsmiEditProjectDelete";
-            this.tsmiEditProjectDelete.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditProjectDelete.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditProjectDelete.Text = "Supprimer";
             this.tsmiEditProjectDelete.Click += new System.EventHandler(this.tsmiEditProjectDelete_Click);
+            // 
+            // btnAddProject
+            // 
+            this.btnAddProject.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddProject.Location = new System.Drawing.Point(248, 719);
+            this.btnAddProject.Name = "btnAddProject";
+            this.btnAddProject.Size = new System.Drawing.Size(75, 23);
+            this.btnAddProject.TabIndex = 1;
+            this.btnAddProject.Text = "&Ajouter";
+            this.btnAddProject.UseVisualStyleBackColor = true;
+            this.btnAddProject.Click += new System.EventHandler(this.tsmiAddProjectAdd_Click);
+            // 
+            // btnUpdateProject
+            // 
+            this.btnUpdateProject.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnUpdateProject.Location = new System.Drawing.Point(343, 719);
+            this.btnUpdateProject.Name = "btnUpdateProject";
+            this.btnUpdateProject.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateProject.TabIndex = 2;
+            this.btnUpdateProject.Text = "&Modifier";
+            this.btnUpdateProject.UseVisualStyleBackColor = true;
+            this.btnUpdateProject.Click += new System.EventHandler(this.tsmiEditProjectEdit_Click);
+            // 
+            // btnDeleteProject
+            // 
+            this.btnDeleteProject.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnDeleteProject.Location = new System.Drawing.Point(439, 719);
+            this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteProject.TabIndex = 3;
+            this.btnDeleteProject.Text = "&Supprimer";
+            this.btnDeleteProject.UseVisualStyleBackColor = true;
+            this.btnDeleteProject.Click += new System.EventHandler(this.tsmiEditProjectDelete_Click);
+            // 
+            // projectId
+            // 
+            this.projectId.HeaderText = "Id";
+            this.projectId.Name = "projectId";
+            this.projectId.ReadOnly = true;
+            this.projectId.Visible = false;
+            // 
+            // projectName
+            // 
+            this.projectName.HeaderText = "Nom du projet";
+            this.projectName.Name = "projectName";
+            this.projectName.ReadOnly = true;
+            this.projectName.Width = 265;
+            // 
+            // projectAdmin
+            // 
+            this.projectAdmin.HeaderText = "Gestionnaire(s)";
+            this.projectAdmin.Name = "projectAdmin";
+            this.projectAdmin.ReadOnly = true;
+            this.projectAdmin.Width = 200;
+            // 
+            // projectAssignees
+            // 
+            this.projectAssignees.HeaderText = "Utilisateurs assignés";
+            this.projectAssignees.Name = "projectAssignees";
+            this.projectAssignees.Width = 250;
             // 
             // frmProjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 761);
+            this.Controls.Add(this.btnDeleteProject);
+            this.Controls.Add(this.btnUpdateProject);
+            this.Controls.Add(this.btnAddProject);
             this.Controls.Add(this.dgvProjects);
             this.Location = new System.Drawing.Point(960, 0);
             this.MinimumSize = new System.Drawing.Size(800, 200);
@@ -154,6 +193,9 @@
         private System.Windows.Forms.ContextMenuStrip cmsEditProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectEdit;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectDelete;
+        private System.Windows.Forms.Button btnAddProject;
+        private System.Windows.Forms.Button btnUpdateProject;
+        private System.Windows.Forms.Button btnDeleteProject;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectName;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectAdmin;

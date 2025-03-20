@@ -71,7 +71,7 @@
             this.grpAdminsAssigned.Size = new System.Drawing.Size(261, 303);
             this.grpAdminsAssigned.TabIndex = 3;
             this.grpAdminsAssigned.TabStop = false;
-            this.grpAdminsAssigned.Text = "Gestionnaires assignés";
+            this.grpAdminsAssigned.Text = "G&estionnaires assignés";
             // 
             // dgvAdminsAssigned
             // 
@@ -115,7 +115,7 @@
             this.grpProjectDetail.Location = new System.Drawing.Point(12, 12);
             this.grpProjectDetail.Name = "grpProjectDetail";
             this.grpProjectDetail.Size = new System.Drawing.Size(235, 64);
-            this.grpProjectDetail.TabIndex = 2;
+            this.grpProjectDetail.TabIndex = 0;
             this.grpProjectDetail.TabStop = false;
             this.grpProjectDetail.Text = "Détail du projet";
             // 
@@ -126,32 +126,33 @@
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(73, 13);
             this.lblProjectName.TabIndex = 1;
-            this.lblProjectName.Text = "Nom du projet";
+            this.lblProjectName.Text = "&Nom du projet";
             // 
             // txtProjectName
             // 
             this.txtProjectName.Location = new System.Drawing.Point(96, 28);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.Size = new System.Drawing.Size(133, 20);
-            this.txtProjectName.TabIndex = 0;
+            this.txtProjectName.TabIndex = 2;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(295, 415);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(343, 408);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Annuler";
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(425, 415);
+            this.btnSave.Location = new System.Drawing.Point(473, 408);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Enregistrer";
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "&Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -163,7 +164,7 @@
             this.grpUsersAssigned.Size = new System.Drawing.Size(261, 303);
             this.grpUsersAssigned.TabIndex = 4;
             this.grpUsersAssigned.TabStop = false;
-            this.grpUsersAssigned.Text = "Utilisateurs assignés";
+            this.grpUsersAssigned.Text = "U&tilisateurs assignés";
             // 
             // dgvUsersAssigned
             // 
@@ -258,7 +259,9 @@
             // 
             // frmDetailProjet
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(864, 461);
             this.Controls.Add(this.grpUsersAssigned);
             this.Controls.Add(this.btnSave);
@@ -266,7 +269,7 @@
             this.Controls.Add(this.grpAdminsAssigned);
             this.Controls.Add(this.grpProjectDetail);
             this.Name = "frmDetailProjet";
-            this.Text = "frmDetailProjet";
+            this.Text = "Détail du projet";
             this.grpAdminsAssigned.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminsAssigned)).EndInit();
             this.grpProjectDetail.ResumeLayout(false);

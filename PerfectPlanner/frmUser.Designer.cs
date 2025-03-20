@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.cmsEditUser = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiEditUserEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEditUSerDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiAddUserAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +37,14 @@
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usersAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsEditUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiEditUserEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEditUSerDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiAddUserAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDeleteUser = new System.Windows.Forms.Button();
+            this.btnUpdateUser = new System.Windows.Forms.Button();
+            this.btnAddUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.cmsEditUser.SuspendLayout();
             this.cmsAddUser.SuspendLayout();
@@ -66,45 +69,9 @@
             this.dgvUser.Location = new System.Drawing.Point(12, 25);
             this.dgvUser.MultiSelect = false;
             this.dgvUser.Name = "dgvUser";
-            this.dgvUser.Size = new System.Drawing.Size(910, 724);
+            this.dgvUser.Size = new System.Drawing.Size(910, 670);
             this.dgvUser.TabIndex = 0;
             this.dgvUser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvUser_MouseDown);
-            // 
-            // cmsEditUser
-            // 
-            this.cmsEditUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditUserEdit,
-            this.tsmiEditUSerDelete});
-            this.cmsEditUser.Name = "cmsEditUser";
-            this.cmsEditUser.Size = new System.Drawing.Size(130, 48);
-            // 
-            // tsmiEditUserEdit
-            // 
-            this.tsmiEditUserEdit.Name = "tsmiEditUserEdit";
-            this.tsmiEditUserEdit.Size = new System.Drawing.Size(129, 22);
-            this.tsmiEditUserEdit.Text = "Modifier";
-            this.tsmiEditUserEdit.Click += new System.EventHandler(this.tsmiEditUserEdit_Click);
-            // 
-            // tsmiEditUSerDelete
-            // 
-            this.tsmiEditUSerDelete.Name = "tsmiEditUSerDelete";
-            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(129, 22);
-            this.tsmiEditUSerDelete.Text = "Supprimer";
-            // 
-            // cmsAddUser
-            // 
-            this.cmsAddUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiAddUserAdd});
-            this.cmsAddUser.Name = "cmsAddUser";
-            this.cmsAddUser.Size = new System.Drawing.Size(114, 26);
-            this.cmsAddUser.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // tsmiAddUserAdd
-            // 
-            this.tsmiAddUserAdd.Name = "tsmiAddUserAdd";
-            this.tsmiAddUserAdd.Size = new System.Drawing.Size(113, 22);
-            this.tsmiAddUserAdd.Text = "Ajouter";
-            this.tsmiAddUserAdd.Click += new System.EventHandler(this.tsmiAddUserAdd_Click);
             // 
             // userId
             // 
@@ -151,11 +118,82 @@
             this.usersAssigned.Name = "usersAssigned";
             this.usersAssigned.Width = 200;
             // 
+            // cmsEditUser
+            // 
+            this.cmsEditUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEditUserEdit,
+            this.tsmiEditUSerDelete});
+            this.cmsEditUser.Name = "cmsEditUser";
+            this.cmsEditUser.Size = new System.Drawing.Size(130, 48);
+            // 
+            // tsmiEditUserEdit
+            // 
+            this.tsmiEditUserEdit.Name = "tsmiEditUserEdit";
+            this.tsmiEditUserEdit.Size = new System.Drawing.Size(129, 22);
+            this.tsmiEditUserEdit.Text = "Modifier";
+            this.tsmiEditUserEdit.Click += new System.EventHandler(this.tsmiEditUserEdit_Click);
+            // 
+            // tsmiEditUSerDelete
+            // 
+            this.tsmiEditUSerDelete.Name = "tsmiEditUSerDelete";
+            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(129, 22);
+            this.tsmiEditUSerDelete.Text = "Supprimer";
+            // 
+            // cmsAddUser
+            // 
+            this.cmsAddUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAddUserAdd});
+            this.cmsAddUser.Name = "cmsAddUser";
+            this.cmsAddUser.Size = new System.Drawing.Size(114, 26);
+            this.cmsAddUser.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // tsmiAddUserAdd
+            // 
+            this.tsmiAddUserAdd.Name = "tsmiAddUserAdd";
+            this.tsmiAddUserAdd.Size = new System.Drawing.Size(113, 22);
+            this.tsmiAddUserAdd.Text = "Ajouter";
+            this.tsmiAddUserAdd.Click += new System.EventHandler(this.tsmiAddUserAdd_Click);
+            // 
+            // btnDeleteUser
+            // 
+            this.btnDeleteUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnDeleteUser.Location = new System.Drawing.Point(541, 726);
+            this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteUser.TabIndex = 6;
+            this.btnDeleteUser.Text = "&Supprimer";
+            this.btnDeleteUser.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateUser
+            // 
+            this.btnUpdateUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnUpdateUser.Location = new System.Drawing.Point(445, 726);
+            this.btnUpdateUser.Name = "btnUpdateUser";
+            this.btnUpdateUser.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateUser.TabIndex = 5;
+            this.btnUpdateUser.Text = "&Modifier";
+            this.btnUpdateUser.UseVisualStyleBackColor = true;
+            this.btnUpdateUser.Click += new System.EventHandler(this.tsmiEditUserEdit_Click);
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddUser.Location = new System.Drawing.Point(350, 726);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
+            this.btnAddUser.TabIndex = 4;
+            this.btnAddUser.Text = "&Ajouter";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.tsmiAddUserAdd_Click);
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 761);
+            this.Controls.Add(this.btnDeleteUser);
+            this.Controls.Add(this.btnUpdateUser);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.dgvUser);
             this.MinimumSize = new System.Drawing.Size(950, 200);
             this.Name = "frmUser";
@@ -184,5 +222,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn role;
         private System.Windows.Forms.DataGridViewTextBoxColumn usersAssigned;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.Button btnUpdateUser;
+        private System.Windows.Forms.Button btnAddUser;
     }
 }

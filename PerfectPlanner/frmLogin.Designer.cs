@@ -57,7 +57,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 5;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "&Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -68,7 +68,7 @@
             this.lblUserPass.Name = "lblUserPass";
             this.lblUserPass.Size = new System.Drawing.Size(71, 13);
             this.lblUserPass.TabIndex = 3;
-            this.lblUserPass.Text = "Mot de passe";
+            this.lblUserPass.Text = "&Mot de passe";
             // 
             // lbluserName
             // 
@@ -77,7 +77,7 @@
             this.lbluserName.Name = "lbluserName";
             this.lbluserName.Size = new System.Drawing.Size(84, 13);
             this.lbluserName.TabIndex = 1;
-            this.lbluserName.Text = "Nom d\'utilisateur";
+            this.lbluserName.Text = "&Nom d\'utilisateur";
             // 
             // mtxUserPass
             // 

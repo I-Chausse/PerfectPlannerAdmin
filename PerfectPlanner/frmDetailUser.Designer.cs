@@ -274,6 +274,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(294, 415);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -312,15 +313,20 @@
             // 
             // frmDetailUser
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grpUsersAssigned);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpUserDetail);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmDetailUser";
-            this.Text = "frmDetailUser";
+            this.Text = "Détail de l\'utilisateur";
             this.grpUserDetail.ResumeLayout(false);
             this.grpUserDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).EndInit();

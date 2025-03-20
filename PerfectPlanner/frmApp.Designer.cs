@@ -42,21 +42,21 @@
             this.mnsMainStrip.Location = new System.Drawing.Point(0, 0);
             this.mnsMainStrip.Name = "mnsMainStrip";
             this.mnsMainStrip.Size = new System.Drawing.Size(1884, 24);
-            this.mnsMainStrip.TabIndex = 1;
+            this.mnsMainStrip.TabIndex = 0;
             this.mnsMainStrip.Text = "mns";
             // 
             // tsmiUser
             // 
             this.tsmiUser.Name = "tsmiUser";
             this.tsmiUser.Size = new System.Drawing.Size(140, 20);
-            this.tsmiUser.Text = "Gestion des utilisateurs";
+            this.tsmiUser.Text = "Gestion des &utilisateurs";
             this.tsmiUser.Click += new System.EventHandler(this.tsmiUser_Click);
             // 
             // tsmiProjects
             // 
             this.tsmiProjects.Name = "tsmiProjects";
             this.tsmiProjects.Size = new System.Drawing.Size(119, 20);
-            this.tsmiProjects.Text = "Gestion des projets";
+            this.tsmiProjects.Text = "Gestion des &projets";
             this.tsmiProjects.Click += new System.EventHandler(this.tsmiProjects_Click);
             // 
             // frmApp
