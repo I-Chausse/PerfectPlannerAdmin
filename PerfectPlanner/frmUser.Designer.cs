@@ -138,8 +138,9 @@
             // tsmiEditUSerDelete
             // 
             this.tsmiEditUSerDelete.Name = "tsmiEditUSerDelete";
-            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(129, 22);
+            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(180, 22);
             this.tsmiEditUSerDelete.Text = "Supprimer";
+            this.tsmiEditUSerDelete.Click += new System.EventHandler(this.tsmiEditUSerDelete_Click);
             // 
             // cmsAddUser
             // 
@@ -165,6 +166,7 @@
             this.btnDeleteUser.TabIndex = 3;
             this.btnDeleteUser.Text = "&Supprimer";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
+            this.btnDeleteUser.Click += new System.EventHandler(this.tsmiEditUSerDelete_Click);
             // 
             // btnUpdateUser
             // 

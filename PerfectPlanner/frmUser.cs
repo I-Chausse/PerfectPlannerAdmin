@@ -127,5 +127,13 @@ namespace PerfectPlanner
                 dgvUser.Rows[e.RowIndex].Selected = true;
             }
         }
+
+        private void tsmiEditUSerDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvUser.SelectedRows.Count > 0)
+            {
+                removeUser();
+            }
+        }
     }
 }

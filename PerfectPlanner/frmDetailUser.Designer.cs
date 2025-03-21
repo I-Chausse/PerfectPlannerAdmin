@@ -135,6 +135,7 @@
             this.btnDeletePersonAvatar.TabIndex = 11;
             this.btnDeletePersonAvatar.Text = "&Supprimer";
             this.btnDeletePersonAvatar.UseVisualStyleBackColor = true;
+            this.btnDeletePersonAvatar.Click += new System.EventHandler(this.btnDeletePersonAvatar_Click);
             // 
             // lblPersonAvatar
             // 
@@ -143,13 +144,14 @@
             this.lblPersonAvatar.Name = "lblPersonAvatar";
             this.lblPersonAvatar.Size = new System.Drawing.Size(38, 13);
             this.lblPersonAvatar.TabIndex = 10;
-            this.lblPersonAvatar.Text = "&Avatar";
+            this.lblPersonAvatar.Text = "A&vatar";
             // 
             // picPersonAvatar
             // 
             this.picPersonAvatar.Location = new System.Drawing.Point(110, 180);
             this.picPersonAvatar.Name = "picPersonAvatar";
             this.picPersonAvatar.Size = new System.Drawing.Size(140, 140);
+            this.picPersonAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPersonAvatar.TabIndex = 8;
             this.picPersonAvatar.TabStop = false;
             // 
@@ -160,7 +162,7 @@
             this.lblPersonMail.Name = "lblPersonMail";
             this.lblPersonMail.Size = new System.Drawing.Size(36, 13);
             this.lblPersonMail.TabIndex = 6;
-            this.lblPersonMail.Text = "&E-Mail";
+            this.lblPersonMail.Text = "E-&Mail";
             // 
             // txtPersonMail
             // 

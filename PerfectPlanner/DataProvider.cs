@@ -16,9 +16,9 @@ namespace PerfectPlanner
             {
                 return users;
             }
-                users.Add(new User(1, "JDupond", "admin", "j-dupond@perfect-planner.com", "Jean", "Dupond", "avatar", "Gestionnaire"));
-            users.Add(new User(2, "JMartin", "admin", "j-martin@entreprise.com", "Jean", "Martin", "avatar", "Utilisateur"));
-            users.Add(new User(3, "JLeclerc", "admin", "j-leclerc@moulin.ch", "Jean", "Leclerc", "avatar", "Utilisateur"));
+                users.Add(new User(1, "JDupond", "admin", "j-dupond@perfect-planner.com", "Jean", "Dupond", "https://openclipart.org/image/800px/22099", "Gestionnaire"));
+            users.Add(new User(2, "JMartin", "admin", "j-martin@entreprise.com", "Jean", "Martin", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Avatar_Marco_Heiles.png/960px-Avatar_Marco_Heiles.png?20210728120659r", "Utilisateur"));
+            users.Add(new User(3, "JLeclerc", "admin", "j-leclerc@moulin.ch", "Jean", "Leclerc", "https://vectorportal.com/storage/s-face_free_vector_1_6289.jpg", "Utilisateur"));
             users[0].AddUser(users[1]);
             users[0].AddUser(users[2]);
             return users;

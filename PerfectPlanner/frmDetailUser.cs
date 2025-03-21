@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace PerfectPlanner
             InitializeComponent();
             btnSave.Text = "Ajouter";
             grpUsersAssigned.Visible = false;
+            this.Width = 310;
             this.frmUser = frmParent;
             btnSave.Text = "Ajouter";
         }
@@ -32,9 +34,11 @@ namespace PerfectPlanner
             txtPersonFirstName.Text = user.FirstName;
             txtPersonMail.Text = user.Email;
             cmbUserRole.Text = user.Role;
+            picPersonAvatar.ImageLocation = user.Avatar;
             if (cmbUserRole.SelectedIndex == 0)
             {
                 grpUsersAssigned.Visible = false;
+                this.Width = 310;
             }
             foreach (var item in user.UsersAssigned)
             {
@@ -51,10 +55,12 @@ namespace PerfectPlanner
             if (cmbUserRole.SelectedIndex == 0)
             {
                 grpUsersAssigned.Visible = false;
+                this.Width = 310;
             }
             else
             {
                 grpUsersAssigned.Visible = true;
+                this.Width = 600;
             }
         }
 
@@ -126,6 +132,11 @@ namespace PerfectPlanner
                 this.frmUser.AddUser(user);
             }
             this.Close();
+        }
+
+        private void btnDeletePersonAvatar_Click(object sender, EventArgs e)
+        {
+            this.picPersonAvatar.Image = null;
         }
     }
 }
