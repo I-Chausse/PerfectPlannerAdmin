@@ -66,10 +66,10 @@
             // grpAdminsAssigned
             // 
             this.grpAdminsAssigned.Controls.Add(this.dgvAdminsAssigned);
-            this.grpAdminsAssigned.Location = new System.Drawing.Point(287, 12);
+            this.grpAdminsAssigned.Location = new System.Drawing.Point(300, 20);
             this.grpAdminsAssigned.Name = "grpAdminsAssigned";
-            this.grpAdminsAssigned.Size = new System.Drawing.Size(261, 303);
-            this.grpAdminsAssigned.TabIndex = 3;
+            this.grpAdminsAssigned.Size = new System.Drawing.Size(260, 260);
+            this.grpAdminsAssigned.TabIndex = 1;
             this.grpAdminsAssigned.TabStop = false;
             this.grpAdminsAssigned.Text = "G&estionnaires assignés";
             // 
@@ -82,10 +82,10 @@
             this.adminUserId,
             this.userName,
             this.userFirstName});
-            this.dgvAdminsAssigned.Location = new System.Drawing.Point(7, 20);
+            this.dgvAdminsAssigned.Location = new System.Drawing.Point(7, 26);
             this.dgvAdminsAssigned.Name = "dgvAdminsAssigned";
             this.dgvAdminsAssigned.ReadOnly = true;
-            this.dgvAdminsAssigned.Size = new System.Drawing.Size(248, 232);
+            this.dgvAdminsAssigned.Size = new System.Drawing.Size(248, 220);
             this.dgvAdminsAssigned.TabIndex = 0;
             this.dgvAdminsAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvAdminsAssigned_MouseDown);
             // 
@@ -112,9 +112,9 @@
             // 
             this.grpProjectDetail.Controls.Add(this.lblProjectName);
             this.grpProjectDetail.Controls.Add(this.txtProjectName);
-            this.grpProjectDetail.Location = new System.Drawing.Point(12, 12);
+            this.grpProjectDetail.Location = new System.Drawing.Point(20, 20);
             this.grpProjectDetail.Name = "grpProjectDetail";
-            this.grpProjectDetail.Size = new System.Drawing.Size(235, 64);
+            this.grpProjectDetail.Size = new System.Drawing.Size(260, 64);
             this.grpProjectDetail.TabIndex = 0;
             this.grpProjectDetail.TabStop = false;
             this.grpProjectDetail.Text = "Détail du projet";
@@ -130,28 +130,28 @@
             // 
             // txtProjectName
             // 
-            this.txtProjectName.Location = new System.Drawing.Point(96, 28);
+            this.txtProjectName.Location = new System.Drawing.Point(96, 27);
             this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.Size = new System.Drawing.Size(133, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(158, 20);
             this.txtProjectName.TabIndex = 2;
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(343, 408);
+            this.btnCancel.Location = new System.Drawing.Point(345, 400);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(473, 408);
+            this.btnSave.Location = new System.Drawing.Point(440, 400);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -159,10 +159,10 @@
             // grpUsersAssigned
             // 
             this.grpUsersAssigned.Controls.Add(this.dgvUsersAssigned);
-            this.grpUsersAssigned.Location = new System.Drawing.Point(569, 12);
+            this.grpUsersAssigned.Location = new System.Drawing.Point(580, 20);
             this.grpUsersAssigned.Name = "grpUsersAssigned";
-            this.grpUsersAssigned.Size = new System.Drawing.Size(261, 303);
-            this.grpUsersAssigned.TabIndex = 4;
+            this.grpUsersAssigned.Size = new System.Drawing.Size(260, 260);
+            this.grpUsersAssigned.TabIndex = 2;
             this.grpUsersAssigned.TabStop = false;
             this.grpUsersAssigned.Text = "U&tilisateurs assignés";
             // 
@@ -175,10 +175,10 @@
             this.assigneeUserId,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dgvUsersAssigned.Location = new System.Drawing.Point(7, 20);
+            this.dgvUsersAssigned.Location = new System.Drawing.Point(7, 26);
             this.dgvUsersAssigned.Name = "dgvUsersAssigned";
             this.dgvUsersAssigned.ReadOnly = true;
-            this.dgvUsersAssigned.Size = new System.Drawing.Size(248, 232);
+            this.dgvUsersAssigned.Size = new System.Drawing.Size(248, 220);
             this.dgvUsersAssigned.TabIndex = 0;
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
             // 
@@ -262,12 +262,13 @@
             this.AcceptButton = this.btnSave;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(864, 461);
+            this.ClientSize = new System.Drawing.Size(864, 441);
             this.Controls.Add(this.grpUsersAssigned);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpAdminsAssigned);
             this.Controls.Add(this.grpProjectDetail);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmDetailProjet";
             this.Text = "Détail du projet";
             this.grpAdminsAssigned.ResumeLayout(false);

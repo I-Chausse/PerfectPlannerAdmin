@@ -44,18 +44,18 @@
             this.grpLogin.Controls.Add(this.lbluserName);
             this.grpLogin.Controls.Add(this.mtxUserPass);
             this.grpLogin.Controls.Add(this.txtUserName);
-            this.grpLogin.Location = new System.Drawing.Point(60, 31);
+            this.grpLogin.Location = new System.Drawing.Point(60, 30);
             this.grpLogin.Name = "grpLogin";
-            this.grpLogin.Size = new System.Drawing.Size(359, 190);
+            this.grpLogin.Size = new System.Drawing.Size(360, 200);
             this.grpLogin.TabIndex = 0;
             this.grpLogin.TabStop = false;
             this.grpLogin.Text = "Login";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(136, 139);
+            this.btnLogin.Location = new System.Drawing.Point(140, 140);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(80, 23);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "&Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -64,7 +64,7 @@
             // lblUserPass
             // 
             this.lblUserPass.AutoSize = true;
-            this.lblUserPass.Location = new System.Drawing.Point(7, 100);
+            this.lblUserPass.Location = new System.Drawing.Point(7, 104);
             this.lblUserPass.Name = "lblUserPass";
             this.lblUserPass.Size = new System.Drawing.Size(71, 13);
             this.lblUserPass.TabIndex = 3;
@@ -73,7 +73,7 @@
             // lbluserName
             // 
             this.lbluserName.AutoSize = true;
-            this.lbluserName.Location = new System.Drawing.Point(7, 58);
+            this.lbluserName.Location = new System.Drawing.Point(7, 64);
             this.lbluserName.Name = "lbluserName";
             this.lbluserName.Size = new System.Drawing.Size(84, 13);
             this.lbluserName.TabIndex = 1;
@@ -82,7 +82,7 @@
             // mtxUserPass
             // 
             this.mtxUserPass.HidePromptOnLeave = true;
-            this.mtxUserPass.Location = new System.Drawing.Point(101, 97);
+            this.mtxUserPass.Location = new System.Drawing.Point(100, 100);
             this.mtxUserPass.Name = "mtxUserPass";
             this.mtxUserPass.PasswordChar = '*';
             this.mtxUserPass.Size = new System.Drawing.Size(234, 20);
@@ -90,7 +90,7 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(101, 55);
+            this.txtUserName.Location = new System.Drawing.Point(100, 60);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(234, 20);
             this.txtUserName.TabIndex = 2;

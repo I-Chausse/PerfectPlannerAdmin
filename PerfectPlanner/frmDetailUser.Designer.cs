@@ -81,38 +81,38 @@
             this.grpUserDetail.Controls.Add(this.txtPersonName);
             this.grpUserDetail.Controls.Add(this.lblUserName);
             this.grpUserDetail.Controls.Add(this.txtUserName);
-            this.grpUserDetail.Location = new System.Drawing.Point(12, 12);
+            this.grpUserDetail.Location = new System.Drawing.Point(20, 20);
             this.grpUserDetail.Name = "grpUserDetail";
-            this.grpUserDetail.Size = new System.Drawing.Size(235, 382);
+            this.grpUserDetail.Size = new System.Drawing.Size(260, 400);
             this.grpUserDetail.TabIndex = 0;
             this.grpUserDetail.TabStop = false;
-            this.grpUserDetail.Text = "Détail de l\'utilisateur";
+            this.grpUserDetail.Text = "&Détail de l\'utilisateur";
             // 
             // mtxUserPassword
             // 
-            this.mtxUserPassword.Location = new System.Drawing.Point(96, 133);
+            this.mtxUserPassword.Location = new System.Drawing.Point(110, 148);
             this.mtxUserPassword.Name = "mtxUserPassword";
             this.mtxUserPassword.PasswordChar = '*';
-            this.mtxUserPassword.Size = new System.Drawing.Size(133, 20);
-            this.mtxUserPassword.TabIndex = 15;
+            this.mtxUserPassword.Size = new System.Drawing.Size(140, 20);
+            this.mtxUserPassword.TabIndex = 9;
             // 
             // lblUserPassword
             // 
             this.lblUserPassword.AutoSize = true;
-            this.lblUserPassword.Location = new System.Drawing.Point(6, 135);
+            this.lblUserPassword.Location = new System.Drawing.Point(6, 152);
             this.lblUserPassword.Name = "lblUserPassword";
             this.lblUserPassword.Size = new System.Drawing.Size(71, 13);
-            this.lblUserPassword.TabIndex = 14;
-            this.lblUserPassword.Text = "Mot de passe";
+            this.lblUserPassword.TabIndex = 8;
+            this.lblUserPassword.Text = "&Mot de passe";
             // 
             // lblUserRole
             // 
             this.lblUserRole.AutoSize = true;
-            this.lblUserRole.Location = new System.Drawing.Point(6, 352);
+            this.lblUserRole.Location = new System.Drawing.Point(6, 371);
             this.lblUserRole.Name = "lblUserRole";
             this.lblUserRole.Size = new System.Drawing.Size(29, 13);
             this.lblUserRole.TabIndex = 12;
-            this.lblUserRole.Text = "Role";
+            this.lblUserRole.Text = "&Role";
             // 
             // cmbUserRole
             // 
@@ -121,111 +121,111 @@
             "Utilisateur",
             "Gestionnaire",
             "Administrateur"});
-            this.cmbUserRole.Location = new System.Drawing.Point(96, 349);
+            this.cmbUserRole.Location = new System.Drawing.Point(110, 367);
             this.cmbUserRole.Name = "cmbUserRole";
-            this.cmbUserRole.Size = new System.Drawing.Size(121, 21);
-            this.cmbUserRole.TabIndex = 11;
+            this.cmbUserRole.Size = new System.Drawing.Size(140, 21);
+            this.cmbUserRole.TabIndex = 13;
             this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.cmbUserRole_SelectedIndexChanged);
             // 
             // btnDeletePersonAvatar
             // 
-            this.btnDeletePersonAvatar.Location = new System.Drawing.Point(123, 309);
+            this.btnDeletePersonAvatar.Location = new System.Drawing.Point(140, 332);
             this.btnDeletePersonAvatar.Name = "btnDeletePersonAvatar";
-            this.btnDeletePersonAvatar.Size = new System.Drawing.Size(75, 23);
-            this.btnDeletePersonAvatar.TabIndex = 10;
-            this.btnDeletePersonAvatar.Text = "Supprimer";
+            this.btnDeletePersonAvatar.Size = new System.Drawing.Size(80, 23);
+            this.btnDeletePersonAvatar.TabIndex = 11;
+            this.btnDeletePersonAvatar.Text = "&Supprimer";
             this.btnDeletePersonAvatar.UseVisualStyleBackColor = true;
             // 
             // lblPersonAvatar
             // 
             this.lblPersonAvatar.AutoSize = true;
-            this.lblPersonAvatar.Location = new System.Drawing.Point(6, 173);
+            this.lblPersonAvatar.Location = new System.Drawing.Point(6, 244);
             this.lblPersonAvatar.Name = "lblPersonAvatar";
             this.lblPersonAvatar.Size = new System.Drawing.Size(38, 13);
-            this.lblPersonAvatar.TabIndex = 9;
-            this.lblPersonAvatar.Text = "Avatar";
+            this.lblPersonAvatar.TabIndex = 10;
+            this.lblPersonAvatar.Text = "&Avatar";
             // 
             // picPersonAvatar
             // 
-            this.picPersonAvatar.Location = new System.Drawing.Point(96, 173);
+            this.picPersonAvatar.Location = new System.Drawing.Point(110, 180);
             this.picPersonAvatar.Name = "picPersonAvatar";
-            this.picPersonAvatar.Size = new System.Drawing.Size(133, 130);
+            this.picPersonAvatar.Size = new System.Drawing.Size(140, 140);
             this.picPersonAvatar.TabIndex = 8;
             this.picPersonAvatar.TabStop = false;
             // 
             // lblPersonMail
             // 
             this.lblPersonMail.AutoSize = true;
-            this.lblPersonMail.Location = new System.Drawing.Point(6, 109);
+            this.lblPersonMail.Location = new System.Drawing.Point(6, 120);
             this.lblPersonMail.Name = "lblPersonMail";
             this.lblPersonMail.Size = new System.Drawing.Size(36, 13);
-            this.lblPersonMail.TabIndex = 7;
-            this.lblPersonMail.Text = "E-Mail";
+            this.lblPersonMail.TabIndex = 6;
+            this.lblPersonMail.Text = "&E-Mail";
             // 
             // txtPersonMail
             // 
-            this.txtPersonMail.Location = new System.Drawing.Point(96, 106);
+            this.txtPersonMail.Location = new System.Drawing.Point(110, 116);
             this.txtPersonMail.Name = "txtPersonMail";
-            this.txtPersonMail.Size = new System.Drawing.Size(133, 20);
-            this.txtPersonMail.TabIndex = 6;
+            this.txtPersonMail.Size = new System.Drawing.Size(140, 20);
+            this.txtPersonMail.TabIndex = 7;
             // 
             // lblPersonFirstName
             // 
             this.lblPersonFirstName.AutoSize = true;
-            this.lblPersonFirstName.Location = new System.Drawing.Point(6, 83);
+            this.lblPersonFirstName.Location = new System.Drawing.Point(6, 88);
             this.lblPersonFirstName.Name = "lblPersonFirstName";
             this.lblPersonFirstName.Size = new System.Drawing.Size(43, 13);
-            this.lblPersonFirstName.TabIndex = 5;
-            this.lblPersonFirstName.Text = "Prénom";
+            this.lblPersonFirstName.TabIndex = 4;
+            this.lblPersonFirstName.Text = "&Prénom";
             // 
             // txtPersonFirstName
             // 
-            this.txtPersonFirstName.Location = new System.Drawing.Point(96, 80);
+            this.txtPersonFirstName.Location = new System.Drawing.Point(110, 84);
             this.txtPersonFirstName.Name = "txtPersonFirstName";
-            this.txtPersonFirstName.Size = new System.Drawing.Size(133, 20);
-            this.txtPersonFirstName.TabIndex = 4;
+            this.txtPersonFirstName.Size = new System.Drawing.Size(140, 20);
+            this.txtPersonFirstName.TabIndex = 5;
             // 
             // lblPersonName
             // 
             this.lblPersonName.AutoSize = true;
-            this.lblPersonName.Location = new System.Drawing.Point(6, 57);
+            this.lblPersonName.Location = new System.Drawing.Point(6, 56);
             this.lblPersonName.Name = "lblPersonName";
             this.lblPersonName.Size = new System.Drawing.Size(29, 13);
-            this.lblPersonName.TabIndex = 3;
-            this.lblPersonName.Text = "Nom";
+            this.lblPersonName.TabIndex = 2;
+            this.lblPersonName.Text = "&Nom";
             // 
             // txtPersonName
             // 
-            this.txtPersonName.Location = new System.Drawing.Point(96, 54);
+            this.txtPersonName.Location = new System.Drawing.Point(110, 52);
             this.txtPersonName.Name = "txtPersonName";
-            this.txtPersonName.Size = new System.Drawing.Size(133, 20);
-            this.txtPersonName.TabIndex = 2;
+            this.txtPersonName.Size = new System.Drawing.Size(140, 20);
+            this.txtPersonName.TabIndex = 3;
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(6, 31);
+            this.lblUserName.Location = new System.Drawing.Point(6, 24);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(84, 13);
-            this.lblUserName.TabIndex = 1;
-            this.lblUserName.Text = "Nom d\'utilisateur";
+            this.lblUserName.TabIndex = 0;
+            this.lblUserName.Text = "Nom d\'&utilisateur";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(96, 28);
+            this.txtUserName.Location = new System.Drawing.Point(110, 20);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(133, 20);
-            this.txtUserName.TabIndex = 0;
+            this.txtUserName.Size = new System.Drawing.Size(140, 20);
+            this.txtUserName.TabIndex = 1;
             // 
             // grpUsersAssigned
             // 
             this.grpUsersAssigned.Controls.Add(this.dgvUsersAssigned);
-            this.grpUsersAssigned.Location = new System.Drawing.Point(287, 12);
+            this.grpUsersAssigned.Location = new System.Drawing.Point(300, 20);
             this.grpUsersAssigned.Name = "grpUsersAssigned";
-            this.grpUsersAssigned.Size = new System.Drawing.Size(365, 303);
+            this.grpUsersAssigned.Size = new System.Drawing.Size(260, 260);
             this.grpUsersAssigned.TabIndex = 1;
             this.grpUsersAssigned.TabStop = false;
-            this.grpUsersAssigned.Text = "Utilisateurs assignés";
+            this.grpUsersAssigned.Text = "U&tilisateurs assignés";
             // 
             // dgvUsersAssigned
             // 
@@ -236,10 +236,10 @@
             this.assigneeUserId,
             this.userName,
             this.userFirstName});
-            this.dgvUsersAssigned.Location = new System.Drawing.Point(7, 20);
+            this.dgvUsersAssigned.Location = new System.Drawing.Point(7, 26);
             this.dgvUsersAssigned.Name = "dgvUsersAssigned";
             this.dgvUsersAssigned.ReadOnly = true;
-            this.dgvUsersAssigned.Size = new System.Drawing.Size(352, 232);
+            this.dgvUsersAssigned.Size = new System.Drawing.Size(248, 220);
             this.dgvUsersAssigned.TabIndex = 0;
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
             // 
@@ -264,22 +264,24 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(424, 415);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSave.Location = new System.Drawing.Point(285, 430);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Enregistrer";
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "&Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(294, 415);
+            this.btnCancel.Location = new System.Drawing.Point(190, 430);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "Annuler";
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -317,12 +319,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(584, 461);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grpUsersAssigned);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpUserDetail);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDetailUser";

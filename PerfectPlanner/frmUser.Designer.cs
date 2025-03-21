@@ -71,6 +71,8 @@
             this.dgvUser.Name = "dgvUser";
             this.dgvUser.Size = new System.Drawing.Size(910, 670);
             this.dgvUser.TabIndex = 0;
+            this.dgvUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
+            this.dgvUser.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
             this.dgvUser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvUser_MouseDown);
             // 
             // userId
@@ -157,20 +159,20 @@
             // btnDeleteUser
             // 
             this.btnDeleteUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnDeleteUser.Location = new System.Drawing.Point(541, 726);
+            this.btnDeleteUser.Location = new System.Drawing.Point(525, 720);
             this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteUser.TabIndex = 6;
+            this.btnDeleteUser.Size = new System.Drawing.Size(80, 23);
+            this.btnDeleteUser.TabIndex = 3;
             this.btnDeleteUser.Text = "&Supprimer";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
             // 
             // btnUpdateUser
             // 
             this.btnUpdateUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnUpdateUser.Location = new System.Drawing.Point(445, 726);
+            this.btnUpdateUser.Location = new System.Drawing.Point(425, 720);
             this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateUser.TabIndex = 5;
+            this.btnUpdateUser.Size = new System.Drawing.Size(80, 23);
+            this.btnUpdateUser.TabIndex = 2;
             this.btnUpdateUser.Text = "&Modifier";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
             this.btnUpdateUser.Click += new System.EventHandler(this.tsmiEditUserEdit_Click);
@@ -178,10 +180,10 @@
             // btnAddUser
             // 
             this.btnAddUser.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAddUser.Location = new System.Drawing.Point(350, 726);
+            this.btnAddUser.Location = new System.Drawing.Point(325, 720);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
-            this.btnAddUser.TabIndex = 4;
+            this.btnAddUser.Size = new System.Drawing.Size(80, 23);
+            this.btnAddUser.TabIndex = 1;
             this.btnAddUser.Text = "&Ajouter";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.tsmiAddUserAdd_Click);

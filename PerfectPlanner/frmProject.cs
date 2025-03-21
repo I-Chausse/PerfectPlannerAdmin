@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ using System.Windows.Forms;
 
 namespace PerfectPlanner
 {
-    public partial class frmProjects: Form
+    public partial class frmProject: Form
     {
         private List<Project> projects = new List<Project>();
-        public frmProjects()
+        public frmProject()
         {
             InitializeComponent();
         }
@@ -114,6 +115,28 @@ namespace PerfectPlanner
             if (dialogResult == DialogResult.Yes)
             {
                 this.supprimerProject();
+            }
+        }
+
+        private void HandleEditAndDeleteBtnState(Object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged == DataGridViewElementStates.Selected)
+            {
+                btnUpdateProject.Enabled = true;
+                btnDeleteProject.Enabled = true;
+            }
+            else
+            {
+                btnUpdateProject.Enabled = false;
+                btnDeleteProject.Enabled = false;
+            }
+        }
+
+        private void SelectionCompleteRowOnCellClick(Object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvProjects.Rows[e.RowIndex].Selected = true;
             }
         }
     }

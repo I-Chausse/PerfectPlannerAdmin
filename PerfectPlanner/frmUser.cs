@@ -105,5 +105,27 @@ namespace PerfectPlanner
                 dgvUser.Rows.RemoveAt(selectedRowIndex);
             }
         }
+
+        private void HandleEditAndDeleteBtnState(Object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged == DataGridViewElementStates.Selected)
+            {
+                btnUpdateUser.Enabled = true;
+                btnDeleteUser.Enabled = true;
+            }
+            else
+            {
+                btnUpdateUser.Enabled = false;
+                btnDeleteUser.Enabled = false;
+            }
+        }
+
+        private void SelectionCompleteRowOnCellClick(Object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvUser.Rows[e.RowIndex].Selected = true;
+            }
+        }
     }
 }

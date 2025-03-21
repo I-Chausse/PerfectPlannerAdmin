@@ -41,7 +41,7 @@ namespace PerfectPlanner
 
         private void tsmiProjects_Click(object sender, EventArgs e)
         {
-            frmProjects existingForm = Application.OpenForms.OfType<frmProjects>().FirstOrDefault();
+            frmProject existingForm = Application.OpenForms.OfType<frmProject>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.BringToFront();
@@ -49,7 +49,7 @@ namespace PerfectPlanner
             }
             else
             {
-                frmProjects frmProjects = new frmProjects();
+                frmProject frmProjects = new frmProject();
                 frmProjects.MdiParent = this;
                 frmProjects.Show();
             }

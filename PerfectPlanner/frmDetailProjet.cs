@@ -13,17 +13,17 @@ namespace PerfectPlanner
     public partial class frmDetailProjet: Form, IUserAssignable
     {
         DataGridView currentDGV = null;
-        frmProjects frmProjects = null;
+        frmProject frmProjects = null;
         bool isEditMode = false;
         int projectId = 0;
-        public frmDetailProjet(frmProjects frmProjects)
+        public frmDetailProjet(frmProject frmProjects)
         {
             InitializeComponent();
             this.frmProjects = frmProjects;
             btnSave.Text = "Ajouter";
         }
 
-        public frmDetailProjet(frmProjects frmProjects, Project project)
+        public frmDetailProjet(frmProject frmProjects, Project project)
         {
             InitializeComponent();
             txtProjectName.Text = project.Name;
