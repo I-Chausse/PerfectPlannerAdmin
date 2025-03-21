@@ -10,7 +10,7 @@ namespace PerfectPlanner
     {
         public static List<User> users = new List<User>();
         public static List<Project> projects = new List<Project>();
-        public static List<User> getUsers()
+        public static List<User> GetUsers()
         {
             if (users.Count > 0)
             {
@@ -24,7 +24,7 @@ namespace PerfectPlanner
             return users;
         }
 
-        public static List<Project> getProjects()
+        public static List<Project> GetProjects()
         {
             if (projects.Count > 0)
             {

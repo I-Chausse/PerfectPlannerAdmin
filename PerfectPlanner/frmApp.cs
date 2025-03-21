@@ -32,8 +32,10 @@ namespace PerfectPlanner
             }
             else
             {
-                frmUser frmUser = new frmUser();
-                frmUser.MdiParent = this;
+                frmUser frmUser = new frmUser
+                {
+                    MdiParent = this
+                };
                 frmUser.Show();
             }
         }
@@ -49,10 +51,26 @@ namespace PerfectPlanner
             }
             else
             {
-                frmProject frmProjects = new frmProject();
-                frmProjects.MdiParent = this;
+                frmProject frmProjects = new frmProject
+                {
+                    MdiParent = this
+                };
                 frmProjects.Show();
             }
+        }
+
+        private void paramètresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiAdvanced_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            String advanced = "Mode &avancé";
+            String basic = "Mode b&asique";
+            item.Text = item.Text == advanced ? basic : advanced;
+            Program.AppContext.SwitchAdvancedMode();
         }
     }
 }

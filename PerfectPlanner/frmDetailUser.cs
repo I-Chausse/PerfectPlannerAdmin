@@ -66,8 +66,6 @@ namespace PerfectPlanner
 
         private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
         {
-            int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
-            int selectedUserId = (int)dgvUsersAssigned.Rows[selectedRowIndex].Cells["assigneeUserId"].Value;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -120,12 +118,12 @@ namespace PerfectPlanner
             List<User> usersAssigned = new List<User>();
             foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
             {
-                usersAssigned.Add(DataProvider.getUsers().Find((assignee) => assignee.Id ==(int) row.Cells["assigneeUserId"].Value));
+                usersAssigned.Add(DataProvider.GetUsers().Find((assignee) => assignee.Id ==(int) row.Cells["assigneeUserId"].Value));
             }
             user.UsersAssigned = usersAssigned;
             if (this.isEditMode)
             {
-                this.frmUser.updateUser(user);
+                this.frmUser.UpdateUser(user);
             }
             else
             {
@@ -137,6 +135,36 @@ namespace PerfectPlanner
         private void btnDeletePersonAvatar_Click(object sender, EventArgs e)
         {
             this.picPersonAvatar.Image = null;
+        }
+
+        private void HandleDeleteBtnState(Object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged == DataGridViewElementStates.Selected)
+            {
+                btnDeleteAssignee.Enabled = true;
+            }
+            else
+            {
+                btnDeleteAssignee.Enabled = false;
+            }
+        }
+
+        private void SelectionCompleteRowOnCellClick(Object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvUsersAssigned.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void frmDetailUser_Load(object sender, EventArgs e)
+        {
+            if (Program.AppContext.IsAdvancedMode())
+            {
+                btnAddAssignee.Visible = false;
+                btnDeleteAssignee.Visible = false;
+                grpUsersAssigned.Height = 260;
+            }
         }
     }
 }

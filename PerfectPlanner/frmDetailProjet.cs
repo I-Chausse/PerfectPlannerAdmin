@@ -42,8 +42,6 @@ namespace PerfectPlanner
 
         private void tsmiRemoveAdminRemove_Click(object sender, EventArgs e)
         {
-            int selectedRowIndex = dgvAdminsAssigned.SelectedRows[0].Index;
-            int selectedUserId = (int)dgvAdminsAssigned.Rows[selectedRowIndex].Cells["adminUserId"].Value;
             currentDGV = dgvAdminsAssigned;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -61,8 +59,6 @@ namespace PerfectPlanner
 
         private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
         {
-            int selectedRowIndex = dgvUsersAssigned.SelectedRows[0].Index;
-            int selectedUserId = (int)dgvUsersAssigned.Rows[selectedRowIndex].Cells["assigneeUserId"].Value;
             currentDGV = dgvUsersAssigned;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -136,7 +132,7 @@ namespace PerfectPlanner
             if (dgvAdminsAssigned.Rows.Count > 0) {
                 foreach (DataGridViewRow row in dgvAdminsAssigned.Rows)
                 {
-                    foreach (User user in DataProvider.getUsers())
+                    foreach (User user in DataProvider.GetUsers())
                     {
                         if (user.Id == (int)row.Cells["adminUserId"].Value)
                         {
@@ -149,7 +145,7 @@ namespace PerfectPlanner
             {
                 foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
                 {
-                    foreach (User user in DataProvider.getUsers())
+                    foreach (User user in DataProvider.GetUsers())
                     {
                         if (user.Id == (int)row.Cells["assigneeUserId"].Value)
                         {
@@ -169,6 +165,54 @@ namespace PerfectPlanner
                 this.frmProjects.addProject(project);
             }
             this.Close();
+        }
+
+        private void HandleDeleteBtnState(Object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged == DataGridViewElementStates.Selected)
+            {
+                if (sender == dgvAdminsAssigned)
+                {
+                    btnDeleteAdmin.Enabled = true;
+                }
+                else if (sender == dgvUsersAssigned)
+                {
+                    btnRemoveAssignee.Enabled = true;
+                }
+            }
+            else
+            {
+                if (sender == dgvAdminsAssigned)
+                {
+                    btnDeleteAdmin.Enabled = false;
+                }
+                else if (sender == dgvUsersAssigned)
+                {
+                    btnRemoveAssignee.Enabled = false;
+                }
+            }
+        }
+
+        private void SelectionCompleteRowOnCellClick(Object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            if (e.RowIndex >= 0)
+            {
+                dgv.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void frmDetailProjet_Load(object sender, EventArgs e)
+        {
+            if (Program.AppContext.IsAdvancedMode())
+            {
+                btnAddAdmin.Visible = false;
+                btnAddAssignee.Visible = false;
+                btnDeleteAdmin.Visible = false;
+                btnRemoveAssignee.Visible = false;
+                grpAdminsAssigned.Height = 260;
+                grpUsersAssigned.Height = 260;
+            }
         }
     }
 }

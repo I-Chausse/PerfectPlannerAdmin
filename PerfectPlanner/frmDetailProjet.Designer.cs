@@ -29,17 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetailProjet));
             this.grpAdminsAssigned = new System.Windows.Forms.GroupBox();
+            this.btnDeleteAdmin = new System.Windows.Forms.Button();
             this.dgvAdminsAssigned = new System.Windows.Forms.DataGridView();
             this.adminUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddAdmin = new System.Windows.Forms.Button();
             this.grpProjectDetail = new System.Windows.Forms.GroupBox();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.txtProjectName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.grpUsersAssigned = new System.Windows.Forms.GroupBox();
+            this.btnRemoveAssignee = new System.Windows.Forms.Button();
+            this.btnAddAssignee = new System.Windows.Forms.Button();
             this.dgvUsersAssigned = new System.Windows.Forms.DataGridView();
             this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,13 +70,27 @@
             // 
             // grpAdminsAssigned
             // 
+            this.grpAdminsAssigned.Controls.Add(this.btnDeleteAdmin);
             this.grpAdminsAssigned.Controls.Add(this.dgvAdminsAssigned);
+            this.grpAdminsAssigned.Controls.Add(this.btnAddAdmin);
             this.grpAdminsAssigned.Location = new System.Drawing.Point(300, 20);
             this.grpAdminsAssigned.Name = "grpAdminsAssigned";
-            this.grpAdminsAssigned.Size = new System.Drawing.Size(260, 260);
+            this.grpAdminsAssigned.Size = new System.Drawing.Size(260, 300);
             this.grpAdminsAssigned.TabIndex = 1;
             this.grpAdminsAssigned.TabStop = false;
             this.grpAdminsAssigned.Text = "G&estionnaires assignés";
+            // 
+            // btnDeleteAdmin
+            // 
+            this.btnDeleteAdmin.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnDeleteAdmin.Enabled = false;
+            this.btnDeleteAdmin.Location = new System.Drawing.Point(140, 260);
+            this.btnDeleteAdmin.Name = "btnDeleteAdmin";
+            this.btnDeleteAdmin.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteAdmin.TabIndex = 6;
+            this.btnDeleteAdmin.Text = "&Supprimer";
+            this.btnDeleteAdmin.UseVisualStyleBackColor = true;
+            this.btnDeleteAdmin.Click += new System.EventHandler(this.tsmiRemoveAdminRemove_Click);
             // 
             // dgvAdminsAssigned
             // 
@@ -87,6 +106,8 @@
             this.dgvAdminsAssigned.ReadOnly = true;
             this.dgvAdminsAssigned.Size = new System.Drawing.Size(248, 220);
             this.dgvAdminsAssigned.TabIndex = 0;
+            this.dgvAdminsAssigned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
+            this.dgvAdminsAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
             this.dgvAdminsAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvAdminsAssigned_MouseDown);
             // 
             // adminUserId
@@ -107,6 +128,17 @@
             this.userFirstName.HeaderText = "Prénom";
             this.userFirstName.Name = "userFirstName";
             this.userFirstName.ReadOnly = true;
+            // 
+            // btnAddAdmin
+            // 
+            this.btnAddAdmin.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddAdmin.Location = new System.Drawing.Point(45, 260);
+            this.btnAddAdmin.Name = "btnAddAdmin";
+            this.btnAddAdmin.Size = new System.Drawing.Size(75, 23);
+            this.btnAddAdmin.TabIndex = 4;
+            this.btnAddAdmin.Text = "&Ajouter";
+            this.btnAddAdmin.UseVisualStyleBackColor = true;
+            this.btnAddAdmin.Click += new System.EventHandler(this.tsmiAddAdminAdd_Click);
             // 
             // grpProjectDetail
             // 
@@ -158,13 +190,38 @@
             // 
             // grpUsersAssigned
             // 
+            this.grpUsersAssigned.Controls.Add(this.btnRemoveAssignee);
+            this.grpUsersAssigned.Controls.Add(this.btnAddAssignee);
             this.grpUsersAssigned.Controls.Add(this.dgvUsersAssigned);
             this.grpUsersAssigned.Location = new System.Drawing.Point(580, 20);
             this.grpUsersAssigned.Name = "grpUsersAssigned";
-            this.grpUsersAssigned.Size = new System.Drawing.Size(260, 260);
+            this.grpUsersAssigned.Size = new System.Drawing.Size(260, 300);
             this.grpUsersAssigned.TabIndex = 2;
             this.grpUsersAssigned.TabStop = false;
             this.grpUsersAssigned.Text = "U&tilisateurs assignés";
+            // 
+            // btnRemoveAssignee
+            // 
+            this.btnRemoveAssignee.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnRemoveAssignee.Enabled = false;
+            this.btnRemoveAssignee.Location = new System.Drawing.Point(140, 260);
+            this.btnRemoveAssignee.Name = "btnRemoveAssignee";
+            this.btnRemoveAssignee.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveAssignee.TabIndex = 8;
+            this.btnRemoveAssignee.Text = "&Supprimer";
+            this.btnRemoveAssignee.UseVisualStyleBackColor = true;
+            this.btnRemoveAssignee.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            // 
+            // btnAddAssignee
+            // 
+            this.btnAddAssignee.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddAssignee.Location = new System.Drawing.Point(45, 260);
+            this.btnAddAssignee.Name = "btnAddAssignee";
+            this.btnAddAssignee.Size = new System.Drawing.Size(75, 23);
+            this.btnAddAssignee.TabIndex = 7;
+            this.btnAddAssignee.Text = "&Ajouter";
+            this.btnAddAssignee.UseVisualStyleBackColor = true;
+            this.btnAddAssignee.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
             // 
             // dgvUsersAssigned
             // 
@@ -180,6 +237,8 @@
             this.dgvUsersAssigned.ReadOnly = true;
             this.dgvUsersAssigned.Size = new System.Drawing.Size(248, 220);
             this.dgvUsersAssigned.TabIndex = 0;
+            this.dgvUsersAssigned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
+            this.dgvUsersAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
             // 
             // assigneeUserId
@@ -269,8 +328,10 @@
             this.Controls.Add(this.grpAdminsAssigned);
             this.Controls.Add(this.grpProjectDetail);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDetailProjet";
             this.Text = "Détail du projet";
+            this.Load += new System.EventHandler(this.frmDetailProjet_Load);
             this.grpAdminsAssigned.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminsAssigned)).EndInit();
             this.grpProjectDetail.ResumeLayout(false);
@@ -310,5 +371,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn assigneeUserId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button btnDeleteAdmin;
+        private System.Windows.Forms.Button btnAddAdmin;
+        private System.Windows.Forms.Button btnRemoveAssignee;
+        private System.Windows.Forms.Button btnAddAssignee;
     }
 }

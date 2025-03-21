@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetailUser));
             this.grpUserDetail = new System.Windows.Forms.GroupBox();
             this.mtxUserPassword = new System.Windows.Forms.MaskedTextBox();
             this.lblUserPassword = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.lblUserName = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.grpUsersAssigned = new System.Windows.Forms.GroupBox();
+            this.btnDeleteAssignee = new System.Windows.Forms.Button();
+            this.btnAddAssignee = new System.Windows.Forms.Button();
             this.dgvUsersAssigned = new System.Windows.Forms.DataGridView();
             this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -221,13 +224,38 @@
             // 
             // grpUsersAssigned
             // 
+            this.grpUsersAssigned.Controls.Add(this.btnDeleteAssignee);
+            this.grpUsersAssigned.Controls.Add(this.btnAddAssignee);
             this.grpUsersAssigned.Controls.Add(this.dgvUsersAssigned);
             this.grpUsersAssigned.Location = new System.Drawing.Point(300, 20);
             this.grpUsersAssigned.Name = "grpUsersAssigned";
-            this.grpUsersAssigned.Size = new System.Drawing.Size(260, 260);
+            this.grpUsersAssigned.Size = new System.Drawing.Size(260, 300);
             this.grpUsersAssigned.TabIndex = 1;
             this.grpUsersAssigned.TabStop = false;
             this.grpUsersAssigned.Text = "U&tilisateurs assignés";
+            // 
+            // btnDeleteAssignee
+            // 
+            this.btnDeleteAssignee.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnDeleteAssignee.Enabled = false;
+            this.btnDeleteAssignee.Location = new System.Drawing.Point(140, 260);
+            this.btnDeleteAssignee.Name = "btnDeleteAssignee";
+            this.btnDeleteAssignee.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteAssignee.TabIndex = 8;
+            this.btnDeleteAssignee.Text = "&Supprimer";
+            this.btnDeleteAssignee.UseVisualStyleBackColor = true;
+            this.btnDeleteAssignee.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            // 
+            // btnAddAssignee
+            // 
+            this.btnAddAssignee.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddAssignee.Location = new System.Drawing.Point(45, 260);
+            this.btnAddAssignee.Name = "btnAddAssignee";
+            this.btnAddAssignee.Size = new System.Drawing.Size(75, 23);
+            this.btnAddAssignee.TabIndex = 7;
+            this.btnAddAssignee.Text = "&Ajouter";
+            this.btnAddAssignee.UseVisualStyleBackColor = true;
+            this.btnAddAssignee.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
             // 
             // dgvUsersAssigned
             // 
@@ -243,6 +271,8 @@
             this.dgvUsersAssigned.ReadOnly = true;
             this.dgvUsersAssigned.Size = new System.Drawing.Size(248, 220);
             this.dgvUsersAssigned.TabIndex = 0;
+            this.dgvUsersAssigned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
+            this.dgvUsersAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
             // 
             // assigneeUserId
@@ -327,10 +357,12 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpUserDetail);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDetailUser";
             this.Text = "Détail de l\'utilisateur";
+            this.Load += new System.EventHandler(this.frmDetailUser_Load);
             this.grpUserDetail.ResumeLayout(false);
             this.grpUserDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).EndInit();
@@ -371,5 +403,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
         private System.Windows.Forms.MaskedTextBox mtxUserPassword;
         private System.Windows.Forms.Label lblUserPassword;
+        private System.Windows.Forms.Button btnDeleteAssignee;
+        private System.Windows.Forms.Button btnAddAssignee;
     }
 }

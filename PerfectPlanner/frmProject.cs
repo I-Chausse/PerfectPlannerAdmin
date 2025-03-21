@@ -22,7 +22,7 @@ namespace PerfectPlanner
         private void frmProjects_Load(object sender, EventArgs e)
         {
 
-            projects = DataProvider.getProjects();
+            projects = DataProvider.GetProjects();
             projects.ForEach(project =>
             {
                 String admins = "";
@@ -37,6 +37,13 @@ namespace PerfectPlanner
                 }
                 dgvProjects.Rows.Add(project.Id, project.Name, admins, assignees);
             });
+            if (Program.AppContext.IsAdvancedMode())
+            {
+                btnAddProject.Visible = false;
+                btnUpdateProject.Visible = false;
+                btnDeleteProject.Visible = false;
+                dgvProjects.Height = 720;
+            }
         }
 
         private void dgvProject_MouseDown(object sender, MouseEventArgs e)

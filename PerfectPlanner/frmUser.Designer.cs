@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.dgvUser = new System.Windows.Forms.DataGridView();
             this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,7 +139,7 @@
             // tsmiEditUSerDelete
             // 
             this.tsmiEditUSerDelete.Name = "tsmiEditUSerDelete";
-            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditUSerDelete.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditUSerDelete.Text = "Supprimer";
             this.tsmiEditUSerDelete.Click += new System.EventHandler(this.tsmiEditUSerDelete_Click);
             // 
@@ -148,7 +149,6 @@
             this.tsmiAddUserAdd});
             this.cmsAddUser.Name = "cmsAddUser";
             this.cmsAddUser.Size = new System.Drawing.Size(114, 26);
-            this.cmsAddUser.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // tsmiAddUserAdd
             // 
@@ -199,6 +199,7 @@
             this.Controls.Add(this.btnUpdateUser);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.dgvUser);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(950, 200);
             this.Name = "frmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmApp));
             this.mnsMainStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAdvanced = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,7 +40,8 @@
             // 
             this.mnsMainStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUser,
-            this.tsmiProjects});
+            this.tsmiProjects,
+            this.tsmiAdvanced});
             this.mnsMainStrip.Location = new System.Drawing.Point(0, 0);
             this.mnsMainStrip.Name = "mnsMainStrip";
             this.mnsMainStrip.Size = new System.Drawing.Size(1884, 24);
@@ -59,12 +62,20 @@
             this.tsmiProjects.Text = "Gestion des &projets";
             this.tsmiProjects.Click += new System.EventHandler(this.tsmiProjects_Click);
             // 
+            // tsmiAdvanced
+            // 
+            this.tsmiAdvanced.Name = "tsmiAdvanced";
+            this.tsmiAdvanced.Size = new System.Drawing.Size(90, 20);
+            this.tsmiAdvanced.Text = "Mode &avancé";
+            this.tsmiAdvanced.Click += new System.EventHandler(this.tsmiAdvanced_Click);
+            // 
             // frmApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 961);
             this.Controls.Add(this.mnsMainStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMainStrip;
             this.MinimumSize = new System.Drawing.Size(1000, 1000);
@@ -84,6 +95,7 @@
         private System.Windows.Forms.MenuStrip mnsMainStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiUser;
         private System.Windows.Forms.ToolStripMenuItem tsmiProjects;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAdvanced;
     }
 }
 

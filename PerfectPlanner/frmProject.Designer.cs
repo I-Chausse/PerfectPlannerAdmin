@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProject));
             this.dgvProjects = new System.Windows.Forms.DataGridView();
             this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,6 +177,7 @@
             this.Controls.Add(this.btnUpdateProject);
             this.Controls.Add(this.btnAddProject);
             this.Controls.Add(this.dgvProjects);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(960, 0);
             this.MinimumSize = new System.Drawing.Size(800, 200);
             this.Name = "frmProject";

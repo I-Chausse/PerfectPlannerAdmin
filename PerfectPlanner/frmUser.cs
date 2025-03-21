@@ -23,7 +23,7 @@ namespace PerfectPlanner
 
         private void frmUser_Load(object sender, EventArgs e)
         {
-            users = DataProvider.getUsers();
+            users = DataProvider.GetUsers();
             foreach (var item in users)
             {
                 String usersAssigned = "";
@@ -34,11 +34,13 @@ namespace PerfectPlanner
                 dgvUser.Rows.Add(item.Id, item.UserName, item.LastName, item.FirstName, item.Email, item.Role, usersAssigned);
 
             }
-
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
+            if (Program.AppContext.IsAdvancedMode())
+            {
+                btnAddUser.Visible = false;
+                btnUpdateUser.Visible = false;
+                btnDeleteUser.Visible = false;
+                dgvUser.Height = 720;
+            }
 
         }
 
@@ -79,7 +81,7 @@ namespace PerfectPlanner
             dgvUser.Rows.Add(user.Id, user.UserName, user.LastName, user.FirstName, user.Email, user.Role);
         }
 
-        public void updateUser(User user)
+        public void UpdateUser(User user)
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
             dgvUser.Rows[selectedRowIndex].Cells["userName"].Value = user.UserName;
@@ -95,10 +97,9 @@ namespace PerfectPlanner
             dgvUser.Rows[selectedRowIndex].Cells["usersAssigned"].Value = usersAssigned;
         }
 
-        public void removeUser()
+        public void RemoveUser()
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
-            int selectedUserId = (int)dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -132,7 +133,7 @@ namespace PerfectPlanner
         {
             if (dgvUser.SelectedRows.Count > 0)
             {
-                removeUser();
+                RemoveUser();
             }
         }
     }

@@ -21,8 +21,10 @@ namespace PerfectPlanner
 
         private void frmUserSelection_Load(object sender, EventArgs e)
         {
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = DataProvider.getUsers();
+            BindingSource bindingSource = new BindingSource
+            {
+                DataSource = DataProvider.GetUsers()
+            };
 
             cmbUserSelect.DisplayMember = "UserName";
             cmbUserSelect.DataSource = bindingSource;

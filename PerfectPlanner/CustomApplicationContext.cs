@@ -10,6 +10,7 @@ namespace PerfectPlanner
     public class CustomApplicationContext : ApplicationContext
     {
         private Form currentForm;
+        private bool isAdvancedMode = false;
 
         public CustomApplicationContext(Form initialForm)
         {
@@ -39,6 +40,16 @@ namespace PerfectPlanner
             currentForm = newForm;
             currentForm.FormClosed += new FormClosedEventHandler(OnFormClosed);
             currentForm.Show();
+        }
+
+        public void SwitchAdvancedMode()
+        {
+            isAdvancedMode = !isAdvancedMode;
+        }
+
+        public bool IsAdvancedMode()
+        {
+            return isAdvancedMode;
         }
     }
 }
