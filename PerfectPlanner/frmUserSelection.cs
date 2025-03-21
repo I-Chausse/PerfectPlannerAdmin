@@ -19,7 +19,7 @@ namespace PerfectPlanner
             this.parentForm = parentForm;
         }
 
-        private void frmUserSelection_Load(object sender, EventArgs e)
+        private void OnLoadOfFrmUserSelection(object sender, EventArgs e)
         {
             BindingSource bindingSource = new BindingSource
             {
@@ -30,13 +30,13 @@ namespace PerfectPlanner
             cmbUserSelect.DataSource = bindingSource;
         }
 
-        private void btnAddUser_Click(object sender, EventArgs e)
+        private void OnClickOnBtnAddUser(object sender, EventArgs e)
         {
             parentForm.AddUser((User)cmbUserSelect.SelectedItem);
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void OnClickOnBtnCancel(object sender, EventArgs e)
         {
             this.Close();
         }

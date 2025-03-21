@@ -21,7 +21,7 @@ namespace PerfectPlanner
             InitializeComponent();
         }
 
-        private void frmUser_Load(object sender, EventArgs e)
+        private void OnLoadOfFrmUser(object sender, EventArgs e)
         {
             users = DataProvider.GetUsers();
             foreach (var item in users)
@@ -44,7 +44,7 @@ namespace PerfectPlanner
 
         }
 
-        private void dgvUser_MouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDownOnDgvUser(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -62,7 +62,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiEditUserEdit_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiEditUserEdit(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
             int selectedUserId = (int) dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
@@ -70,7 +70,7 @@ namespace PerfectPlanner
             frmDetailUser.ShowDialog();
         }
 
-        private void tsmiAddUserAdd_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiAddUserAdd(object sender, EventArgs e)
         {
             frmDetailUser frmDetailUser = new frmDetailUser(this);
             frmDetailUser.ShowDialog();
@@ -129,7 +129,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiEditUSerDelete_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiEditUserDelete(object sender, EventArgs e)
         {
             if (dgvUser.SelectedRows.Count > 0)
             {

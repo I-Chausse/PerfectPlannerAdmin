@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PerfectPlanner
@@ -16,12 +10,7 @@ namespace PerfectPlanner
         {
             InitializeComponent();
         }
-
-        private void frmApp_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void tsmiUser_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiUser(object sender, EventArgs e)
         {
             frmUser existingForm = Application.OpenForms.OfType<frmUser>().FirstOrDefault();
 
@@ -41,7 +30,7 @@ namespace PerfectPlanner
         }
 
 
-        private void tsmiProjects_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiProject(object sender, EventArgs e)
         {
             frmProject existingForm = Application.OpenForms.OfType<frmProject>().FirstOrDefault();
             if (existingForm != null)
@@ -59,12 +48,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void paramètresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiAdvanced_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiAdvanced(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             String advanced = "Mode &avancé";

@@ -60,7 +60,7 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "&Login";
             this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.OnClickOnBtnLogin);
             // 
             // lblUserPass
             // 
@@ -108,7 +108,6 @@
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.grpLogin.ResumeLayout(false);
             this.grpLogin.PerformLayout();
             this.ResumeLayout(false);

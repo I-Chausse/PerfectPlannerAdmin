@@ -53,21 +53,21 @@
             this.tsmiUser.Name = "tsmiUser";
             this.tsmiUser.Size = new System.Drawing.Size(140, 20);
             this.tsmiUser.Text = "Gestion des &utilisateurs";
-            this.tsmiUser.Click += new System.EventHandler(this.tsmiUser_Click);
+            this.tsmiUser.Click += new System.EventHandler(this.OnClickOnTsmiUser);
             // 
             // tsmiProjects
             // 
             this.tsmiProjects.Name = "tsmiProjects";
             this.tsmiProjects.Size = new System.Drawing.Size(119, 20);
             this.tsmiProjects.Text = "Gestion des &projets";
-            this.tsmiProjects.Click += new System.EventHandler(this.tsmiProjects_Click);
+            this.tsmiProjects.Click += new System.EventHandler(this.OnClickOnTsmiProject);
             // 
             // tsmiAdvanced
             // 
             this.tsmiAdvanced.Name = "tsmiAdvanced";
             this.tsmiAdvanced.Size = new System.Drawing.Size(90, 20);
             this.tsmiAdvanced.Text = "Mode &avancé";
-            this.tsmiAdvanced.Click += new System.EventHandler(this.tsmiAdvanced_Click);
+            this.tsmiAdvanced.Click += new System.EventHandler(this.OnClickOnTsmiAdvanced);
             // 
             // frmApp
             // 
@@ -82,7 +82,6 @@
             this.Name = "frmApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Perfect Planner";
-            this.Load += new System.EventHandler(this.frmApp_Load);
             this.mnsMainStrip.ResumeLayout(false);
             this.mnsMainStrip.PerformLayout();
             this.ResumeLayout(false);

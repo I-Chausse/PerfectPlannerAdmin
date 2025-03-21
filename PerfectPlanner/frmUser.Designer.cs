@@ -74,7 +74,7 @@
             this.dgvUser.TabIndex = 0;
             this.dgvUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvUser.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
-            this.dgvUser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvUser_MouseDown);
+            this.dgvUser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUser);
             // 
             // userId
             // 
@@ -134,14 +134,14 @@
             this.tsmiEditUserEdit.Name = "tsmiEditUserEdit";
             this.tsmiEditUserEdit.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditUserEdit.Text = "Modifier";
-            this.tsmiEditUserEdit.Click += new System.EventHandler(this.tsmiEditUserEdit_Click);
+            this.tsmiEditUserEdit.Click += new System.EventHandler(this.OnClickOnTsmiEditUserEdit);
             // 
             // tsmiEditUSerDelete
             // 
             this.tsmiEditUSerDelete.Name = "tsmiEditUSerDelete";
             this.tsmiEditUSerDelete.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditUSerDelete.Text = "Supprimer";
-            this.tsmiEditUSerDelete.Click += new System.EventHandler(this.tsmiEditUSerDelete_Click);
+            this.tsmiEditUSerDelete.Click += new System.EventHandler(this.OnClickOnTsmiEditUserDelete);
             // 
             // cmsAddUser
             // 
@@ -155,7 +155,7 @@
             this.tsmiAddUserAdd.Name = "tsmiAddUserAdd";
             this.tsmiAddUserAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddUserAdd.Text = "Ajouter";
-            this.tsmiAddUserAdd.Click += new System.EventHandler(this.tsmiAddUserAdd_Click);
+            this.tsmiAddUserAdd.Click += new System.EventHandler(this.OnClickOnTsmiAddUserAdd);
             // 
             // btnDeleteUser
             // 
@@ -166,7 +166,7 @@
             this.btnDeleteUser.TabIndex = 3;
             this.btnDeleteUser.Text = "&Supprimer";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
-            this.btnDeleteUser.Click += new System.EventHandler(this.tsmiEditUSerDelete_Click);
+            this.btnDeleteUser.Click += new System.EventHandler(this.OnClickOnTsmiEditUserDelete);
             // 
             // btnUpdateUser
             // 
@@ -177,7 +177,7 @@
             this.btnUpdateUser.TabIndex = 2;
             this.btnUpdateUser.Text = "&Modifier";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
-            this.btnUpdateUser.Click += new System.EventHandler(this.tsmiEditUserEdit_Click);
+            this.btnUpdateUser.Click += new System.EventHandler(this.OnClickOnTsmiEditUserEdit);
             // 
             // btnAddUser
             // 
@@ -188,7 +188,7 @@
             this.btnAddUser.TabIndex = 1;
             this.btnAddUser.Text = "&Ajouter";
             this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += new System.EventHandler(this.tsmiAddUserAdd_Click);
+            this.btnAddUser.Click += new System.EventHandler(this.OnClickOnTsmiAddUserAdd);
             // 
             // frmUser
             // 
@@ -204,7 +204,7 @@
             this.Name = "frmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Utilisateurs";
-            this.Load += new System.EventHandler(this.frmUser_Load);
+            this.Load += new System.EventHandler(this.OnLoadOfFrmUser);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
             this.cmsEditUser.ResumeLayout(false);
             this.cmsAddUser.ResumeLayout(false);

@@ -128,7 +128,7 @@
             this.cmbUserRole.Name = "cmbUserRole";
             this.cmbUserRole.Size = new System.Drawing.Size(140, 21);
             this.cmbUserRole.TabIndex = 13;
-            this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.cmbUserRole_SelectedIndexChanged);
+            this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.OnSlectedIndexChangeOfCmbUserRole);
             // 
             // btnDeletePersonAvatar
             // 
@@ -138,7 +138,7 @@
             this.btnDeletePersonAvatar.TabIndex = 11;
             this.btnDeletePersonAvatar.Text = "&Supprimer";
             this.btnDeletePersonAvatar.UseVisualStyleBackColor = true;
-            this.btnDeletePersonAvatar.Click += new System.EventHandler(this.btnDeletePersonAvatar_Click);
+            this.btnDeletePersonAvatar.Click += new System.EventHandler(this.OnClickOnBtnDeletePersonAvatar);
             // 
             // lblPersonAvatar
             // 
@@ -244,7 +244,7 @@
             this.btnDeleteAssignee.TabIndex = 8;
             this.btnDeleteAssignee.Text = "&Supprimer";
             this.btnDeleteAssignee.UseVisualStyleBackColor = true;
-            this.btnDeleteAssignee.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            this.btnDeleteAssignee.Click += new System.EventHandler(this.OnClickOnTsmiRemoveAssigneeRemove);
             // 
             // btnAddAssignee
             // 
@@ -255,7 +255,7 @@
             this.btnAddAssignee.TabIndex = 7;
             this.btnAddAssignee.Text = "&Ajouter";
             this.btnAddAssignee.UseVisualStyleBackColor = true;
-            this.btnAddAssignee.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
+            this.btnAddAssignee.Click += new System.EventHandler(this.OnClickOnTsmiAddAssigneeAdd);
             // 
             // dgvUsersAssigned
             // 
@@ -273,7 +273,7 @@
             this.dgvUsersAssigned.TabIndex = 0;
             this.dgvUsersAssigned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvUsersAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
-            this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
+            this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUsersAssigned);
             // 
             // assigneeUserId
             // 
@@ -303,7 +303,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "&Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.OnClickOnBtnSave);
             // 
             // btnCancel
             // 
@@ -315,7 +315,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.OnClickOnBtnCancel);
             // 
             // cmsRemoveAssignee
             // 
@@ -329,7 +329,7 @@
             this.tsmiRemoveAdminRemove.Name = "tsmiRemoveAdminRemove";
             this.tsmiRemoveAdminRemove.Size = new System.Drawing.Size(129, 22);
             this.tsmiRemoveAdminRemove.Text = "Supprimer";
-            this.tsmiRemoveAdminRemove.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            this.tsmiRemoveAdminRemove.Click += new System.EventHandler(this.OnClickOnTsmiRemoveAssigneeRemove);
             // 
             // cmsAddAssignee
             // 
@@ -343,7 +343,7 @@
             this.tsmiAddAdminAdd.Name = "tsmiAddAdminAdd";
             this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
-            this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
+            this.tsmiAddAdminAdd.Click += new System.EventHandler(this.OnClickOnTsmiAddAssigneeAdd);
             // 
             // frmDetailUser
             // 
@@ -362,7 +362,7 @@
             this.MinimizeBox = false;
             this.Name = "frmDetailUser";
             this.Text = "Détail de l\'utilisateur";
-            this.Load += new System.EventHandler(this.frmDetailUser_Load);
+            this.Load += new System.EventHandler(this.OnLoadOfFrmDetailUser);
             this.grpUserDetail.ResumeLayout(false);
             this.grpUserDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).EndInit();

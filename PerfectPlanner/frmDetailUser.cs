@@ -13,9 +13,9 @@ namespace PerfectPlanner
 {
     public partial class frmDetailUser : Form, IUserAssignable
     {
-        frmUser frmUser;
-        bool isEditMode = false;
-        int userId = 0;
+        private readonly frmUser frmUser;
+        private readonly bool isEditMode = false;
+        private readonly int userId = 0;
         public frmDetailUser(frmUser frmParent)
         {
             InitializeComponent();
@@ -50,7 +50,7 @@ namespace PerfectPlanner
 
         }
 
-        private void cmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnSlectedIndexChangeOfCmbUserRole(object sender, EventArgs e)
         {
             if (cmbUserRole.SelectedIndex == 0)
             {
@@ -64,7 +64,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiRemoveAssigneeRemove(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -73,13 +73,13 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiAddAssigneeAdd_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiAddAssigneeAdd(object sender, EventArgs e)
         {
             frmUserSelection frmUserSelection = new frmUserSelection(this);
             frmUserSelection.ShowDialog();
         }
 
-        private void dgvUsersAssigned_MouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDownOnDgvUsersAssigned(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -107,12 +107,12 @@ namespace PerfectPlanner
             dgvUsersAssigned.Rows.Remove(dgvUsersAssigned.SelectedRows[0]);
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void OnClickOnBtnCancel(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void OnClickOnBtnSave(object sender, EventArgs e)
         {
             User user = new User(userId, txtUserName.Text, mtxUserPassword.Text, txtPersonMail.Text, txtPersonFirstName.Text, txtPersonName.Text, picPersonAvatar.ImageLocation, cmbUserRole.Text);
             List<User> usersAssigned = new List<User>();
@@ -132,7 +132,7 @@ namespace PerfectPlanner
             this.Close();
         }
 
-        private void btnDeletePersonAvatar_Click(object sender, EventArgs e)
+        private void OnClickOnBtnDeletePersonAvatar(object sender, EventArgs e)
         {
             this.picPersonAvatar.Image = null;
         }
@@ -157,7 +157,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void frmDetailUser_Load(object sender, EventArgs e)
+        private void OnLoadOfFrmDetailUser(object sender, EventArgs e)
         {
             if (Program.AppContext.IsAdvancedMode())
             {

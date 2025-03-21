@@ -50,7 +50,7 @@
             this.btnAddUser.TabIndex = 2;
             this.btnAddUser.Text = "&Ajouter";
             this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.btnAddUser.Click += new System.EventHandler(this.OnClickOnBtnAddUser);
             // 
             // btnCancel
             // 
@@ -61,7 +61,7 @@
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "A&nnuler";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.OnClickOnBtnCancel);
             // 
             // frmUserSelection
             // 
@@ -77,7 +77,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUserSelection";
             this.Text = "Selection de l\'utilisateur";
-            this.Load += new System.EventHandler(this.frmUserSelection_Load);
+            this.Load += new System.EventHandler(this.OnLoadOfFrmUserSelection);
             this.ResumeLayout(false);
 
         }

@@ -90,7 +90,7 @@
             this.btnDeleteAdmin.TabIndex = 6;
             this.btnDeleteAdmin.Text = "&Supprimer";
             this.btnDeleteAdmin.UseVisualStyleBackColor = true;
-            this.btnDeleteAdmin.Click += new System.EventHandler(this.tsmiRemoveAdminRemove_Click);
+            this.btnDeleteAdmin.Click += new System.EventHandler(this.OnClickOnTsmiRemoveAdminRemove);
             // 
             // dgvAdminsAssigned
             // 
@@ -108,7 +108,7 @@
             this.dgvAdminsAssigned.TabIndex = 0;
             this.dgvAdminsAssigned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvAdminsAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
-            this.dgvAdminsAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvAdminsAssigned_MouseDown);
+            this.dgvAdminsAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvAdminsAssigned);
             // 
             // adminUserId
             // 
@@ -138,7 +138,7 @@
             this.btnAddAdmin.TabIndex = 4;
             this.btnAddAdmin.Text = "&Ajouter";
             this.btnAddAdmin.UseVisualStyleBackColor = true;
-            this.btnAddAdmin.Click += new System.EventHandler(this.tsmiAddAdminAdd_Click);
+            this.btnAddAdmin.Click += new System.EventHandler(this.OnClickOnTsmiAddAdminAdd);
             // 
             // grpProjectDetail
             // 
@@ -176,7 +176,7 @@
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.OnClickOnBtnCancel);
             // 
             // btnSave
             // 
@@ -186,7 +186,7 @@
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Enregistrer";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.OnClickOnBtnSave);
             // 
             // grpUsersAssigned
             // 
@@ -210,7 +210,7 @@
             this.btnRemoveAssignee.TabIndex = 8;
             this.btnRemoveAssignee.Text = "&Supprimer";
             this.btnRemoveAssignee.UseVisualStyleBackColor = true;
-            this.btnRemoveAssignee.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            this.btnRemoveAssignee.Click += new System.EventHandler(this.OnClickOnTsmiRemoveAssigneeRemove);
             // 
             // btnAddAssignee
             // 
@@ -221,7 +221,7 @@
             this.btnAddAssignee.TabIndex = 7;
             this.btnAddAssignee.Text = "&Ajouter";
             this.btnAddAssignee.UseVisualStyleBackColor = true;
-            this.btnAddAssignee.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
+            this.btnAddAssignee.Click += new System.EventHandler(this.OnCLickOnTsmiAddAssigneeAdd);
             // 
             // dgvUsersAssigned
             // 
@@ -239,7 +239,7 @@
             this.dgvUsersAssigned.TabIndex = 0;
             this.dgvUsersAssigned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvUsersAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
-            this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUsersAssigned_MouseDown);
+            this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUsersAssigned);
             // 
             // assigneeUserId
             // 
@@ -272,7 +272,7 @@
             this.tsmiAddAdminAdd.Name = "tsmiAddAdminAdd";
             this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
-            this.tsmiAddAdminAdd.Click += new System.EventHandler(this.tsmiAddAdminAdd_Click);
+            this.tsmiAddAdminAdd.Click += new System.EventHandler(this.OnClickOnTsmiAddAdminAdd);
             // 
             // cmsRemoveAdmin
             // 
@@ -280,7 +280,7 @@
             this.tsmiRemoveAdminRemove});
             this.cmsRemoveAdmin.Name = "cmsRemoveAdmin";
             this.cmsRemoveAdmin.Size = new System.Drawing.Size(130, 26);
-            this.cmsRemoveAdmin.Click += new System.EventHandler(this.tsmiRemoveAdminRemove_Click);
+            this.cmsRemoveAdmin.Click += new System.EventHandler(this.OnClickOnTsmiRemoveAdminRemove);
             // 
             // tsmiRemoveAdminRemove
             // 
@@ -294,7 +294,7 @@
             this.tsmiAddAssigneeAdd});
             this.cmsAddAssignee.Name = "cmsRemoveAdmin";
             this.cmsAddAssignee.Size = new System.Drawing.Size(114, 26);
-            this.cmsAddAssignee.Click += new System.EventHandler(this.tsmiAddAssigneeAdd_Click);
+            this.cmsAddAssignee.Click += new System.EventHandler(this.OnCLickOnTsmiAddAssigneeAdd);
             // 
             // tsmiAddAssigneeAdd
             // 
@@ -314,7 +314,7 @@
             this.tsmiRemoveAssigneeRemove.Name = "tsmiRemoveAssigneeRemove";
             this.tsmiRemoveAssigneeRemove.Size = new System.Drawing.Size(129, 22);
             this.tsmiRemoveAssigneeRemove.Text = "Supprimer";
-            this.tsmiRemoveAssigneeRemove.Click += new System.EventHandler(this.tsmiRemoveAssigneeRemove_Click);
+            this.tsmiRemoveAssigneeRemove.Click += new System.EventHandler(this.OnClickOnTsmiRemoveAssigneeRemove);
             // 
             // frmDetailProjet
             // 
@@ -331,7 +331,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDetailProjet";
             this.Text = "Détail du projet";
-            this.Load += new System.EventHandler(this.frmDetailProjet_Load);
+            this.Load += new System.EventHandler(this.OnLoadOfFrmDetailProjet);
             this.grpAdminsAssigned.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminsAssigned)).EndInit();
             this.grpProjectDetail.ResumeLayout(false);

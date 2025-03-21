@@ -68,7 +68,7 @@
             this.dgvProjects.TabIndex = 0;
             this.dgvProjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvProjects.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
-            this.dgvProjects.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvProject_MouseDown);
+            this.dgvProjects.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvProject);
             // 
             // projectId
             // 
@@ -109,7 +109,7 @@
             this.tsmiAddUserAdd.Name = "tsmiAddUserAdd";
             this.tsmiAddUserAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddUserAdd.Text = "Ajouter";
-            this.tsmiAddUserAdd.Click += new System.EventHandler(this.tsmiAddProjectAdd_Click);
+            this.tsmiAddUserAdd.Click += new System.EventHandler(this.OnClickOnTsmiAddProjectAdd);
             // 
             // cmsEditProject
             // 
@@ -124,14 +124,14 @@
             this.tsmiEditProjectEdit.Name = "tsmiEditProjectEdit";
             this.tsmiEditProjectEdit.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditProjectEdit.Text = "Modifier";
-            this.tsmiEditProjectEdit.Click += new System.EventHandler(this.tsmiEditProjectEdit_Click);
+            this.tsmiEditProjectEdit.Click += new System.EventHandler(this.OnClickOnTsmiEditProjectEdit);
             // 
             // tsmiEditProjectDelete
             // 
             this.tsmiEditProjectDelete.Name = "tsmiEditProjectDelete";
             this.tsmiEditProjectDelete.Size = new System.Drawing.Size(129, 22);
             this.tsmiEditProjectDelete.Text = "Supprimer";
-            this.tsmiEditProjectDelete.Click += new System.EventHandler(this.tsmiEditProjectDelete_Click);
+            this.tsmiEditProjectDelete.Click += new System.EventHandler(this.OnClickOnTsmiEditProjectDelete);
             // 
             // btnAddProject
             // 
@@ -142,7 +142,7 @@
             this.btnAddProject.TabIndex = 1;
             this.btnAddProject.Text = "&Ajouter";
             this.btnAddProject.UseVisualStyleBackColor = true;
-            this.btnAddProject.Click += new System.EventHandler(this.tsmiAddProjectAdd_Click);
+            this.btnAddProject.Click += new System.EventHandler(this.OnClickOnTsmiAddProjectAdd);
             // 
             // btnUpdateProject
             // 
@@ -154,7 +154,7 @@
             this.btnUpdateProject.TabIndex = 2;
             this.btnUpdateProject.Text = "&Modifier";
             this.btnUpdateProject.UseVisualStyleBackColor = true;
-            this.btnUpdateProject.Click += new System.EventHandler(this.tsmiEditProjectEdit_Click);
+            this.btnUpdateProject.Click += new System.EventHandler(this.OnClickOnTsmiEditProjectEdit);
             // 
             // btnDeleteProject
             // 
@@ -166,7 +166,7 @@
             this.btnDeleteProject.TabIndex = 3;
             this.btnDeleteProject.Text = "&Supprimer";
             this.btnDeleteProject.UseVisualStyleBackColor = true;
-            this.btnDeleteProject.Click += new System.EventHandler(this.tsmiEditProjectDelete_Click);
+            this.btnDeleteProject.Click += new System.EventHandler(this.OnClickOnTsmiEditProjectDelete);
             // 
             // frmProject
             // 
@@ -183,7 +183,7 @@
             this.Name = "frmProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Projets";
-            this.Load += new System.EventHandler(this.frmProjects_Load);
+            this.Load += new System.EventHandler(this.OnLoadOfFrmProjects);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
             this.cmsAddProject.ResumeLayout(false);
             this.cmsEditProject.ResumeLayout(false);

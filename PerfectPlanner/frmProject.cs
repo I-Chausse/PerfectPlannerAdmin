@@ -19,7 +19,7 @@ namespace PerfectPlanner
             InitializeComponent();
         }
 
-        private void frmProjects_Load(object sender, EventArgs e)
+        private void OnLoadOfFrmProjects(object sender, EventArgs e)
         {
 
             projects = DataProvider.GetProjects();
@@ -46,7 +46,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void dgvProject_MouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDownOnDgvProject(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -64,7 +64,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiEditProjectEdit_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiEditProjectEdit(object sender, EventArgs e)
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
             int selectedProjetId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
@@ -72,13 +72,13 @@ namespace PerfectPlanner
             frmDetailProject.ShowDialog();
         }
 
-        private void tsmiAddProjectAdd_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiAddProjectAdd(object sender, EventArgs e)
         {
             frmDetailProjet frmDetailProject = new frmDetailProjet(this);
             frmDetailProject.ShowDialog();
         }
 
-        public void addProject(Project project)
+        public void AddProject(Project project)
         {
             String admins = "";
             String assignees = "";
@@ -93,7 +93,7 @@ namespace PerfectPlanner
             dgvProjects.Rows.Add(project.Id, project.Name, admins, assignees);
         }
 
-        public void updateProject(Project project)
+        public void UpdateProject(Project project)
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
             dgvProjects.Rows[selectedRowIndex].Cells["projectName"].Value = project.Name;
@@ -109,19 +109,18 @@ namespace PerfectPlanner
             }
         }
 
-        public void supprimerProject()
+        public void SupprimerProject()
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
-            int selectedProjectId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
             dgvProjects.Rows.RemoveAt(selectedRowIndex);
         }
 
-        private void tsmiEditProjectDelete_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiEditProjectDelete(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ce projet ?", "Supprimer un projet", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                this.supprimerProject();
+                this.SupprimerProject();
             }
         }
 

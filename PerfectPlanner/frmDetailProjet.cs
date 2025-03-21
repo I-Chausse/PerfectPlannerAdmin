@@ -12,10 +12,10 @@ namespace PerfectPlanner
 {
     public partial class frmDetailProjet: Form, IUserAssignable
     {
-        DataGridView currentDGV = null;
-        frmProject frmProjects = null;
-        bool isEditMode = false;
-        int projectId = 0;
+        private DataGridView currentDGV = null;
+        private readonly frmProject frmProjects = null;
+        private readonly bool isEditMode = false;
+        private readonly int projectId;
         public frmDetailProjet(frmProject frmProjects)
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace PerfectPlanner
             projectId = project.Id;
         }
 
-        private void tsmiRemoveAdminRemove_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiRemoveAdminRemove(object sender, EventArgs e)
         {
             currentDGV = dgvAdminsAssigned;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
@@ -50,14 +50,14 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiAddAdminAdd_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiAddAdminAdd(object sender, EventArgs e)
         {
             currentDGV = dgvAdminsAssigned;
             frmUserSelection frmUserSelection = new frmUserSelection(this);
             frmUserSelection.ShowDialog();
         }
 
-        private void tsmiRemoveAssigneeRemove_Click(object sender, EventArgs e)
+        private void OnClickOnTsmiRemoveAssigneeRemove(object sender, EventArgs e)
         {
             currentDGV = dgvUsersAssigned;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
@@ -67,14 +67,14 @@ namespace PerfectPlanner
             }
         }
 
-        private void tsmiAddAssigneeAdd_Click(object sender, EventArgs e)
+        private void OnCLickOnTsmiAddAssigneeAdd(object sender, EventArgs e)
         {
             currentDGV = dgvUsersAssigned;
             frmUserSelection frmUserSelection = new frmUserSelection(this);
             frmUserSelection.ShowDialog();
         }
 
-        private void dgvUsersAssigned_MouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDownOnDgvUsersAssigned(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -92,7 +92,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void dgvAdminsAssigned_MouseDown(object sender, MouseEventArgs e)
+        private void OnMouseDownOnDgvAdminsAssigned(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -119,12 +119,12 @@ namespace PerfectPlanner
             currentDGV.Rows.Remove(currentDGV.SelectedRows[0]);
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void OnClickOnBtnCancel(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void OnClickOnBtnSave(object sender, EventArgs e)
         {
             Project project = new Project(projectId, txtProjectName.Text);
             List<User> admins = new List<User>();
@@ -158,11 +158,11 @@ namespace PerfectPlanner
             project.Assignees = assignees;
             if (this.isEditMode)
             {
-                this.frmProjects.updateProject(project); 
+                this.frmProjects.UpdateProject(project); 
             }
             else
             {
-                this.frmProjects.addProject(project);
+                this.frmProjects.AddProject(project);
             }
             this.Close();
         }
@@ -202,7 +202,7 @@ namespace PerfectPlanner
             }
         }
 
-        private void frmDetailProjet_Load(object sender, EventArgs e)
+        private void OnLoadOfFrmDetailProjet(object sender, EventArgs e)
         {
             if (Program.AppContext.IsAdvancedMode())
             {
