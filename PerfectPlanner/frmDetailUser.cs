@@ -23,6 +23,7 @@ namespace PerfectPlanner
             grpUsersAssigned.Visible = false;
             this.Width = 310;
             this.frmUser = frmParent;
+            cmbUserRole.SelectedIndex = 0;
             btnSave.Text = "Ajouter";
         }
 

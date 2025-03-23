@@ -361,6 +361,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDetailUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Détail de l\'utilisateur";
             this.Load += new System.EventHandler(this.OnLoadOfFrmDetailUser);
             this.grpUserDetail.ResumeLayout(false);

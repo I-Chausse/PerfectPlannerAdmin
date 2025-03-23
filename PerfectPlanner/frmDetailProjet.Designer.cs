@@ -330,6 +330,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDetailProjet";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Détail du projet";
             this.Load += new System.EventHandler(this.OnLoadOfFrmDetailProjet);
             this.grpAdminsAssigned.ResumeLayout(false);
