@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models.Login;
+using PerfectPlanner.Models;
+using PerfectPlanner.Models.Projects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,29 +19,28 @@ namespace PerfectPlanner
     public partial class frmProject: Form
     {
         private List<Project> projects = new List<Project>();
-        public frmProject()
+        private readonly IHttpClientFactory _httpClientFactory;
+        public frmProject(IHttpClientFactory httpClientFactory)
         {
+            _httpClientFactory = httpClientFactory;
             InitializeComponent();
         }
 
         private void OnLoadOfFrmProjects(object sender, EventArgs e)
         {
-
-            projects = DataProvider.GetProjects();
-            projects.ForEach(project =>
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var response = client.GetAsync("projects").Result;
+            if (response.IsSuccessStatusCode)
             {
-                String admins = "";
-                String assignees = "";
-                foreach (var admin in project.Admins)
-                {
-                    admins += admin.UserName + ", ";
-                }
-                foreach (var assignee in project.Assignees)
-                {
-                    assignees += assignee.UserName + ", ";
-                }
-                dgvProjects.Rows.Add(project.Id, project.Name, admins, assignees);
-            });
+                var content = response.Content.ReadAsStringAsync().Result;
+                projects = JsonConvert.DeserializeObject<ProjectResponse> (content).Data;
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des projets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            dgvProjects.DataSource = projects;
             if (Program.AppContext.IsAdvancedMode())
             {
                 btnAddProject.Visible = false;
@@ -68,7 +72,7 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
             int selectedProjetId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
-            frmDetailProjet frmDetailProject = new frmDetailProjet(this, projects.Find((projet) => projet.Id == selectedProjetId));
+            frmDetailProjet frmDetailProject = new frmDetailProjet(this, projects.Find((projet) => projet.id == selectedProjetId));
             frmDetailProject.ShowDialog();
         }
 
@@ -78,32 +82,40 @@ namespace PerfectPlanner
             frmDetailProject.ShowDialog();
         }
 
-        public void AddProject(Project project)
+        public async Task AddProject(Project project)
         {
-            String admins = "";
-            String assignees = "";
-            foreach (var admin in project.Admins)
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(project), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("projects", jsonContent);
+            if (!response.IsSuccessStatusCode)
             {
-                admins += admin.UserName + ", ";
+                var content = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 422)
+                {
+                    var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(content);
+                    var errorMessages = errorResponse.SelectMany(e => e.Value).ToList();
+                    throw new Exception($"Erreur de validation : {string.Join(", ", errorMessages)}");
+                }
+                else
+                {
+                    throw new Exception($"Erreur HTTP : {response.StatusCode} - {content}");
+                }
             }
-            foreach (var assignee in project.Assignees)
-            {
-                assignees += assignee.UserName + ", ";
-            }
-            dgvProjects.Rows.Add(project.Id, project.Name, admins, assignees);
+
+
         }
 
-        public void UpdateProject(Project project)
+        public async void UpdateProject(Project project)
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
-            dgvProjects.Rows[selectedRowIndex].Cells["projectName"].Value = project.Name;
+            dgvProjects.Rows[selectedRowIndex].Cells["projectName"].Value = project.project_name;
             dgvProjects.Rows[selectedRowIndex].Cells["projectAdmin"].Value = "";
             dgvProjects.Rows[selectedRowIndex].Cells["projectAssignees"].Value = "";
-            foreach (var admin in project.Admins)
+            foreach (var admin in project.admins)
             {
                 dgvProjects.Rows[selectedRowIndex].Cells["projectAdmin"].Value += admin.UserName + ", ";
             }
-            foreach (var assignee in project.Assignees)
+            foreach (var assignee in project.users)
             {
                 dgvProjects.Rows[selectedRowIndex].Cells["projectAssignees"].Value += assignee.UserName + ", ";
             }
@@ -112,7 +124,7 @@ namespace PerfectPlanner
         public void SupprimerProject()
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
-            dgvProjects.Rows.RemoveAt(selectedRowIndex);
+            int selectedProjetId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
         }
 
         private void OnClickOnTsmiEditProjectDelete(object sender, EventArgs e)

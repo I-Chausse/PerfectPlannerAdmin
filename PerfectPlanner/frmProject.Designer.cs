@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProject));
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectAssignees = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsAddProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddUserAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsEditProject = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -43,6 +39,10 @@
             this.btnAddProject = new System.Windows.Forms.Button();
             this.btnUpdateProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();
+            this.projectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectAssignees = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
             this.cmsAddProject.SuspendLayout();
             this.cmsEditProject.SuspendLayout();
@@ -69,33 +69,6 @@
             this.dgvProjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvProjects.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
             this.dgvProjects.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvProject);
-            // 
-            // projectId
-            // 
-            this.projectId.HeaderText = "Id";
-            this.projectId.Name = "projectId";
-            this.projectId.ReadOnly = true;
-            this.projectId.Visible = false;
-            // 
-            // projectName
-            // 
-            this.projectName.HeaderText = "Nom du projet";
-            this.projectName.Name = "projectName";
-            this.projectName.ReadOnly = true;
-            this.projectName.Width = 265;
-            // 
-            // projectAdmin
-            // 
-            this.projectAdmin.HeaderText = "Gestionnaire(s)";
-            this.projectAdmin.Name = "projectAdmin";
-            this.projectAdmin.ReadOnly = true;
-            this.projectAdmin.Width = 200;
-            // 
-            // projectAssignees
-            // 
-            this.projectAssignees.HeaderText = "Utilisateurs assignés";
-            this.projectAssignees.Name = "projectAssignees";
-            this.projectAssignees.Width = 250;
             // 
             // cmsAddProject
             // 
@@ -167,6 +140,37 @@
             this.btnDeleteProject.Text = "&Supprimer";
             this.btnDeleteProject.UseVisualStyleBackColor = true;
             this.btnDeleteProject.Click += new System.EventHandler(this.OnClickOnTsmiEditProjectDelete);
+            // 
+            // projectId
+            // 
+            this.projectId.DataPropertyName = "Id";
+            this.projectId.HeaderText = "Id";
+            this.projectId.Name = "projectId";
+            this.projectId.ReadOnly = true;
+            this.projectId.Visible = false;
+            // 
+            // projectName
+            // 
+            this.projectName.DataPropertyName = "project_name";
+            this.projectName.HeaderText = "Nom du projet";
+            this.projectName.Name = "projectName";
+            this.projectName.ReadOnly = true;
+            this.projectName.Width = 265;
+            // 
+            // projectAdmin
+            // 
+            this.projectAdmin.DataPropertyName = "DisplayAdmins";
+            this.projectAdmin.HeaderText = "Gestionnaire(s)";
+            this.projectAdmin.Name = "projectAdmin";
+            this.projectAdmin.ReadOnly = true;
+            this.projectAdmin.Width = 200;
+            // 
+            // projectAssignees
+            // 
+            this.projectAssignees.DataPropertyName = "DisplayUsers";
+            this.projectAssignees.HeaderText = "Utilisateurs assignés";
+            this.projectAssignees.Name = "projectAssignees";
+            this.projectAssignees.Width = 250;
             // 
             // frmProject
             // 

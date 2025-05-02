@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,17 @@ namespace PerfectPlanner
 {
     public class CustomApplicationContext : ApplicationContext
     {
+        private readonly IServiceProvider _serviceProvider;
         private Form currentForm;
+        private String token;
         private bool isAdvancedMode = false;
 
-        public CustomApplicationContext(Form initialForm)
+        public CustomApplicationContext(Form initialForm, IServiceProvider serviceProvider)
         {
             currentForm = initialForm;
             currentForm.FormClosed += new FormClosedEventHandler(OnFormClosed);
             currentForm.Show();
+            _serviceProvider = serviceProvider;
         }
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -28,7 +32,7 @@ namespace PerfectPlanner
             else
             {
                 // Sinon, ouvrez frmLogin
-                currentForm = new frmLogin();
+                currentForm = _serviceProvider.GetRequiredService<frmLogin>(); ;
                 currentForm.FormClosed += new FormClosedEventHandler(OnFormClosed);
                 currentForm.Show();
             }
@@ -50,6 +54,15 @@ namespace PerfectPlanner
         public bool IsAdvancedMode()
         {
             return isAdvancedMode;
+        }
+
+        public void SetToken(string token)
+        {
+            this.token = token;
+        }
+        public string GetToken()
+        {
+            return token;
         }
     }
 }

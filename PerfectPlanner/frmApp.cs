@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Windows.Forms;
 
 namespace PerfectPlanner
 {
     public partial class frmApp: Form
     {
-        public frmApp()
+        private readonly IHttpClientFactory _httpClientFactory;
+        public frmApp(IHttpClientFactory httpClientFactory)
         {
+            _httpClientFactory = httpClientFactory;
             InitializeComponent();
         }
         private void OnClickOnTsmiUser(object sender, EventArgs e)
@@ -40,7 +43,7 @@ namespace PerfectPlanner
             }
             else
             {
-                frmProject frmProjects = new frmProject
+                frmProject frmProjects = new frmProject(_httpClientFactory)
                 {
                     MdiParent = this
                 };

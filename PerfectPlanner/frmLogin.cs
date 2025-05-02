@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models;
+using PerfectPlanner.Models.Login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,21 +17,48 @@ namespace PerfectPlanner
 {
     public partial class frmLogin: Form
     {
-        public frmLogin()
+        private readonly IHttpClientFactory _httpClientFactory;
+        public frmLogin(IHttpClientFactory httpClientFactory)
         {
             InitializeComponent();
+            _httpClientFactory = httpClientFactory;
         }
 
-        private void OnClickOnBtnLogin(object sender, EventArgs e)
+        private async void OnClickOnBtnLogin(object sender, EventArgs e)
         {
-            if (txtUserName.Text == "Admin" && mtxUserPass.Text.Length != 0)
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var loginRequest = new LoginRequest
             {
-                frmApp frmApp = new frmApp();
-                Program.AppContext.SwitchToForm(frmApp);
+                email = txtUserName.Text,
+                password = mtxUserPass.Text
+            };
+            try
+            {
+                var jsonContent = new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("login", jsonContent);
+                response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsStringAsync();
+                var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(content);
+                if (loginResponse.role == "admin")
+                {
+                    Program.AppContext.SetToken(loginResponse.token);
+                    var frmApp = new frmApp(_httpClientFactory);
+                    Program.AppContext.SwitchToForm(frmApp);
+                }
+                else
+                {
+                    MessageBox.Show("Vous n'avez pas le droit d'accéder à cette application", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
-            else
+            catch (HttpRequestException ex)
             {
-                MessageBox.Show("Invalid Username or Password", "Erreur lors du login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erreur de requête : {ex.Message}", "Erreur lors du login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur : {ex.Message}", "Erreur lors du login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

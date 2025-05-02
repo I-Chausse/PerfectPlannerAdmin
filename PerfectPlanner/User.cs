@@ -9,23 +9,23 @@ namespace PerfectPlanner
     public class User
     {
         private int id;
-        private string username;
+        private string user_name;
         private string password;
         private string email;
-        private string firstName;
-        private string lastName;
+        private string first_name;
+        private string name;
         private string avatar;
         public string role;
         private List<User> usersAssigned;
 
-        public User(int id, string username, string password, string email, string firstName, string lastName, string avatar, string role)
+        public User(int id, string user_name, string password, string email, string first_name, string name, string avatar, string role)
         {
             this.id = id;
-            this.username = username;
+            this.user_name = user_name;
             this.password = password;
             this.email = email;
-            this.firstName = firstName;
-            this.lastName = lastName;
+            this.first_name = first_name;
+            this.name = name;
             this.avatar = avatar;
             this.role = role;
             this.usersAssigned = new List<User>();
@@ -38,8 +38,8 @@ namespace PerfectPlanner
         }
         public string UserName
         {
-            get { return username; }
-            set { username = value; }
+            get { return user_name; }
+            set { user_name = value; }
         }
         public string Password
         {
@@ -53,13 +53,13 @@ namespace PerfectPlanner
         }
         public string FirstName
         {
-            get { return firstName; }
-            set { firstName = value; }
+            get { return first_name; }
+            set { first_name = value; }
         }
         public string LastName
         {
-            get { return lastName; }
-            set { lastName = value; }
+            get { return name; }
+            set { name = value; }
         }
         public string Avatar
         {

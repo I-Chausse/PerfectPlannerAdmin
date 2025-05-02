@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PerfectPlanner.Models.Projects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,18 +27,18 @@ namespace PerfectPlanner
         public frmDetailProjet(frmProject frmProjects, Project project)
         {
             InitializeComponent();
-            txtProjectName.Text = project.Name;
-            project.Admins.ForEach(admin =>
+            txtProjectName.Text = project.project_name;
+            project.admins.ForEach(admin =>
             {
                 dgvAdminsAssigned.Rows.Add(admin.Id, admin.LastName, admin.FirstName);
             });
-            project.Assignees.ForEach(assignee =>
+            project.users.ForEach(assignee =>
             {
                 dgvUsersAssigned.Rows.Add(assignee.Id, assignee.LastName, assignee.FirstName);
             });
             this.frmProjects = frmProjects;
             isEditMode = true;
-            projectId = project.Id;
+            projectId = project.id;
         }
 
         private void OnClickOnTsmiRemoveAdminRemove(object sender, EventArgs e)
@@ -124,7 +125,7 @@ namespace PerfectPlanner
             this.Close();
         }
 
-        private void OnClickOnBtnSave(object sender, EventArgs e)
+        private async void OnClickOnBtnSave(object sender, EventArgs e)
         {
             Project project = new Project(projectId, txtProjectName.Text);
             List<User> admins = new List<User>();
@@ -154,17 +155,33 @@ namespace PerfectPlanner
                     }
                 }
             }
-            project.Admins = admins;
-            project.Assignees = assignees;
+            project.admins = admins;
+            project.users = assignees;
             if (this.isEditMode)
             {
-                this.frmProjects.UpdateProject(project); 
+                try
+                {
+                    this.frmProjects.UpdateProject(project);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                this.frmProjects.AddProject(project);
+                try
+                {
+                    await this.frmProjects.AddProject(project);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            this.Close();
+            
         }
 
         private void HandleDeleteBtnState(Object sender, DataGridViewRowStateChangedEventArgs e)
