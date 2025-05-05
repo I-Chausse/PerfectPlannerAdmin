@@ -143,9 +143,10 @@ namespace PerfectPlanner
         }
         public void RemoveUser()
         {
-            int userId = (int)currentDGV.SelectedRows[0].Cells["id"].Value;
+            
             if (currentDGV == dgvAdminsAssigned)
             {
+                int userId = (int)currentDGV.SelectedRows[0].Cells["adminUserId"].Value;
                 var adminsList = (List<User>)this.adminsBindingSource.DataSource;
                 var userToRemove = adminsList.FirstOrDefault(u => u.id == userId);
                 if (userToRemove != null)
@@ -156,6 +157,7 @@ namespace PerfectPlanner
             }
             else
             {
+                int userId = (int)currentDGV.SelectedRows[0].Cells["assigneeUserId"].Value;
                 var usersList = (List<User>)this.usersBindingSource.DataSource;
                 var userToRemove = usersList.FirstOrDefault(u => u.id == userId);
                 if (userToRemove != null)
