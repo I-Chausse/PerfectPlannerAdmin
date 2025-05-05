@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PerfectPlanner.Models.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,23 +31,23 @@ namespace PerfectPlanner
         public frmDetailUser(frmUser frmParent, User user)
         {
             InitializeComponent();
-            txtUserName.Text = user.UserName;
-            txtPersonName.Text = user.LastName;
-            txtPersonFirstName.Text = user.FirstName;
-            txtPersonMail.Text = user.Email;
-            cmbUserRole.Text = user.Role;
-            picPersonAvatar.ImageLocation = user.Avatar;
+            txtUserName.Text = user.user_name;
+            txtPersonName.Text = user.name;
+            txtPersonFirstName.Text = user.first_name;
+            txtPersonMail.Text = user.email;
+            cmbUserRole.Text = user.role.label;
+            picPersonAvatar.ImageLocation = user.avatar.link;
             if (cmbUserRole.SelectedIndex == 0)
             {
                 grpUsersAssigned.Visible = false;
                 this.Width = 310;
             }
-            foreach (var item in user.UsersAssigned)
+            foreach (var item in user.assignees)
             {
-                dgvUsersAssigned.Rows.Add(item.Id, item.LastName, item.FirstName);
+                dgvUsersAssigned.Rows.Add(item.id, item.name, item.first_name);
             }
             this.frmUser = frmParent;
-            this.userId = user.Id;
+            this.userId = user.id;
             this.isEditMode = true;
 
         }
@@ -76,7 +77,8 @@ namespace PerfectPlanner
 
         private void OnClickOnTsmiAddAssigneeAdd(object sender, EventArgs e)
         {
-            frmUserSelection frmUserSelection = new frmUserSelection(this);
+            List<User> usersAssignables = new List<User>();
+            frmUserSelection frmUserSelection = new frmUserSelection(this, usersAssignables);
             frmUserSelection.ShowDialog();
         }
 
@@ -100,7 +102,7 @@ namespace PerfectPlanner
 
         public void AddUser(User user)
         {
-            dgvUsersAssigned.Rows.Add(user.Id, user.LastName, user.FirstName);
+            //dgvUsersAssigned.Rows.Add(user.Id, user.LastName, user.FirstName);
         }
 
         public void RemoveUser()
@@ -115,13 +117,14 @@ namespace PerfectPlanner
 
         private void OnClickOnBtnSave(object sender, EventArgs e)
         {
-            User user = new User(userId, txtUserName.Text, mtxUserPassword.Text, txtPersonMail.Text, txtPersonFirstName.Text, txtPersonName.Text, picPersonAvatar.ImageLocation, cmbUserRole.Text);
+            User user = new User();
+            //User user = new User(userId, txtUserName.Text, mtxUserPassword.Text, txtPersonMail.Text, txtPersonFirstName.Text, txtPersonName.Text, picPersonAvatar.ImageLocation, cmbUserRole.Text);
             List<User> usersAssigned = new List<User>();
             foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
             {
-                usersAssigned.Add(DataProvider.GetUsers().Find((assignee) => assignee.Id ==(int) row.Cells["assigneeUserId"].Value));
+                //usersAssigned.Add(DataProvider.GetUsers().Find((assignee) => assignee.id ==(int) row.Cells["assigneeUserId"].Value));
             }
-            user.UsersAssigned = usersAssigned;
+            //user.UsersAssigned = usersAssigned;
             if (this.isEditMode)
             {
                 this.frmUser.UpdateUser(user);

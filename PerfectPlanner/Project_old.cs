@@ -10,31 +10,31 @@ namespace PerfectPlanner
     {
         private int id;
         private string project_name;
-        private List<User> admins = new List<User>();
-        private List<User> users = new List<User>();
+        private List<User_old> admins = new List<User_old>();
+        private List<User_old> users = new List<User_old>();
 
         public Project_old(int id, string project_name)
         {
             this.id = id;
             this.project_name = project_name;
-            this.admins = new List<User>();
-            this.users = new List<User>();
+            this.admins = new List<User_old>();
+            this.users = new List<User_old>();
         }
 
-        public void AddAdmin(User user)
+        public void AddAdmin(User_old user)
         {
             admins.Add(user);
         }
-        public void AddAssignee(User user)
+        public void AddAssignee(User_old user)
         {
             users.Add(user);
         }
 
-        public void RemoveAdmin(User user)
+        public void RemoveAdmin(User_old user)
         {
             admins.Remove(user);
         }
-        public void RemoveAssignee(User user)
+        public void RemoveAssignee(User_old user)
         {
             users.Remove(user);
         }
@@ -50,12 +50,12 @@ namespace PerfectPlanner
             set { project_name = value; }
         }
 
-        public List<User> Admins
+        public List<User_old> Admins
         {
             get { return admins; }
             set { admins = value; }
         }
-        public List<User> Users
+        public List<User_old> Users
         {
             get { return users; }
             set { users = value; }

@@ -28,19 +28,7 @@ namespace PerfectPlanner
 
         private void OnLoadOfFrmProjects(object sender, EventArgs e)
         {
-            var client = _httpClientFactory.CreateClient("MyApiClient");
-            var response = client.GetAsync("projects").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var content = response.Content.ReadAsStringAsync().Result;
-                projects = JsonConvert.DeserializeObject<ProjectResponse> (content).Data;
-            }
-            else
-            {
-                MessageBox.Show("Erreur lors de la récupération des projets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            dgvProjects.DataSource = projects;
+            UpdateData();
             if (Program.AppContext.IsAdvancedMode())
             {
                 btnAddProject.Visible = false;
@@ -72,13 +60,13 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
             int selectedProjetId = (int)dgvProjects.Rows[selectedRowIndex].Cells["projectid"].Value;
-            frmDetailProjet frmDetailProject = new frmDetailProjet(this, projects.Find((projet) => projet.id == selectedProjetId));
+            frmDetailProjet frmDetailProject = new frmDetailProjet(this, projects.Find((projet) => projet.id == selectedProjetId), _httpClientFactory);
             frmDetailProject.ShowDialog();
         }
 
         private void OnClickOnTsmiAddProjectAdd(object sender, EventArgs e)
         {
-            frmDetailProjet frmDetailProject = new frmDetailProjet(this);
+            frmDetailProjet frmDetailProject = new frmDetailProjet(this, _httpClientFactory);
             frmDetailProject.ShowDialog();
         }
 
@@ -87,38 +75,26 @@ namespace PerfectPlanner
             var client = _httpClientFactory.CreateClient("MyApiClient");
             var jsonContent = new StringContent(JsonConvert.SerializeObject(project), Encoding.UTF8, "application/json");
             var response = await client.PostAsync("projects", jsonContent);
-            if (!response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                if ((int)response.StatusCode == 422)
-                {
-                    var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(content);
-                    var errorMessages = errorResponse.SelectMany(e => e.Value).ToList();
-                    throw new Exception($"Erreur de validation : {string.Join(", ", errorMessages)}");
-                }
-                else
-                {
-                    throw new Exception($"Erreur HTTP : {response.StatusCode} - {content}");
-                }
-            }
+            await ParseResponse(response);
+            UpdateData();
 
 
         }
 
-        public async void UpdateProject(Project project)
+        public async Task UpdateProject(Project project)
         {
-            int selectedRowIndex = dgvProjects.SelectedRows[0].Index;
-            dgvProjects.Rows[selectedRowIndex].Cells["projectName"].Value = project.project_name;
-            dgvProjects.Rows[selectedRowIndex].Cells["projectAdmin"].Value = "";
-            dgvProjects.Rows[selectedRowIndex].Cells["projectAssignees"].Value = "";
-            foreach (var admin in project.admins)
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(project), Encoding.UTF8, "application/json");
+            var response = await client.PutAsync("projects/" + project.id, jsonContent);
+            await ParseResponse(response);
+            UsersToAssign usersToAssign = new UsersToAssign
             {
-                dgvProjects.Rows[selectedRowIndex].Cells["projectAdmin"].Value += admin.UserName + ", ";
-            }
-            foreach (var assignee in project.users)
-            {
-                dgvProjects.Rows[selectedRowIndex].Cells["projectAssignees"].Value += assignee.UserName + ", ";
-            }
+                users_to_assign = project.UsersIds
+            };
+            jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
+            response = await client.PutAsync("projects/" + project.id + "/update-assignees", jsonContent);
+            await ParseResponse(response);
+            UpdateData();
         }
 
         public void SupprimerProject()
@@ -155,6 +131,40 @@ namespace PerfectPlanner
             if (e.RowIndex >= 0)
             {
                 dgvProjects.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void UpdateData()
+        {
+            HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
+            HttpResponseMessage response = client.GetAsync("projects").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result;
+                projects = JsonConvert.DeserializeObject<ProjectResponse>(content).Data;
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des projets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            dgvProjects.DataSource = projects;
+        }
+
+        private async Task ParseResponse(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 422)
+                {
+                    var errorResponse = JsonConvert.DeserializeObject<ProjectValidationError>(content);
+                    throw new Exception($"Erreur de validation : {string.Join(", ", errorResponse.message)}");
+                }
+                else
+                {
+                    throw new Exception($"Erreur HTTP : {response.StatusCode} - {content}");
+                }
             }
         }
     }

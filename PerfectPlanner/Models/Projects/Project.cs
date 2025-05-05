@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PerfectPlanner.Models.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,7 @@ namespace PerfectPlanner.Models.Projects
                 StringBuilder sb = new StringBuilder();
                 foreach (User user in admins)
                 {
-                    sb.Append(user.FirstName + " " + user.LastName + ", ");
+                    sb.Append(user.first_name + " " + user.name + ", ");
                 }
                 if (sb.Length > 0)
                 {
@@ -44,13 +45,30 @@ namespace PerfectPlanner.Models.Projects
                 StringBuilder sb = new StringBuilder();
                 foreach (User user in users)
                 {
-                    sb.Append(user.FirstName + " " + user.LastName + "\n");
+                    sb.Append(user.first_name + " " + user.name + ", ");
                 }
                 if (sb.Length > 0)
                 {
                     sb.Remove(sb.Length - 2, 2);
                 }
                 return sb.ToString();
+            }
+        }
+
+        public List<int> UsersIds
+        {
+            get
+            {
+                List<int> ids = new List<int>();
+                foreach (User user in users)
+                {
+                    ids.Add(user.id);
+                }
+                foreach (User user in admins)
+                {
+                    ids.Add(user.id);
+                }
+                return ids;
             }
         }
     }

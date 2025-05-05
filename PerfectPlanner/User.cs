@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PerfectPlanner
 {
-    public class User
+    public class User_old
     {
         private int id;
         private string user_name;
@@ -16,9 +16,9 @@ namespace PerfectPlanner
         private string name;
         private string avatar;
         public string role;
-        private List<User> usersAssigned;
+        private List<User_old> usersAssigned;
 
-        public User(int id, string user_name, string password, string email, string first_name, string name, string avatar, string role)
+        public User_old(int id, string user_name, string password, string email, string first_name, string name, string avatar, string role)
         {
             this.id = id;
             this.user_name = user_name;
@@ -28,7 +28,7 @@ namespace PerfectPlanner
             this.name = name;
             this.avatar = avatar;
             this.role = role;
-            this.usersAssigned = new List<User>();
+            this.usersAssigned = new List<User_old>();
         }
 
         public int Id
@@ -67,7 +67,7 @@ namespace PerfectPlanner
             set { avatar = value; }
         }
 
-        public List<User> UsersAssigned
+        public List<User_old> UsersAssigned
         {
             get { return usersAssigned; }
             set { usersAssigned = value; }
@@ -79,7 +79,7 @@ namespace PerfectPlanner
             set { role = value; }
         }
 
-        public void AddUser(User user)
+        public void AddUser(User_old user)
         {
             usersAssigned.Add(user);
         }

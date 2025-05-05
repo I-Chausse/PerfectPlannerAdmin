@@ -1,10 +1,14 @@
-﻿using PerfectPlanner.Models.Projects;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models.Projects;
+using PerfectPlanner.Models.Users;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,25 +21,33 @@ namespace PerfectPlanner
         private readonly frmProject frmProjects = null;
         private readonly bool isEditMode = false;
         private readonly int projectId;
-        public frmDetailProjet(frmProject frmProjects)
+        private readonly IHttpClientFactory _httpClientFactory;
+        private Project project = null;
+        private BindingSource usersBindingSource;
+        private BindingSource adminsBindingSource;
+        public frmDetailProjet(frmProject frmProjects, IHttpClientFactory httpClientFactory)
         {
+            this.project = new Project(0, "");
+            _httpClientFactory = httpClientFactory;
             InitializeComponent();
+            this.usersBindingSource = new BindingSource { DataSource = this.project.users };
+            this.adminsBindingSource = new BindingSource { DataSource = this.project.admins };
+            dgvAdminsAssigned.DataSource = this.adminsBindingSource;
+            dgvUsersAssigned.DataSource = this.usersBindingSource;
             this.frmProjects = frmProjects;
             btnSave.Text = "Ajouter";
         }
 
-        public frmDetailProjet(frmProject frmProjects, Project project)
+        public frmDetailProjet(frmProject frmProjects, Project project, IHttpClientFactory httpClientFactory)
         {
+            this.project = project;
+            _httpClientFactory = httpClientFactory;
             InitializeComponent();
             txtProjectName.Text = project.project_name;
-            project.admins.ForEach(admin =>
-            {
-                dgvAdminsAssigned.Rows.Add(admin.Id, admin.LastName, admin.FirstName);
-            });
-            project.users.ForEach(assignee =>
-            {
-                dgvUsersAssigned.Rows.Add(assignee.Id, assignee.LastName, assignee.FirstName);
-            });
+            this.usersBindingSource = new BindingSource { DataSource = this.project.users };
+            this.adminsBindingSource = new BindingSource { DataSource = this.project.admins };
+            dgvAdminsAssigned.DataSource = this.adminsBindingSource;
+            dgvUsersAssigned.DataSource = this.usersBindingSource;
             this.frmProjects = frmProjects;
             isEditMode = true;
             projectId = project.id;
@@ -53,8 +65,9 @@ namespace PerfectPlanner
 
         private void OnClickOnTsmiAddAdminAdd(object sender, EventArgs e)
         {
+            List<User> usersAssignables = fetchUsers(true);
             currentDGV = dgvAdminsAssigned;
-            frmUserSelection frmUserSelection = new frmUserSelection(this);
+            frmUserSelection frmUserSelection = new frmUserSelection(this, usersAssignables);
             frmUserSelection.ShowDialog();
         }
 
@@ -70,8 +83,9 @@ namespace PerfectPlanner
 
         private void OnCLickOnTsmiAddAssigneeAdd(object sender, EventArgs e)
         {
+            var usersAssignables = fetchUsers(false);
             currentDGV = dgvUsersAssigned;
-            frmUserSelection frmUserSelection = new frmUserSelection(this);
+            frmUserSelection frmUserSelection = new frmUserSelection(this, usersAssignables);
             frmUserSelection.ShowDialog();
         }
 
@@ -113,11 +127,43 @@ namespace PerfectPlanner
 
         public void AddUser(User user)
         {
-            currentDGV.Rows.Add(user.Id, user.LastName, user.FirstName);
+            if (currentDGV == dgvAdminsAssigned)
+            {
+                var adminsList = (List<User>)this.adminsBindingSource.DataSource;
+                adminsList.Add(user);
+                this.adminsBindingSource.ResetBindings(false);
+            }
+            else
+            {
+                var usersList = (List<User>)this.usersBindingSource.DataSource;
+                usersList.Add(user);
+                this.usersBindingSource.ResetBindings(false);
+            }
+
         }
         public void RemoveUser()
         {
-            currentDGV.Rows.Remove(currentDGV.SelectedRows[0]);
+            int userId = (int)currentDGV.SelectedRows[0].Cells["id"].Value;
+            if (currentDGV == dgvAdminsAssigned)
+            {
+                var adminsList = (List<User>)this.adminsBindingSource.DataSource;
+                var userToRemove = adminsList.FirstOrDefault(u => u.id == userId);
+                if (userToRemove != null)
+                {
+                    adminsList.Remove(userToRemove);
+                    this.adminsBindingSource.ResetBindings(false);
+                }
+            }
+            else
+            {
+                var usersList = (List<User>)this.usersBindingSource.DataSource;
+                var userToRemove = usersList.FirstOrDefault(u => u.id == userId);
+                if (userToRemove != null)
+                {
+                    usersList.Remove(userToRemove);
+                    this.usersBindingSource.ResetBindings(false);
+                }
+            }
         }
 
         private void OnClickOnBtnCancel(object sender, EventArgs e)
@@ -127,41 +173,12 @@ namespace PerfectPlanner
 
         private async void OnClickOnBtnSave(object sender, EventArgs e)
         {
-            Project project = new Project(projectId, txtProjectName.Text);
-            List<User> admins = new List<User>();
-            List<User> assignees = new List<User>();
-            if (dgvAdminsAssigned.Rows.Count > 0) {
-                foreach (DataGridViewRow row in dgvAdminsAssigned.Rows)
-                {
-                    foreach (User user in DataProvider.GetUsers())
-                    {
-                        if (user.Id == (int)row.Cells["adminUserId"].Value)
-                        {
-                            admins.Add(user);
-                        }
-                    }
-                }
-            }
-            if (dgvUsersAssigned.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
-                {
-                    foreach (User user in DataProvider.GetUsers())
-                    {
-                        if (user.Id == (int)row.Cells["assigneeUserId"].Value)
-                        {
-                            assignees.Add(user);
-                        }
-                    }
-                }
-            }
-            project.admins = admins;
-            project.users = assignees;
             if (this.isEditMode)
             {
                 try
                 {
-                    this.frmProjects.UpdateProject(project);
+                    this.project.project_name = txtProjectName.Text;
+                    await this.frmProjects.UpdateProject(this.project);
                     this.Close();
                 }
                 catch (Exception ex)
@@ -173,7 +190,8 @@ namespace PerfectPlanner
             {
                 try
                 {
-                    await this.frmProjects.AddProject(project);
+                    this.project.project_name = txtProjectName.Text;
+                    await this.frmProjects.AddProject(this.project);
                     this.Close();
                 }
                 catch (Exception ex)
@@ -230,6 +248,32 @@ namespace PerfectPlanner
                 grpAdminsAssigned.Height = 260;
                 grpUsersAssigned.Height = 260;
             }
+        }
+
+        private List<User> fetchUsers(bool admin)
+        {
+            HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
+            string param = admin ? "?role=admin,project_admin" : "?role=user";
+            HttpResponseMessage response = client.GetAsync("users" + param).Result;
+            List<User> usersAssignables = new List<User>();
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result;
+                usersAssignables = JsonConvert.DeserializeObject<UserResponse>(content).Data;
+                if (admin)
+                {
+                    usersAssignables = usersAssignables.Where(u => !project.admins.Any(a => a.id == u.id)).ToList();
+                }
+                else
+                {
+                    usersAssignables = usersAssignables.Where(u => !project.users.Any(a => a.id == u.id)).ToList();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des projets pour l'id : " + projectId, "Erreur: " + response.StatusCode, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return usersAssignables;
         }
     }
 }

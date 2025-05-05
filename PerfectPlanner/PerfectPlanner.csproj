@@ -153,7 +153,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataProvider.cs" />
     <Compile Include="frmUserSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,10 +160,16 @@
       <DependentUpon>frmUserSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="IUserAssignable.cs" />
+    <Compile Include="Models\Avatars\Avatar.cs" />
     <Compile Include="Models\Login\LoginResponse.cs" />
     <Compile Include="Models\Login\LoginRequest.cs" />
+    <Compile Include="Models\Projects\ProjectValidationError.cs" />
+    <Compile Include="Models\Projects\UsersToAssign.cs" />
     <Compile Include="Models\Projects\Project.cs" />
     <Compile Include="Models\Projects\ProjectResponse.cs" />
+    <Compile Include="Models\UserRoles\UserRole.cs" />
+    <Compile Include="Models\Users\User.cs" />
+    <Compile Include="Models\Users\UserResponse.cs" />
     <Compile Include="Project_old.cs" />
     <Compile Include="CustomApplicationContext.cs" />
     <Compile Include="frmDetailProjet.cs">

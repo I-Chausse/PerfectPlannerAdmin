@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PerfectPlanner.Models.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,27 +14,32 @@ namespace PerfectPlanner
     public partial class frmUserSelection: Form
     {
         private IUserAssignable parentForm;
-        public frmUserSelection(IUserAssignable parentForm)
+        private List<User> users;
+        public frmUserSelection(IUserAssignable parentForm,  List<User> users)
         {
+            this.users = users;
             InitializeComponent();
             this.parentForm = parentForm;
         }
 
         private void OnLoadOfFrmUserSelection(object sender, EventArgs e)
         {
-            BindingSource bindingSource = new BindingSource
-            {
-                DataSource = DataProvider.GetUsers()
-            };
-
-            cmbUserSelect.DisplayMember = "UserName";
-            cmbUserSelect.DataSource = bindingSource;
+            cmbUserSelect.DataSource = users;
+            cmbUserSelect.DisplayMember = "user_name";
         }
 
         private void OnClickOnBtnAddUser(object sender, EventArgs e)
         {
-            parentForm.AddUser((User)cmbUserSelect.SelectedItem);
-            this.Close();
+            if (cmbUserSelect.SelectedItem != null)
+            {
+                User selectedUser = (User)cmbUserSelect.SelectedItem;
+                parentForm.AddUser(selectedUser);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un utilisateur.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void OnClickOnBtnCancel(object sender, EventArgs e)

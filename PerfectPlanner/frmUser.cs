@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PerfectPlanner.Models.Users;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,17 +24,8 @@ namespace PerfectPlanner
 
         private void OnLoadOfFrmUser(object sender, EventArgs e)
         {
-            users = DataProvider.GetUsers();
-            foreach (var item in users)
-            {
-                String usersAssigned = "";
-                foreach (var user in item.UsersAssigned)
-                {
-                    usersAssigned += user.UserName + ", ";
-                }
-                dgvUser.Rows.Add(item.Id, item.UserName, item.LastName, item.FirstName, item.Email, item.Role, usersAssigned);
-
-            }
+            //users = DataProvider.GetUsers();
+            
             if (Program.AppContext.IsAdvancedMode())
             {
                 btnAddUser.Visible = false;
@@ -66,7 +58,7 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
             int selectedUserId = (int) dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
-            frmDetailUser frmDetailUser = new frmDetailUser(this, users.Find((user) => user.Id == selectedUserId));
+            frmDetailUser frmDetailUser = new frmDetailUser(this, users.Find((user) => user.id == selectedUserId));
             frmDetailUser.ShowDialog();
         }
 
@@ -78,23 +70,13 @@ namespace PerfectPlanner
 
         public void AddUser(User user)
         {
-            dgvUser.Rows.Add(user.Id, user.UserName, user.LastName, user.FirstName, user.Email, user.Role);
+            //dgvUser.Rows.Add(user.Id, user.UserName, user.LastName, user.FirstName, user.Email, user.Role);
         }
 
         public void UpdateUser(User user)
         {
             int selectedRowIndex = dgvUser.SelectedRows[0].Index;
-            dgvUser.Rows[selectedRowIndex].Cells["userName"].Value = user.UserName;
-            dgvUser.Rows[selectedRowIndex].Cells["name"].Value = user.LastName;
-            dgvUser.Rows[selectedRowIndex].Cells["firstName"].Value = user.FirstName;
-            dgvUser.Rows[selectedRowIndex].Cells["email"].Value = user.Email;
-            dgvUser.Rows[selectedRowIndex].Cells["role"].Value = user.Role;
-            String usersAssigned = "";
-            foreach (var item in user.UsersAssigned)
-            {
-                usersAssigned += item.UserName + ", ";
-            }
-            dgvUser.Rows[selectedRowIndex].Cells["usersAssigned"].Value = usersAssigned;
+            
         }
 
         public void RemoveUser()
