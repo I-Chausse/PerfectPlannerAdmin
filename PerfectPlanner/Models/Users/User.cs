@@ -21,5 +21,33 @@ namespace PerfectPlanner.Models.Users
         public List<User> assignees { get; set; }
         public UserRole role { get; set; }
 
+        public String role_name
+        {
+            get
+            {
+                if (role != null)
+                {
+                    return role.label;
+                }
+                return "";
+            }
+        }
+        public String display_assignees
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (User user in assignees)
+                {
+                    sb.Append(user.first_name + " " + user.name + ", ");
+                }
+                if (sb.Length > 0)
+                {
+                    sb.Remove(sb.Length - 2, 2);
+                }
+                return sb.ToString();
+            }
+        }
+
     }
 }

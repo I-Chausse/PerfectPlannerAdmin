@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PerfectPlanner.Models.Projects
 {
-    public class ProjectResponse
+    public class ProjectsResponse
     {
-        public Project Data { get; set; }
+        public List<Project> Data { get; set; }
     }
 }

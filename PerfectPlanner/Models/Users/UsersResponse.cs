@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PerfectPlanner.Models.Users
 {
-    class UserResponse
+    class UsersResponse
     {
         public List<User> Data { get; set; }
     }

@@ -30,14 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
-            this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usersAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.cmsEditUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditUserEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditUSerDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,20 +39,27 @@
             this.btnDeleteUser = new System.Windows.Forms.Button();
             this.btnUpdateUser = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
+            this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usersAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.cmsEditUser.SuspendLayout();
             this.cmsAddUser.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvUser
+            // dgvUsers
             // 
-            this.dgvUser.AllowUserToAddRows = false;
-            this.dgvUser.AllowUserToDeleteRows = false;
-            this.dgvUser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.AllowUserToDeleteRows = false;
+            this.dgvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.userId,
             this.userName,
             this.name,
@@ -67,59 +67,14 @@
             this.email,
             this.role,
             this.usersAssigned});
-            this.dgvUser.Location = new System.Drawing.Point(12, 25);
-            this.dgvUser.MultiSelect = false;
-            this.dgvUser.Name = "dgvUser";
-            this.dgvUser.Size = new System.Drawing.Size(910, 670);
-            this.dgvUser.TabIndex = 0;
-            this.dgvUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
-            this.dgvUser.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
-            this.dgvUser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUser);
-            // 
-            // userId
-            // 
-            this.userId.HeaderText = "Id";
-            this.userId.Name = "userId";
-            this.userId.ReadOnly = true;
-            this.userId.Visible = false;
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "Nom d\'utilisateur";
-            this.userName.Name = "userName";
-            this.userName.ReadOnly = true;
-            this.userName.Width = 150;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Nom";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // firstName
-            // 
-            this.firstName.HeaderText = "Prénom";
-            this.firstName.Name = "firstName";
-            this.firstName.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "E-Mail";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            this.email.Width = 200;
-            // 
-            // role
-            // 
-            this.role.HeaderText = "Rôle";
-            this.role.Name = "role";
-            this.role.ReadOnly = true;
-            // 
-            // usersAssigned
-            // 
-            this.usersAssigned.HeaderText = "Utilisateurs assignés";
-            this.usersAssigned.Name = "usersAssigned";
-            this.usersAssigned.Width = 200;
+            this.dgvUsers.Location = new System.Drawing.Point(12, 25);
+            this.dgvUsers.MultiSelect = false;
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.Size = new System.Drawing.Size(910, 670);
+            this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
+            this.dgvUsers.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
+            this.dgvUsers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUser);
             // 
             // cmsEditUser
             // 
@@ -190,6 +145,58 @@
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.OnClickOnTsmiAddUserAdd);
             // 
+            // userId
+            // 
+            this.userId.DataPropertyName = "id";
+            this.userId.HeaderText = "Id";
+            this.userId.Name = "userId";
+            this.userId.ReadOnly = true;
+            this.userId.Visible = false;
+            // 
+            // userName
+            // 
+            this.userName.DataPropertyName = "user_name";
+            this.userName.HeaderText = "Nom d\'utilisateur";
+            this.userName.Name = "userName";
+            this.userName.ReadOnly = true;
+            this.userName.Width = 150;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Nom";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // firstName
+            // 
+            this.firstName.DataPropertyName = "first_name";
+            this.firstName.HeaderText = "Prénom";
+            this.firstName.Name = "firstName";
+            this.firstName.ReadOnly = true;
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "E-Mail";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Width = 200;
+            // 
+            // role
+            // 
+            this.role.DataPropertyName = "role_name";
+            this.role.HeaderText = "Rôle";
+            this.role.Name = "role";
+            this.role.ReadOnly = true;
+            // 
+            // usersAssigned
+            // 
+            this.usersAssigned.DataPropertyName = "display_assignees";
+            this.usersAssigned.HeaderText = "Utilisateurs assignés";
+            this.usersAssigned.Name = "usersAssigned";
+            this.usersAssigned.Width = 200;
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,14 +205,14 @@
             this.Controls.Add(this.btnDeleteUser);
             this.Controls.Add(this.btnUpdateUser);
             this.Controls.Add(this.btnAddUser);
-            this.Controls.Add(this.dgvUser);
+            this.Controls.Add(this.dgvUsers);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(950, 200);
             this.Name = "frmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Utilisateurs";
             this.Load += new System.EventHandler(this.OnLoadOfFrmUser);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.cmsEditUser.ResumeLayout(false);
             this.cmsAddUser.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -214,12 +221,15 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvUser;
+        private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.ContextMenuStrip cmsEditUser;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditUserEdit;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditUSerDelete;
         private System.Windows.Forms.ContextMenuStrip cmsAddUser;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddUserAdd;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.Button btnUpdateUser;
+        private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn userId;
         private System.Windows.Forms.DataGridViewTextBoxColumn userName;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
@@ -227,8 +237,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn role;
         private System.Windows.Forms.DataGridViewTextBoxColumn usersAssigned;
-        private System.Windows.Forms.Button btnDeleteUser;
-        private System.Windows.Forms.Button btnUpdateUser;
-        private System.Windows.Forms.Button btnAddUser;
     }
 }

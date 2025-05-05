@@ -34,6 +34,8 @@ namespace PerfectPlanner
             this.adminsBindingSource = new BindingSource { DataSource = this.project.admins };
             dgvAdminsAssigned.DataSource = this.adminsBindingSource;
             dgvUsersAssigned.DataSource = this.usersBindingSource;
+            dgvUsersAssigned.AutoGenerateColumns = false;
+            dgvAdminsAssigned.AutoGenerateColumns = false;
             this.frmProjects = frmProjects;
             btnSave.Text = "Ajouter";
         }
@@ -261,7 +263,7 @@ namespace PerfectPlanner
             if (response.IsSuccessStatusCode)
             {
                 string content = response.Content.ReadAsStringAsync().Result;
-                usersAssignables = JsonConvert.DeserializeObject<UserResponse>(content).Data;
+                usersAssignables = JsonConvert.DeserializeObject<UsersResponse>(content).Data;
                 if (admin)
                 {
                     usersAssignables = usersAssignables.Where(u => !project.admins.Any(a => a.id == u.id)).ToList();

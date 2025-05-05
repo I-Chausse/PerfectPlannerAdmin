@@ -1,4 +1,6 @@
-﻿using PerfectPlanner.Models.Users;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models.Projects;
+using PerfectPlanner.Models.Users;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,21 +20,24 @@ namespace PerfectPlanner
     {
 
         List<User> users;
-        public frmUser()
+        private readonly IHttpClientFactory _httpClientFactory;
+        public frmUser(IHttpClientFactory httpClientFactory)
         {
+            _httpClientFactory = httpClientFactory;
             InitializeComponent();
+            this.dgvUsers.AutoGenerateColumns = false;
         }
 
         private void OnLoadOfFrmUser(object sender, EventArgs e)
         {
-            //users = DataProvider.GetUsers();
-            
+            UpdateData();
+
             if (Program.AppContext.IsAdvancedMode())
             {
                 btnAddUser.Visible = false;
                 btnUpdateUser.Visible = false;
                 btnDeleteUser.Visible = false;
-                dgvUser.Height = 720;
+                dgvUsers.Height = 720;
             }
 
         }
@@ -40,24 +46,24 @@ namespace PerfectPlanner
         {
             if (e.Button == MouseButtons.Right)
             {
-                var row = dgvUser.HitTest(e.X, e.Y);
+                var row = dgvUsers.HitTest(e.X, e.Y);
                 if (row.RowIndex >= 0)
                 {
-                    dgvUser.ClearSelection();
-                    dgvUser.Rows[row.RowIndex].Selected = true;
-                    cmsEditUser.Show(dgvUser, dgvUser.PointToClient(Cursor.Position));
+                    dgvUsers.ClearSelection();
+                    dgvUsers.Rows[row.RowIndex].Selected = true;
+                    cmsEditUser.Show(dgvUsers, dgvUsers.PointToClient(Cursor.Position));
                 }
                 else 
                 {
-                    cmsAddUser.Show(dgvUser, dgvUser.PointToClient(Cursor.Position));
+                    cmsAddUser.Show(dgvUsers, dgvUsers.PointToClient(Cursor.Position));
                 }
             }
         }
 
         private void OnClickOnTsmiEditUserEdit(object sender, EventArgs e)
         {
-            int selectedRowIndex = dgvUser.SelectedRows[0].Index;
-            int selectedUserId = (int) dgvUser.Rows[selectedRowIndex].Cells["userId"].Value;
+            int selectedRowIndex = dgvUsers.SelectedRows[0].Index;
+            int selectedUserId = (int) dgvUsers.Rows[selectedRowIndex].Cells["userId"].Value;
             frmDetailUser frmDetailUser = new frmDetailUser(this, users.Find((user) => user.id == selectedUserId));
             frmDetailUser.ShowDialog();
         }
@@ -75,17 +81,17 @@ namespace PerfectPlanner
 
         public void UpdateUser(User user)
         {
-            int selectedRowIndex = dgvUser.SelectedRows[0].Index;
+            int selectedRowIndex = dgvUsers.SelectedRows[0].Index;
             
         }
 
         public void RemoveUser()
         {
-            int selectedRowIndex = dgvUser.SelectedRows[0].Index;
+            int selectedRowIndex = dgvUsers.SelectedRows[0].Index;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                dgvUser.Rows.RemoveAt(selectedRowIndex);
+                dgvUsers.Rows.RemoveAt(selectedRowIndex);
             }
         }
 
@@ -107,16 +113,33 @@ namespace PerfectPlanner
         {
             if (e.RowIndex >= 0)
             {
-                dgvUser.Rows[e.RowIndex].Selected = true;
+                dgvUsers.Rows[e.RowIndex].Selected = true;
             }
         }
 
         private void OnClickOnTsmiEditUserDelete(object sender, EventArgs e)
         {
-            if (dgvUser.SelectedRows.Count > 0)
+            if (dgvUsers.SelectedRows.Count > 0)
             {
                 RemoveUser();
             }
+        }
+
+        private void UpdateData()
+        {
+            HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
+            HttpResponseMessage response = client.GetAsync("users").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result;
+                users = JsonConvert.DeserializeObject<UsersResponse>(content).Data;
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des projets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            dgvUsers.DataSource = users;
         }
     }
 }

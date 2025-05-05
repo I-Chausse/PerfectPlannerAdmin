@@ -96,6 +96,7 @@
             // 
             this.dgvAdminsAssigned.AllowUserToAddRows = false;
             this.dgvAdminsAssigned.AllowUserToDeleteRows = false;
+            this.dgvAdminsAssigned.AutoGenerateColumns = false;
             this.dgvAdminsAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdminsAssigned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.adminUserId,
@@ -209,6 +210,7 @@
             // 
             this.dgvUsersAssigned.AllowUserToAddRows = false;
             this.dgvUsersAssigned.AllowUserToDeleteRows = false;
+            this.dgvUsersAssigned.AutoGenerateColumns = false;
             this.dgvUsersAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsersAssigned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.assigneeUserId,

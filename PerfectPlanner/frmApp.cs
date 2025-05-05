@@ -24,7 +24,7 @@ namespace PerfectPlanner
             }
             else
             {
-                frmUser frmUser = new frmUser
+                frmUser frmUser = new frmUser(_httpClientFactory)
                 {
                     MdiParent = this
                 };
