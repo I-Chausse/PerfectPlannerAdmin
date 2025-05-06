@@ -119,15 +119,13 @@
             // 
             // cmbUserRole
             // 
+            this.cmbUserRole.DisplayMember = "label";
             this.cmbUserRole.FormattingEnabled = true;
-            this.cmbUserRole.Items.AddRange(new object[] {
-            "Utilisateur",
-            "Gestionnaire",
-            "Administrateur"});
             this.cmbUserRole.Location = new System.Drawing.Point(110, 367);
             this.cmbUserRole.Name = "cmbUserRole";
             this.cmbUserRole.Size = new System.Drawing.Size(140, 21);
             this.cmbUserRole.TabIndex = 13;
+            this.cmbUserRole.ValueMember = "id";
             this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.OnSlectedIndexChangeOfCmbUserRole);
             // 
             // btnDeletePersonAvatar

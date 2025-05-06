@@ -1,4 +1,7 @@
-﻿using PerfectPlanner.Models.Users;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models.Projects;
+using PerfectPlanner.Models.Roles;
+using PerfectPlanner.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +9,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,19 +22,23 @@ namespace PerfectPlanner
         private readonly frmUser frmUser;
         private readonly bool isEditMode = false;
         private readonly int userId = 0;
-        public frmDetailUser(frmUser frmParent)
+        private IHttpClientFactory _httpClientFactory;
+        private List<Role> roles;
+
+        public frmDetailUser(frmUser frmParent, IHttpClientFactory httpClientFactory)
         {
+            this._httpClientFactory = httpClientFactory;
             InitializeComponent();
             btnSave.Text = "Ajouter";
             grpUsersAssigned.Visible = false;
             this.Width = 310;
             this.frmUser = frmParent;
-            cmbUserRole.SelectedIndex = 0;
             btnSave.Text = "Ajouter";
         }
 
-        public frmDetailUser(frmUser frmParent, User user)
+        public frmDetailUser(frmUser frmParent, User user, IHttpClientFactory httpClientFactory)
         {
+            this._httpClientFactory = httpClientFactory;
             InitializeComponent();
             txtUserName.Text = user.user_name;
             txtPersonName.Text = user.name;
@@ -169,6 +178,24 @@ namespace PerfectPlanner
                 btnDeleteAssignee.Visible = false;
                 grpUsersAssigned.Height = 260;
             }
+            fillDomainItems();
+        }
+
+        private void fillDomainItems()
+        {
+            HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
+            HttpResponseMessage response = client.GetAsync("get-roles").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result;
+                roles = JsonConvert.DeserializeObject<RoleResponse>(content).Data;
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des projets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            cmbUserRole.DataSource = roles;
         }
     }
 }

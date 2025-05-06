@@ -37,7 +37,7 @@ namespace PerfectPlanner.Models.Users
             get
             {
                 StringBuilder sb = new StringBuilder();
-                foreach (User user in assignees)
+                foreach (User user in this.assignees)
                 {
                     sb.Append(user.first_name + " " + user.name + ", ");
                 }

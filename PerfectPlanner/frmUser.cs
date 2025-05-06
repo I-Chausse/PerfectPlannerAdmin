@@ -64,13 +64,13 @@ namespace PerfectPlanner
         {
             int selectedRowIndex = dgvUsers.SelectedRows[0].Index;
             int selectedUserId = (int) dgvUsers.Rows[selectedRowIndex].Cells["userId"].Value;
-            frmDetailUser frmDetailUser = new frmDetailUser(this, users.Find((user) => user.id == selectedUserId));
+            frmDetailUser frmDetailUser = new frmDetailUser(this, users.Find((user) => user.id == selectedUserId), _httpClientFactory);
             frmDetailUser.ShowDialog();
         }
 
         private void OnClickOnTsmiAddUserAdd(object sender, EventArgs e)
         {
-            frmDetailUser frmDetailUser = new frmDetailUser(this);
+            frmDetailUser frmDetailUser = new frmDetailUser(this, _httpClientFactory);
             frmDetailUser.ShowDialog();
         }
 
