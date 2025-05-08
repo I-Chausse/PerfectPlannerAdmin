@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
@@ -74,24 +75,72 @@ namespace PerfectPlanner
             frmDetailUser.ShowDialog();
         }
 
-        public void AddUser(User user)
+        public async Task AddUser(User user)
         {
-            //dgvUser.Rows.Add(user.Id, user.UserName, user.LastName, user.FirstName, user.Email, user.Role);
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+            var contents = await jsonContent.ReadAsStringAsync();
+            Debug.WriteLine(contents);
+            var response = await client.PostAsync("users", jsonContent);
+            if (!response.IsSuccessStatusCode)
+            {
+                await ParseResponse(response);
+            }
+            var content = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(content);
+            UserPreview createdUser = JsonConvert.DeserializeObject<UserPreviewResponse>(content).Data;
+            Debug.WriteLine("Id ok: " + createdUser.id);
+            UsersToAssign usersToAssign = new UsersToAssign
+            {
+                users_to_assign = user.userIds
+            };
+            jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
+            response = await client.PutAsync("users/" + createdUser.id + "/update-assignees", jsonContent);
+            if (!response.IsSuccessStatusCode)
+            {
+                await ParseResponse(response);
+            }
+            UpdateData();
         }
 
-        public void UpdateUser(User user)
+        public async Task UpdateUser(User user)
         {
-            int selectedRowIndex = dgvUsers.SelectedRows[0].Index;
-            
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+            var response = await client.PutAsync("users/" + user.id, jsonContent);
+            if (!response.IsSuccessStatusCode)
+            {
+                await ParseResponse(response);
+            }
+            UsersToAssign usersToAssign = new UsersToAssign
+            {
+                users_to_assign = user.userIds
+            };
+            jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
+            response = await client.PutAsync("users/" + user.id + "/update-assignees", jsonContent);
+            if (!response.IsSuccessStatusCode)
+            {
+                await ParseResponse(response);
+            }
+
+            UpdateData();
+
         }
 
-        public void RemoveUser()
+        public async Task RemoveUser()
         {
             int selectedRowIndex = dgvUsers.SelectedRows[0].Index;
+            int selectedProjetId = (int)dgvUsers.Rows[selectedRowIndex].Cells["userid"].Value;
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer cet utilisateur ?", "Supprimer un utilisateur", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                dgvUsers.Rows.RemoveAt(selectedRowIndex);
+                var client = _httpClientFactory.CreateClient("MyApiClient");
+                var response = await client.DeleteAsync("users/" + selectedProjetId);
+                if (!response.IsSuccessStatusCode)
+                {
+                    await ParseResponse(response);
+                }
+                UpdateData();
             }
         }
 
@@ -140,6 +189,20 @@ namespace PerfectPlanner
                 return;
             }
             dgvUsers.DataSource = users;
+        }
+
+        private async Task ParseResponse(HttpResponseMessage response)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            if ((int)response.StatusCode == 422)
+            {
+                var errorResponse = JsonConvert.DeserializeObject<ProjectValidationError>(content);
+                throw new Exception($"Erreur de validation : {string.Join(", ", errorResponse.message)}");
+            }
+            else
+            {
+                throw new Exception($"Erreur HTTP : {response.StatusCode} - {content}");
+            }
         }
     }
 }

@@ -81,7 +81,6 @@ namespace PerfectPlanner
                 await ParseResponse(response);
             }
             var content = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine(content);
             Project createdProject = JsonConvert.DeserializeObject<ProjectResponse>(content).Data;
             Debug.WriteLine("Id ok: " + createdProject.id);
             UsersToAssign usersToAssign = new UsersToAssign
@@ -118,6 +117,7 @@ namespace PerfectPlanner
             {
                 await ParseResponse(response);
             }
+
             UpdateData();
         }
 

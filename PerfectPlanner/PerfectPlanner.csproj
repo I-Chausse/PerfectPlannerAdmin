@@ -171,7 +171,9 @@
     <Compile Include="Models\Projects\ProjectsResponse.cs" />
     <Compile Include="Models\Roles\Role.cs" />
     <Compile Include="Models\Roles\RoleResponse.cs" />
-    <Compile Include="Models\UserRoles\UserRole.cs" />
+    <Compile Include="Models\Users\UserPreview.cs" />
+    <Compile Include="Models\Users\UserPreviewResponse.cs" />
+    <Compile Include="Models\Users\UserResponse.cs" />
     <Compile Include="Models\Users\User.cs" />
     <Compile Include="Models\Users\UsersResponse.cs" />
     <Compile Include="CustomApplicationContext.cs" />

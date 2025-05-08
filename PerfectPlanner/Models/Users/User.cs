@@ -1,5 +1,5 @@
 ﻿using PerfectPlanner.Models.Avatars;
-using PerfectPlanner.Models.UserRoles;
+using PerfectPlanner.Models.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace PerfectPlanner.Models.Users
         public string email { get; set; }
         public string password { get; set; }
         public List<User> assignees { get; set; }
-        public UserRole role { get; set; }
+        public Role role { get; set; }
 
         public String role_name
         {
@@ -37,15 +37,41 @@ namespace PerfectPlanner.Models.Users
             get
             {
                 StringBuilder sb = new StringBuilder();
-                foreach (User user in this.assignees)
+                if (assignees != null)
                 {
-                    sb.Append(user.first_name + " " + user.name + ", ");
-                }
-                if (sb.Length > 0)
-                {
-                    sb.Remove(sb.Length - 2, 2);
+                    foreach (User user in assignees)
+                    {
+                        sb.Append(user.first_name + " " + user.name + ", ");
+                    }
+                    if (sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 2, 2);
+                    }
                 }
                 return sb.ToString();
+            }
+        }
+
+        public List<int> userIds
+        {
+            get
+            {
+                List<int> ids = new List<int>();
+                if (assignees != null)
+                {
+                    foreach (User user in assignees)
+                    {
+                        ids.Add(user.id);
+                    }
+                }
+                return ids;
+            }
+        }
+        public int role_id
+        {
+            get
+            {
+                return role.id;
             }
         }
 
