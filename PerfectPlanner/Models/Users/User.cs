@@ -71,7 +71,14 @@ namespace PerfectPlanner.Models.Users
         {
             get
             {
-                return role.id;
+                if (role != null)
+                {
+                    return role.id;
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 

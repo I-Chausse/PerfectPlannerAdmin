@@ -33,6 +33,7 @@ namespace PerfectPlanner
             InitializeComponent();
             this.user = new User();
             this.user.assignees = new List<User>();
+            this.dgvUsersAssigned.AutoGenerateColumns = false;
             this.usersBindingSource = new BindingSource { DataSource = this.user.assignees };
             dgvUsersAssigned.DataSource = this.usersBindingSource;
             btnSave.Text = "Ajouter";
@@ -40,6 +41,8 @@ namespace PerfectPlanner
             this.Width = 310;
             this.frmUser = frmParent;
             btnSave.Text = "Ajouter";
+            fillDomainItems();
+            cmbUserRole.SelectedIndex = -1;
         }
 
         public frmDetailUser(frmUser frmParent, User user, IHttpClientFactory httpClientFactory)
@@ -47,13 +50,13 @@ namespace PerfectPlanner
             this._httpClientFactory = httpClientFactory;
             this.user = user;
             InitializeComponent();
+            this.dgvUsersAssigned.AutoGenerateColumns = false;
             this.usersBindingSource = new BindingSource { DataSource = this.user.assignees };
             dgvUsersAssigned.DataSource = this.usersBindingSource;
             txtUserName.Text = user.user_name;
             txtPersonName.Text = user.name;
             txtPersonFirstName.Text = user.first_name;
             txtPersonMail.Text = user.email;
-            cmbUserRole.Text = user.role.label;
             if (user != null && user.avatar != null && user.avatar.link != null)
             {
                 picPersonAvatar.ImageLocation = user.avatar.link;
@@ -66,6 +69,8 @@ namespace PerfectPlanner
             this.frmUser = frmParent;
             this.userId = user.id;
             this.isEditMode = true;
+            fillDomainItems();
+            cmbUserRole.SelectedIndex = roles.FindIndex(role => role.id == user.role.id);
         }
 
         private void OnSlectedIndexChangeOfCmbUserRole(object sender, EventArgs e)
@@ -124,7 +129,7 @@ namespace PerfectPlanner
 
         public void RemoveUser()
         {
-            int userId = (int)dgvUsersAssigned.SelectedRows[0].Cells["userId"].Value;
+            int userId = (int)dgvUsersAssigned.SelectedRows[0].Cells["assigneeUserId"].Value;
             var usersList = (List<User>)this.usersBindingSource.DataSource;
             var userToRemove = usersList.FirstOrDefault(u => u.id == userId);
             if (userToRemove != null)
@@ -201,7 +206,6 @@ namespace PerfectPlanner
                 btnDeleteAssignee.Visible = false;
                 grpUsersAssigned.Height = 260;
             }
-            fillDomainItems();
         }
 
         private void fillDomainItems()

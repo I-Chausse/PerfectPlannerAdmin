@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PerfectPlanner.Models.Users
 {
-    class UserPreviewResponse
+    public class TokenResponse
     {
-        public UserPreview Data { get; set; }
+        public Token Data { get; set; }
     }
 }

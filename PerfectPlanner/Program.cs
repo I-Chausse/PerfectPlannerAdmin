@@ -36,7 +36,7 @@ namespace PerfectPlanner
         {
             services.AddHttpClient("MyApiClient", client =>
             {
-                client.BaseAddress = new Uri("https://8ed3-2a01-cb15-703-d100-a7ed-adcf-667d-994f.ngrok-free.app/api/");
+                client.BaseAddress = new Uri("https://f594-195-176-241-239.ngrok-free.app/api/");
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 if (!string.IsNullOrEmpty(Program.AppContext.GetToken()))
                 {

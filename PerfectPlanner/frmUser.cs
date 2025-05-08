@@ -88,7 +88,7 @@ namespace PerfectPlanner
             }
             var content = await response.Content.ReadAsStringAsync();
             Debug.WriteLine(content);
-            UserPreview createdUser = JsonConvert.DeserializeObject<UserPreviewResponse>(content).Data;
+            UserPreview createdUser = JsonConvert.DeserializeObject<UserPreview>(content);
             Debug.WriteLine("Id ok: " + createdUser.id);
             UsersToAssign usersToAssign = new UsersToAssign
             {
@@ -112,15 +112,18 @@ namespace PerfectPlanner
             {
                 await ParseResponse(response);
             }
-            UsersToAssign usersToAssign = new UsersToAssign
+            if (user.role.code != "user")
             {
-                users_to_assign = user.userIds
-            };
-            jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
-            response = await client.PutAsync("users/" + user.id + "/update-assignees", jsonContent);
-            if (!response.IsSuccessStatusCode)
-            {
-                await ParseResponse(response);
+                UsersToAssign usersToAssign = new UsersToAssign
+                {
+                    users_to_assign = user.userIds
+                };
+                jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
+                response = await client.PutAsync("users/" + user.id + "/update-assignees", jsonContent);
+                if (!response.IsSuccessStatusCode)
+                {
+                    await ParseResponse(response);
+                }
             }
 
             UpdateData();
