@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateToken));
             this.cmbSelectRole = new System.Windows.Forms.ComboBox();
             this.btnCreateToken = new System.Windows.Forms.Button();
             this.grpGenerateCode = new System.Windows.Forms.GroupBox();
@@ -66,16 +67,19 @@
             // 
             // txtGeneratedCode
             // 
+            this.txtGeneratedCode.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtGeneratedCode.Enabled = false;
-            this.txtGeneratedCode.Location = new System.Drawing.Point(125, 181);
+            this.txtGeneratedCode.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txtGeneratedCode.Location = new System.Drawing.Point(124, 181);
             this.txtGeneratedCode.Name = "txtGeneratedCode";
             this.txtGeneratedCode.Size = new System.Drawing.Size(100, 20);
             this.txtGeneratedCode.TabIndex = 3;
+            this.txtGeneratedCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblGeneratedCode
             // 
             this.lblGeneratedCode.AutoSize = true;
-            this.lblGeneratedCode.Location = new System.Drawing.Point(122, 165);
+            this.lblGeneratedCode.Location = new System.Drawing.Point(140, 165);
             this.lblGeneratedCode.Name = "lblGeneratedCode";
             this.lblGeneratedCode.Size = new System.Drawing.Size(68, 13);
             this.lblGeneratedCode.TabIndex = 4;
@@ -92,6 +96,7 @@
             this.Controls.Add(this.cmbSelectRole);
             this.Controls.Add(this.grpGenerateCode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCreateToken";
             this.Text = "Créer un code utilisateur";
             this.Load += new System.EventHandler(this.frmCreateToken_Load);

@@ -17,6 +17,7 @@ namespace PerfectPlanner
     {
         public static CustomApplicationContext AppContext;
         public static IServiceProvider ServiceProvider;
+        public static String url = "https://f594-195-176-241-239.ngrok-free.app";
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
@@ -36,7 +37,7 @@ namespace PerfectPlanner
         {
             services.AddHttpClient("MyApiClient", client =>
             {
-                client.BaseAddress = new Uri("https://f594-195-176-241-239.ngrok-free.app/api/");
+                client.BaseAddress = new Uri(url + "/api/");
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 if (!string.IsNullOrEmpty(Program.AppContext.GetToken()))
                 {
@@ -48,6 +49,11 @@ namespace PerfectPlanner
             services.AddTransient<frmApp>();
             services.AddTransient<frmUser>();
             services.AddTransient<frmProject>();
+        }
+
+        public static String getBaseUrl()
+        {
+            return url;
         }
 
     }

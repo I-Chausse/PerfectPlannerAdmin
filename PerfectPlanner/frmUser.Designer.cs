@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usersAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsEditUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditUserEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditUSerDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,13 +46,9 @@
             this.btnDeleteUser = new System.Windows.Forms.Button();
             this.btnUpdateUser = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
-            this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usersAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblSearchUserName = new System.Windows.Forms.Label();
+            this.txtSearchUserName = new System.Windows.Forms.TextBox();
+            this.btnSearchUserName = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.cmsEditUser.SuspendLayout();
             this.cmsAddUser.SuspendLayout();
@@ -67,14 +70,66 @@
             this.email,
             this.role,
             this.usersAssigned});
-            this.dgvUsers.Location = new System.Drawing.Point(12, 25);
+            this.dgvUsers.Location = new System.Drawing.Point(12, 65);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
-            this.dgvUsers.Size = new System.Drawing.Size(910, 670);
+            this.dgvUsers.Size = new System.Drawing.Size(910, 630);
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectionCompleteRowOnCellClick);
             this.dgvUsers.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleEditAndDeleteBtnState);
             this.dgvUsers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUser);
+            // 
+            // userId
+            // 
+            this.userId.DataPropertyName = "id";
+            this.userId.HeaderText = "Id";
+            this.userId.Name = "userId";
+            this.userId.ReadOnly = true;
+            this.userId.Visible = false;
+            // 
+            // userName
+            // 
+            this.userName.DataPropertyName = "user_name";
+            this.userName.HeaderText = "Nom d\'utilisateur";
+            this.userName.Name = "userName";
+            this.userName.ReadOnly = true;
+            this.userName.Width = 150;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Nom";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // firstName
+            // 
+            this.firstName.DataPropertyName = "first_name";
+            this.firstName.HeaderText = "Prénom";
+            this.firstName.Name = "firstName";
+            this.firstName.ReadOnly = true;
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "E-Mail";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Width = 200;
+            // 
+            // role
+            // 
+            this.role.DataPropertyName = "role_name";
+            this.role.HeaderText = "Rôle";
+            this.role.Name = "role";
+            this.role.ReadOnly = true;
+            // 
+            // usersAssigned
+            // 
+            this.usersAssigned.DataPropertyName = "display_assignees";
+            this.usersAssigned.HeaderText = "Utilisateurs assignés";
+            this.usersAssigned.Name = "usersAssigned";
+            this.usersAssigned.Width = 200;
             // 
             // cmsEditUser
             // 
@@ -145,63 +200,40 @@
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.OnClickOnTsmiAddUserAdd);
             // 
-            // userId
+            // lblSearchUserName
             // 
-            this.userId.DataPropertyName = "id";
-            this.userId.HeaderText = "Id";
-            this.userId.Name = "userId";
-            this.userId.ReadOnly = true;
-            this.userId.Visible = false;
+            this.lblSearchUserName.AutoSize = true;
+            this.lblSearchUserName.Location = new System.Drawing.Point(13, 24);
+            this.lblSearchUserName.Name = "lblSearchUserName";
+            this.lblSearchUserName.Size = new System.Drawing.Size(84, 13);
+            this.lblSearchUserName.TabIndex = 4;
+            this.lblSearchUserName.Text = "Nom d\'utilisateur";
             // 
-            // userName
+            // txtSearchUserName
             // 
-            this.userName.DataPropertyName = "user_name";
-            this.userName.HeaderText = "Nom d\'utilisateur";
-            this.userName.Name = "userName";
-            this.userName.ReadOnly = true;
-            this.userName.Width = 150;
+            this.txtSearchUserName.Location = new System.Drawing.Point(103, 21);
+            this.txtSearchUserName.Name = "txtSearchUserName";
+            this.txtSearchUserName.Size = new System.Drawing.Size(100, 20);
+            this.txtSearchUserName.TabIndex = 5;
             // 
-            // name
+            // btnSearchUserName
             // 
-            this.name.DataPropertyName = "name";
-            this.name.HeaderText = "Nom";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // firstName
-            // 
-            this.firstName.DataPropertyName = "first_name";
-            this.firstName.HeaderText = "Prénom";
-            this.firstName.Name = "firstName";
-            this.firstName.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "email";
-            this.email.HeaderText = "E-Mail";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            this.email.Width = 200;
-            // 
-            // role
-            // 
-            this.role.DataPropertyName = "role_name";
-            this.role.HeaderText = "Rôle";
-            this.role.Name = "role";
-            this.role.ReadOnly = true;
-            // 
-            // usersAssigned
-            // 
-            this.usersAssigned.DataPropertyName = "display_assignees";
-            this.usersAssigned.HeaderText = "Utilisateurs assignés";
-            this.usersAssigned.Name = "usersAssigned";
-            this.usersAssigned.Width = 200;
+            this.btnSearchUserName.Location = new System.Drawing.Point(221, 19);
+            this.btnSearchUserName.Name = "btnSearchUserName";
+            this.btnSearchUserName.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchUserName.TabIndex = 6;
+            this.btnSearchUserName.Text = "&Rechercher";
+            this.btnSearchUserName.UseVisualStyleBackColor = true;
+            this.btnSearchUserName.Click += new System.EventHandler(this.btnSearchUserName_Click);
             // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 761);
+            this.Controls.Add(this.btnSearchUserName);
+            this.Controls.Add(this.txtSearchUserName);
+            this.Controls.Add(this.lblSearchUserName);
             this.Controls.Add(this.btnDeleteUser);
             this.Controls.Add(this.btnUpdateUser);
             this.Controls.Add(this.btnAddUser);
@@ -216,6 +248,7 @@
             this.cmsEditUser.ResumeLayout(false);
             this.cmsAddUser.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -237,5 +270,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn role;
         private System.Windows.Forms.DataGridViewTextBoxColumn usersAssigned;
+        private System.Windows.Forms.Label lblSearchUserName;
+        private System.Windows.Forms.TextBox txtSearchUserName;
+        private System.Windows.Forms.Button btnSearchUserName;
     }
 }

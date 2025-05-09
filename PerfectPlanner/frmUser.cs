@@ -79,8 +79,6 @@ namespace PerfectPlanner
         {
             var client = _httpClientFactory.CreateClient("MyApiClient");
             var jsonContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-            var contents = await jsonContent.ReadAsStringAsync();
-            Debug.WriteLine(contents);
             var response = await client.PostAsync("users", jsonContent);
             if (!response.IsSuccessStatusCode)
             {
@@ -90,15 +88,18 @@ namespace PerfectPlanner
             Debug.WriteLine(content);
             UserPreview createdUser = JsonConvert.DeserializeObject<UserPreview>(content);
             Debug.WriteLine("Id ok: " + createdUser.id);
-            UsersToAssign usersToAssign = new UsersToAssign
+            if (user.role.code != "user")
             {
-                users_to_assign = user.userIds
-            };
-            jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
-            response = await client.PutAsync("users/" + createdUser.id + "/update-assignees", jsonContent);
-            if (!response.IsSuccessStatusCode)
-            {
-                await ParseResponse(response);
+                UsersToAssign usersToAssign = new UsersToAssign
+                {
+                    users_to_assign = user.userIds
+                };
+                jsonContent = new StringContent(JsonConvert.SerializeObject(usersToAssign), Encoding.UTF8, "application/json");
+                response = await client.PutAsync("users/" + createdUser.id + "/update-assignees", jsonContent);
+                if (!response.IsSuccessStatusCode)
+                {
+                    await ParseResponse(response);
+                }
             }
             UpdateData();
         }
@@ -107,6 +108,8 @@ namespace PerfectPlanner
         {
             var client = _httpClientFactory.CreateClient("MyApiClient");
             var jsonContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+            var contents = await jsonContent.ReadAsStringAsync();
+            Debug.WriteLine(contents);
             var response = await client.PutAsync("users/" + user.id, jsonContent);
             if (!response.IsSuccessStatusCode)
             {
@@ -180,7 +183,12 @@ namespace PerfectPlanner
         private void UpdateData()
         {
             HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
-            HttpResponseMessage response = client.GetAsync("users").Result;
+            String param = txtSearchUserName.Text;
+            if (param.Length > 0)
+            {
+                param = "?username=" + param;
+            }
+            HttpResponseMessage response = client.GetAsync("users" + param).Result;
             if (response.IsSuccessStatusCode)
             {
                 string content = response.Content.ReadAsStringAsync().Result;
@@ -206,6 +214,11 @@ namespace PerfectPlanner
             {
                 throw new Exception($"Erreur HTTP : {response.StatusCode} - {content}");
             }
+        }
+
+        private void btnSearchUserName_Click(object sender, EventArgs e)
+        {
+            UpdateData();
         }
     }
 }

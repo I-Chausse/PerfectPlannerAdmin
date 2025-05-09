@@ -67,7 +67,7 @@ namespace PerfectPlanner.Models.Users
                 return ids;
             }
         }
-        public int role_id
+        public int? role_id
         {
             get
             {
@@ -77,7 +77,21 @@ namespace PerfectPlanner.Models.Users
                 }
                 else
                 {
-                    return 0;
+                    return null;
+                }
+            }
+        }
+        public int? avatar_id
+        {
+            get
+            {
+                if (avatar != null)
+                {
+                    return avatar.id;
+                }
+                else
+                {
+                    return null;
                 }
             }
         }

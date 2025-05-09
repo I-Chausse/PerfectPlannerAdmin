@@ -59,7 +59,7 @@ namespace PerfectPlanner
             txtPersonMail.Text = user.email;
             if (user != null && user.avatar != null && user.avatar.link != null)
             {
-                picPersonAvatar.ImageLocation = user.avatar.link;
+                picPersonAvatar.ImageLocation = Program.getBaseUrl() + user.avatar.link;
             }
             if (cmbUserRole.SelectedIndex == 0)
             {
