@@ -33,6 +33,7 @@
             this.tsmiUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProjects = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAdvanced = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiGenerateCode = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +42,7 @@
             this.mnsMainStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUser,
             this.tsmiProjects,
+            this.tsmiGenerateCode,
             this.tsmiAdvanced});
             this.mnsMainStrip.Location = new System.Drawing.Point(0, 0);
             this.mnsMainStrip.Name = "mnsMainStrip";
@@ -69,6 +71,13 @@
             this.tsmiAdvanced.Text = "Mode &avancé";
             this.tsmiAdvanced.Click += new System.EventHandler(this.OnClickOnTsmiAdvanced);
             // 
+            // tsmiGenerateCode
+            // 
+            this.tsmiGenerateCode.Name = "tsmiGenerateCode";
+            this.tsmiGenerateCode.Size = new System.Drawing.Size(106, 20);
+            this.tsmiGenerateCode.Text = "&Générer un code";
+            this.tsmiGenerateCode.Click += new System.EventHandler(this.tsmiGenerateCode_Click);
+            // 
             // frmApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,6 +91,7 @@
             this.Name = "frmApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Perfect Planner";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmApp_FormClosing);
             this.mnsMainStrip.ResumeLayout(false);
             this.mnsMainStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -95,6 +105,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiUser;
         private System.Windows.Forms.ToolStripMenuItem tsmiProjects;
         private System.Windows.Forms.ToolStripMenuItem tsmiAdvanced;
+        private System.Windows.Forms.ToolStripMenuItem tsmiGenerateCode;
     }
 }
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PerfectPlanner.Models.UserRoles
+namespace PerfectPlanner.Models.Roles
 {
-    public class UserRole
+    public class Role
     {
         public int id { get; set; }
         public string code { get; set; }

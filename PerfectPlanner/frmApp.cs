@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models.Projects;
+using System;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Windows.Forms;
 
 namespace PerfectPlanner
@@ -58,6 +61,32 @@ namespace PerfectPlanner
             String basic = "Mode b&asique";
             item.Text = item.Text == advanced ? basic : advanced;
             Program.AppContext.SwitchAdvancedMode();
+        }
+
+        private async void frmApp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var client = _httpClientFactory.CreateClient("MyApiClient");
+            var response = await client.PostAsync("logout", null);
+            Program.AppContext.SetToken(null);
+        }
+
+        private void tsmiGenerateCode_Click(object sender, EventArgs e)
+        {
+            frmCreateToken existingForm = Application.OpenForms.OfType<frmCreateToken>().FirstOrDefault();
+
+            if (existingForm != null)
+            {
+                existingForm.BringToFront();
+                existingForm.Activate();
+            }
+            else
+            {
+                frmCreateToken frmUser = new frmCreateToken(_httpClientFactory)
+                {
+                    MdiParent = this
+                };
+                frmUser.Show();
+            }
         }
     }
 }

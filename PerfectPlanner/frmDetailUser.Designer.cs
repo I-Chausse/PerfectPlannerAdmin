@@ -50,15 +50,15 @@
             this.btnDeleteAssignee = new System.Windows.Forms.Button();
             this.btnAddAssignee = new System.Windows.Forms.Button();
             this.dgvUsersAssigned = new System.Windows.Forms.DataGridView();
-            this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cmsRemoveAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRemoveAdminRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsAddAssignee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddAdminAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.assigneeUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpUserDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPersonAvatar)).BeginInit();
             this.grpUsersAssigned.SuspendLayout();
@@ -119,15 +119,13 @@
             // 
             // cmbUserRole
             // 
+            this.cmbUserRole.DisplayMember = "label";
             this.cmbUserRole.FormattingEnabled = true;
-            this.cmbUserRole.Items.AddRange(new object[] {
-            "Utilisateur",
-            "Gestionnaire",
-            "Administrateur"});
             this.cmbUserRole.Location = new System.Drawing.Point(110, 367);
             this.cmbUserRole.Name = "cmbUserRole";
             this.cmbUserRole.Size = new System.Drawing.Size(140, 21);
             this.cmbUserRole.TabIndex = 13;
+            this.cmbUserRole.ValueMember = "id";
             this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.OnSlectedIndexChangeOfCmbUserRole);
             // 
             // btnDeletePersonAvatar
@@ -275,25 +273,6 @@
             this.dgvUsersAssigned.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.HandleDeleteBtnState);
             this.dgvUsersAssigned.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseDownOnDgvUsersAssigned);
             // 
-            // assigneeUserId
-            // 
-            this.assigneeUserId.HeaderText = "Id";
-            this.assigneeUserId.Name = "assigneeUserId";
-            this.assigneeUserId.ReadOnly = true;
-            this.assigneeUserId.Visible = false;
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "Nom";
-            this.userName.Name = "userName";
-            this.userName.ReadOnly = true;
-            // 
-            // userFirstName
-            // 
-            this.userFirstName.HeaderText = "Prénom";
-            this.userFirstName.Name = "userFirstName";
-            this.userFirstName.ReadOnly = true;
-            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -344,6 +323,28 @@
             this.tsmiAddAdminAdd.Size = new System.Drawing.Size(113, 22);
             this.tsmiAddAdminAdd.Text = "Ajouter";
             this.tsmiAddAdminAdd.Click += new System.EventHandler(this.OnClickOnTsmiAddAssigneeAdd);
+            // 
+            // assigneeUserId
+            // 
+            this.assigneeUserId.DataPropertyName = "id";
+            this.assigneeUserId.HeaderText = "Id";
+            this.assigneeUserId.Name = "assigneeUserId";
+            this.assigneeUserId.ReadOnly = true;
+            this.assigneeUserId.Visible = false;
+            // 
+            // userName
+            // 
+            this.userName.DataPropertyName = "name";
+            this.userName.HeaderText = "Nom";
+            this.userName.Name = "userName";
+            this.userName.ReadOnly = true;
+            // 
+            // userFirstName
+            // 
+            this.userFirstName.DataPropertyName = "first_name";
+            this.userFirstName.HeaderText = "Prénom";
+            this.userFirstName.Name = "userFirstName";
+            this.userFirstName.ReadOnly = true;
             // 
             // frmDetailUser
             // 
@@ -399,12 +400,12 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRemoveAdminRemove;
         private System.Windows.Forms.ContextMenuStrip cmsAddAssignee;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddAdminAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn assigneeUserId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
         private System.Windows.Forms.MaskedTextBox mtxUserPassword;
         private System.Windows.Forms.Label lblUserPassword;
         private System.Windows.Forms.Button btnDeleteAssignee;
         private System.Windows.Forms.Button btnAddAssignee;
+        private System.Windows.Forms.DataGridViewTextBoxColumn assigneeUserId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
     }
 }

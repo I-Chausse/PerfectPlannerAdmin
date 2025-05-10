@@ -27,13 +27,16 @@ namespace PerfectPlanner.Models.Projects
             get
             {
                 StringBuilder sb = new StringBuilder();
-                foreach (User user in admins)
+                if (admins != null)
                 {
-                    sb.Append(user.first_name + " " + user.name + ", ");
-                }
-                if (sb.Length > 0)
-                {
-                    sb.Remove(sb.Length - 2, 2);
+                    foreach (User user in admins)
+                    {
+                        sb.Append(user.first_name + " " + user.name + ", ");
+                    }
+                    if (sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 2, 2);
+                    }
                 }
                 return sb.ToString();
             }
@@ -43,13 +46,16 @@ namespace PerfectPlanner.Models.Projects
             get
             {
                 StringBuilder sb = new StringBuilder();
-                foreach (User user in users)
+                if (users != null)
                 {
-                    sb.Append(user.first_name + " " + user.name + ", ");
-                }
-                if (sb.Length > 0)
-                {
-                    sb.Remove(sb.Length - 2, 2);
+                    foreach (User user in users)
+                    {
+                        sb.Append(user.first_name + " " + user.name + ", ");
+                    }
+                    if (sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 2, 2);
+                    }
                 }
                 return sb.ToString();
             }
@@ -60,13 +66,19 @@ namespace PerfectPlanner.Models.Projects
             get
             {
                 List<int> ids = new List<int>();
-                foreach (User user in users)
+                if (users != null)
                 {
-                    ids.Add(user.id);
+                    foreach (User user in users)
+                    {
+                        ids.Add(user.id);
+                    }
                 }
-                foreach (User user in admins)
+                if (admins != null)
                 {
-                    ids.Add(user.id);
+                    foreach (User user in admins)
+                    {
+                        ids.Add(user.id);
+                    }
                 }
                 return ids;
             }

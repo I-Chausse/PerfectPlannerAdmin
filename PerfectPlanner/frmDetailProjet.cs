@@ -275,7 +275,7 @@ namespace PerfectPlanner
             }
             else
             {
-                MessageBox.Show("Erreur lors de la récupération des projets pour l'id : " + projectId, "Erreur: " + response.StatusCode, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur lors de la récupération des utilisateurs pour l'id : " + projectId, "Erreur: " + response.StatusCode, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return usersAssignables;
         }

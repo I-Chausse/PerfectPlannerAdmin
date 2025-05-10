@@ -81,7 +81,6 @@ namespace PerfectPlanner
                 await ParseResponse(response);
             }
             var content = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine(content);
             Project createdProject = JsonConvert.DeserializeObject<ProjectResponse>(content).Data;
             Debug.WriteLine("Id ok: " + createdProject.id);
             UsersToAssign usersToAssign = new UsersToAssign
@@ -118,6 +117,7 @@ namespace PerfectPlanner
             {
                 await ParseResponse(response);
             }
+
             UpdateData();
         }
 
@@ -168,7 +168,13 @@ namespace PerfectPlanner
         private void UpdateData()
         {
             HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
-            HttpResponseMessage response = client.GetAsync("projects").Result;
+            String param = txtSearchProjectName.Text;
+            if (param.Length > 0)
+            {
+                param = "?projectname=" + param;
+            }
+            
+            HttpResponseMessage response = client.GetAsync("projects" + param).Result;
             if (response.IsSuccessStatusCode)
             {
                 string content = response.Content.ReadAsStringAsync().Result;
@@ -194,6 +200,11 @@ namespace PerfectPlanner
             {
                 throw new Exception($"Erreur HTTP : {response.StatusCode} - {content}");
             }
+        }
+
+        private void btnSearchProjectName_Click(object sender, EventArgs e)
+        {
+            UpdateData();
         }
     }
 }

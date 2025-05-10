@@ -1,4 +1,7 @@
-﻿using PerfectPlanner.Models.Users;
+﻿using Newtonsoft.Json;
+using PerfectPlanner.Models.Projects;
+using PerfectPlanner.Models.Roles;
+using PerfectPlanner.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +9,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,39 +22,55 @@ namespace PerfectPlanner
         private readonly frmUser frmUser;
         private readonly bool isEditMode = false;
         private readonly int userId = 0;
-        public frmDetailUser(frmUser frmParent)
+        private IHttpClientFactory _httpClientFactory;
+        private List<Role> roles;
+        private User user;
+        private BindingSource usersBindingSource;
+
+        public frmDetailUser(frmUser frmParent, IHttpClientFactory httpClientFactory)
         {
+            this._httpClientFactory = httpClientFactory;
             InitializeComponent();
+            this.user = new User();
+            this.user.assignees = new List<User>();
+            this.dgvUsersAssigned.AutoGenerateColumns = false;
+            this.usersBindingSource = new BindingSource { DataSource = this.user.assignees };
+            dgvUsersAssigned.DataSource = this.usersBindingSource;
             btnSave.Text = "Ajouter";
             grpUsersAssigned.Visible = false;
             this.Width = 310;
             this.frmUser = frmParent;
-            cmbUserRole.SelectedIndex = 0;
             btnSave.Text = "Ajouter";
+            fillDomainItems();
+            cmbUserRole.SelectedIndex = -1;
         }
 
-        public frmDetailUser(frmUser frmParent, User user)
+        public frmDetailUser(frmUser frmParent, User user, IHttpClientFactory httpClientFactory)
         {
+            this._httpClientFactory = httpClientFactory;
+            this.user = user;
             InitializeComponent();
+            this.dgvUsersAssigned.AutoGenerateColumns = false;
+            this.usersBindingSource = new BindingSource { DataSource = this.user.assignees };
+            dgvUsersAssigned.DataSource = this.usersBindingSource;
             txtUserName.Text = user.user_name;
             txtPersonName.Text = user.name;
             txtPersonFirstName.Text = user.first_name;
             txtPersonMail.Text = user.email;
-            cmbUserRole.Text = user.role.label;
-            picPersonAvatar.ImageLocation = user.avatar.link;
+            if (user != null && user.avatar != null && user.avatar.link != null)
+            {
+                picPersonAvatar.ImageLocation = Program.getBaseUrl() + user.avatar.link;
+            }
             if (cmbUserRole.SelectedIndex == 0)
             {
                 grpUsersAssigned.Visible = false;
                 this.Width = 310;
             }
-            foreach (var item in user.assignees)
-            {
-                dgvUsersAssigned.Rows.Add(item.id, item.name, item.first_name);
-            }
             this.frmUser = frmParent;
             this.userId = user.id;
             this.isEditMode = true;
-
+            fillDomainItems();
+            cmbUserRole.SelectedIndex = roles.FindIndex(role => role.id == user.role.id);
         }
 
         private void OnSlectedIndexChangeOfCmbUserRole(object sender, EventArgs e)
@@ -77,7 +98,7 @@ namespace PerfectPlanner
 
         private void OnClickOnTsmiAddAssigneeAdd(object sender, EventArgs e)
         {
-            List<User> usersAssignables = new List<User>();
+            List<User> usersAssignables = fetchUsers();
             frmUserSelection frmUserSelection = new frmUserSelection(this, usersAssignables);
             frmUserSelection.ShowDialog();
         }
@@ -102,12 +123,20 @@ namespace PerfectPlanner
 
         public void AddUser(User user)
         {
-            //dgvUsersAssigned.Rows.Add(user.Id, user.LastName, user.FirstName);
+            this.user.assignees.Add(user);
+            this.usersBindingSource.ResetBindings(false);
         }
 
         public void RemoveUser()
         {
-            dgvUsersAssigned.Rows.Remove(dgvUsersAssigned.SelectedRows[0]);
+            int userId = (int)dgvUsersAssigned.SelectedRows[0].Cells["assigneeUserId"].Value;
+            var usersList = (List<User>)this.usersBindingSource.DataSource;
+            var userToRemove = usersList.FirstOrDefault(u => u.id == userId);
+            if (userToRemove != null)
+            {
+                usersList.Remove(userToRemove);
+                this.usersBindingSource.ResetBindings(false);
+            }
         }
 
         private void OnClickOnBtnCancel(object sender, EventArgs e)
@@ -115,30 +144,38 @@ namespace PerfectPlanner
             this.Close();
         }
 
-        private void OnClickOnBtnSave(object sender, EventArgs e)
+        private async void OnClickOnBtnSave(object sender, EventArgs e)
         {
-            User user = new User();
-            //User user = new User(userId, txtUserName.Text, mtxUserPassword.Text, txtPersonMail.Text, txtPersonFirstName.Text, txtPersonName.Text, picPersonAvatar.ImageLocation, cmbUserRole.Text);
+            this.user.id = userId;
+            this.user.user_name = txtUserName.Text;
+            this.user.password = mtxUserPassword.Text;
+            this.user.email = txtPersonMail.Text;
+            this.user.first_name = txtPersonFirstName.Text;
+            this.user.name = txtPersonName.Text;
+            this.user.role = roles.Find(selected => selected.id == (int)cmbUserRole.SelectedValue);
             List<User> usersAssigned = new List<User>();
-            foreach (DataGridViewRow row in dgvUsersAssigned.Rows)
+            try
             {
-                //usersAssigned.Add(DataProvider.GetUsers().Find((assignee) => assignee.id ==(int) row.Cells["assigneeUserId"].Value));
+                if (this.isEditMode)
+                {
+                    await this.frmUser.UpdateUser(user);
+                }
+                else
+                {
+                    await this.frmUser.AddUser(user);
+                }
+                this.Close();
             }
-            //user.UsersAssigned = usersAssigned;
-            if (this.isEditMode)
+            catch (Exception ex)
             {
-                this.frmUser.UpdateUser(user);
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                this.frmUser.AddUser(user);
-            }
-            this.Close();
         }
 
         private void OnClickOnBtnDeletePersonAvatar(object sender, EventArgs e)
         {
             this.picPersonAvatar.Image = null;
+            this.user.avatar = null;
         }
 
         private void HandleDeleteBtnState(Object sender, DataGridViewRowStateChangedEventArgs e)
@@ -169,6 +206,43 @@ namespace PerfectPlanner
                 btnDeleteAssignee.Visible = false;
                 grpUsersAssigned.Height = 260;
             }
+        }
+
+        private void fillDomainItems()
+        {
+            HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
+            HttpResponseMessage response = client.GetAsync("get-roles").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result;
+                roles = JsonConvert.DeserializeObject<RoleResponse>(content).Data;
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des projets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            cmbUserRole.DataSource = roles;
+        }
+
+        private List<User> fetchUsers()
+        {
+            HttpClient client = _httpClientFactory.CreateClient("MyApiClient");
+            string param = "?role=user";
+            HttpResponseMessage response = client.GetAsync("users" + param).Result;
+            List<User> usersAssignables = new List<User>();
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result;
+                Debug.WriteLine(content);
+                usersAssignables = JsonConvert.DeserializeObject<UsersResponse>(content).Data;
+                usersAssignables = usersAssignables.Where(u => !user.assignees.Any(a => a.id == u.id)).ToList();  
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la récupération des utilisateurs pour l'id : " + userId, "Erreur: " + response.StatusCode, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return usersAssignables;
         }
     }
 }

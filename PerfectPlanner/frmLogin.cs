@@ -26,6 +26,7 @@ namespace PerfectPlanner
 
         private async void OnClickOnBtnLogin(object sender, EventArgs e)
         {
+            btnLogin.Enabled = false;
             var client = _httpClientFactory.CreateClient("MyApiClient");
             var loginRequest = new LoginRequest
             {
@@ -60,6 +61,7 @@ namespace PerfectPlanner
             {
                 MessageBox.Show($"Erreur : {ex.Message}", "Erreur lors du login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            btnLogin.Enabled = true;
         }
     }
 }

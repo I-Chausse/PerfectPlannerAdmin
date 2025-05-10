@@ -32,7 +32,7 @@ namespace PerfectPlanner
             else
             {
                 // Sinon, ouvrez frmLogin
-                currentForm = _serviceProvider.GetRequiredService<frmLogin>(); ;
+                currentForm = _serviceProvider.GetRequiredService<frmLogin>();
                 currentForm.FormClosed += new FormClosedEventHandler(OnFormClosed);
                 currentForm.Show();
             }
